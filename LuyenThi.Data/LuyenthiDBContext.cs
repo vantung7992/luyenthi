@@ -1,16 +1,11 @@
 ﻿using LuyenThi.Model.Models;
-using System;
-using System.Collections.Generic;
 using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LuyenThi.Data
 {
     public class LuyenthiDBContext : DbContext
     {
-        public LuyenthiDBContext() : base("LuyenthiConnection")
+        public LuyenthiDBContext() : base("LuyenthiConnections")
         {
             this.Configuration.LazyLoadingEnabled = false;
         }
@@ -22,6 +17,11 @@ namespace LuyenThi.Data
         public DbSet<DethiCauhoi> DethiCauhoi { get; set; }
         public DbSet<ChudeCauhoi> ChudeCauhoi { get; set; }
         public DbSet<ChudeDethi> ChudeDethi { get; set; }
+
+        public static LuyenthiDBContext Create()
+        {
+            return new LuyenthiDBContext();
+        }
 
         protected override void OnModelCreating(DbModelBuilder buider)
         {

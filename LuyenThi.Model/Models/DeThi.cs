@@ -12,6 +12,7 @@ namespace LuyenThi.Model.Models
         public int ID { get; set; }
 
         [Required]
+        [MaxLength(200)]
         public string Ten { get; set; }
 
         public virtual IEnumerable<DethiCauhoi> DethiCauhoi { get; set; }

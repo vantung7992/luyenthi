@@ -22,7 +22,6 @@ namespace LuyenThi.Model.Models
         [Required]
         public int Thutu { get; set; }
 
-        [Required]
         public Boolean Dungsai { get; set; }
 
         public int IDCauhoi { get; set; }

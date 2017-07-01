@@ -13,6 +13,7 @@ namespace LuyenThi.Model.Models
         public int ID { get; set; }
 
         [Required]
+        [MaxLength(2000)]
         public string Noidung { get; set; }
 
         [MaxLength(256)]

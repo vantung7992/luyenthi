@@ -8,18 +8,20 @@ namespace LuyenThi.Model.Models
     public class ChudeCauhoi :Auditable
     {
         [Key]
+        [Column(Order =1)]
         public int IDChude { get; set; }
 
         [Key]
+        [Column(Order =2)]
         public int IDCauhoi { get; set; }
 
         [Required]
-        public int Thuhu { get; set; }
+        public int Thutu { get; set; }
 
         [ForeignKey("IDChude")]
-        public virtual Chude ChuDe { get; set; }
+        public virtual Chude Chude { get; set; }
 
         [ForeignKey("IDCauhoi")]
-        public virtual Cauhoi CauHoi { get; set; }
+        public virtual Cauhoi Cauhoi { get; set; }
     }
 }

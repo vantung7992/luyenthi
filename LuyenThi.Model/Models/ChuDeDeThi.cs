@@ -8,9 +8,11 @@ namespace LuyenThi.Model.Models
     public class ChudeDethi : Auditable
     {
         [Key]
+        [Column(Order =1)]
         public int IDChude { get; set; }
 
         [Key]
+        [Column(Order =2)]
         public int IDDethi { get; set; }
 
         [ForeignKey("IDDethi")]
