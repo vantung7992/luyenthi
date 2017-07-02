@@ -7,7 +7,7 @@ namespace LuyenThi.Data.Repositories
     {
     }
 
-    public class ChudeRepository : RepositoryBase<Cauhoi>, IChudeRepository
+    public class ChudeRepository : RepositoryBase<Chude>, IChudeRepository
     {
         public ChudeRepository(IDbFactory dbFactory) : base(dbFactory)
         {

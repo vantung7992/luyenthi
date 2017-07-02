@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace LuyenThi.Model.Models
 {
-    [Table("CauHoi")]
+    [Table("Cauhoi")]
     public class Cauhoi : Auditable
     {
         [Key]

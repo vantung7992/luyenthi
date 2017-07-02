@@ -13,7 +13,7 @@ namespace LuyenThi.Data.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201707011612471_InitialDB"; }
+            get { return "201707021535298_InitialDB"; }
         }
         
         string IMigrationMetadata.Source

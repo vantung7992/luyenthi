@@ -57,9 +57,9 @@
     <Compile Include="Infrastructure\RepositoryBase.cs" />
     <Compile Include="Infrastructure\UnitOfWork.cs" />
     <Compile Include="LuyenthiDBContext.cs" />
-    <Compile Include="Migrations\201707011612471_InitialDB.cs" />
-    <Compile Include="Migrations\201707011612471_InitialDB.Designer.cs">
-      <DependentUpon>201707011612471_InitialDB.cs</DependentUpon>
+    <Compile Include="Migrations\201707021535298_InitialDB.cs" />
+    <Compile Include="Migrations\201707021535298_InitialDB.Designer.cs">
+      <DependentUpon>201707021535298_InitialDB.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -78,22 +78,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\LuyenThi.Common\LuyenThi.Common.csproj">
-      <Project>{f32d48ba-d8a3-4b1d-aa54-b06225eb649d}</Project>
-      <Name>LuyenThi.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\LuyenThi.Model\LuyenThi.Model.csproj">
       <Project>{24502c47-42d3-47b5-a837-55cb13eae739}</Project>
       <Name>LuyenThi.Model</Name>
     </ProjectReference>
-    <ProjectReference Include="..\LuyenThi.Web\LuyenThi.Web.csproj">
-      <Project>{30936cdc-e675-41cb-9832-b23eeb0aa5f8}</Project>
-      <Name>LuyenThi.Web</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201707011612471_InitialDB.resx">
-      <DependentUpon>201707011612471_InitialDB.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201707021535298_InitialDB.resx">
+      <DependentUpon>201707021535298_InitialDB.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
