@@ -3,7 +3,7 @@ using LuyenThi.Model.Models;
 
 namespace LuyenThi.Data.Repositories
 {
-    public interface IChudeDethiRepositiry { }
+    public interface IChudeDethiRepositiry : IRepository<ChudeDethi> { }
 
     public class ChudeDethiRepository : RepositoryBase<ChudeDethi>, IChudeDethiRepositiry
     {

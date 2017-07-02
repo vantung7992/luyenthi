@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using LuyenThi.Model.Abstract;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace LuyenThi.Model.Models
 {
     [Table("Dethi")]
-    public class Dethi
+    public class Dethi: Auditable
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
