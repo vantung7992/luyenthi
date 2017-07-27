@@ -34,5 +34,18 @@ namespace LuyenThi.Web.Infrastructure.Extensions
             dapan.IDCauhoi = dapanViewModel.IDCauhoi;
             dapan.Photo = dapanViewModel.Photo;
         }
+
+        public static void UpdateChudeCauhoi(this ChudeCauhoi chudeCauhoi, ChudeCauhoiViewModel chudeCauhoiViewModel)
+        {
+            chudeCauhoi.IDChude = chudeCauhoiViewModel.IDChude;
+            chudeCauhoi.IDCauhoi = chudeCauhoiViewModel.IDCauhoi;
+            chudeCauhoi.Thutu = chudeCauhoiViewModel.Thutu;
+        }
+
+        public static void UpdateChudeDethi(this ChudeDethi chudeDethi, ChudeDethiViewModel chudeDethiViewmodel)
+        {
+            chudeDethi.IDChude = chudeDethiViewmodel.IDChude;
+            chudeDethi.IDDethi = chudeDethiViewmodel.IDDethi;
+        }
     }
 }
