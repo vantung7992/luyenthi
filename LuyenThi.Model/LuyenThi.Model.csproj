@@ -58,6 +58,7 @@
     <Compile Include="Models\Dapan.cs" />
     <Compile Include="Models\Dethi.cs" />
     <Compile Include="Models\DethiCauhoi.cs" />
+    <Compile Include="Models\Error.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

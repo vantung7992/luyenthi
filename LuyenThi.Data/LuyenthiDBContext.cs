@@ -17,6 +17,7 @@ namespace LuyenThi.Data
         public DbSet<DethiCauhoi> DethiCauhoi { get; set; }
         public DbSet<ChudeCauhoi> ChudeCauhoi { get; set; }
         public DbSet<ChudeDethi> ChudeDethi { get; set; }
+        public DbSet<Error> Error { get; set; }
 
         public static LuyenthiDBContext Create()
         {

@@ -12,9 +12,10 @@ namespace LuyenThi.Service
 {
     public interface ICauhoiService
     {
-        void Add(Cauhoi cauhoi);
+        Cauhoi Add(Cauhoi cauhoi);
         void Update(Cauhoi cauhoi);
         void Delete(int id);
+        IEnumerable GetAll();
         IEnumerable GetAllByDethi(int idDethi);
         IEnumerable GetAllByChude(int idChude);
         void SaveChanges();
@@ -30,14 +31,19 @@ namespace LuyenThi.Service
             this._unitOfWork = unitOfWork;
         }
 
-        public void Add(Cauhoi cauhoi)
+        public Cauhoi Add(Cauhoi cauhoi)
         {
-            _cauhoiRepository.Add(cauhoi);
+            return _cauhoiRepository.Add(cauhoi);
         }
 
         public void Delete(int id)
         {
             _cauhoiRepository.Delete(id);
+        }
+
+        public IEnumerable GetAll()
+        {
+            return _cauhoiRepository.GetAll();
         }
 
         public IEnumerable GetAllByChude(int idChude)

@@ -57,9 +57,9 @@
     <Compile Include="Infrastructure\RepositoryBase.cs" />
     <Compile Include="Infrastructure\UnitOfWork.cs" />
     <Compile Include="LuyenthiDBContext.cs" />
-    <Compile Include="Migrations\201707021535298_InitialDB.cs" />
-    <Compile Include="Migrations\201707021535298_InitialDB.Designer.cs">
-      <DependentUpon>201707021535298_InitialDB.cs</DependentUpon>
+    <Compile Include="Migrations\201707270430548_InitialDB.cs" />
+    <Compile Include="Migrations\201707270430548_InitialDB.Designer.cs">
+      <DependentUpon>201707270430548_InitialDB.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -70,6 +70,7 @@
     <Compile Include="Repositories\DapanRepository.cs" />
     <Compile Include="Repositories\DethiCauhoirepository.cs" />
     <Compile Include="Repositories\DethiRepository.cs" />
+    <Compile Include="Repositories\ErrorRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -84,8 +85,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201707021535298_InitialDB.resx">
-      <DependentUpon>201707021535298_InitialDB.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201707270430548_InitialDB.resx">
+      <DependentUpon>201707270430548_InitialDB.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

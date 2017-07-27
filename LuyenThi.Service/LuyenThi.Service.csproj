@@ -44,6 +44,7 @@
     <Compile Include="ChudeService.cs" />
     <Compile Include="DapanService.cs" />
     <Compile Include="DethiService.cs" />
+    <Compile Include="ErrorService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
