@@ -54,7 +54,7 @@ namespace LuyenThi.Service
         public IEnumerable<Chude> GetAllPaging(string tag, int page, int pageSize, out int totalRow)
         {
             //TODO: select all chude by Nhan
-            return _chudeRepository.GetMultiPaging(x => x.Trangthai && x.Nhan.Contains(tag), out totalRow, page, pageSize);
+            return _chudeRepository.GetMultiPaging(x => x.Trangthai && x.Tag.Contains(tag), out totalRow, page, pageSize);
         }
 
         public Chude GetById(int id)

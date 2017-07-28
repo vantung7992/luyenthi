@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace LuyenThi.Web.Models
 {
@@ -12,6 +10,20 @@ namespace LuyenThi.Web.Models
         public string Noidung { get; set; }
 
         public string Photo { get; set; }
+
+        public string Tag { get; set; }
+
+        public bool Trangthai { get; set; }
+
+        public DateTime? Ngaytao { get; set; }
+
+        public string Nguoitao { get; set; }
+
+        public DateTime? Ngaysua { get; set; }
+
+        public string Nguoisua { get; set; }
+
+        public string Ghichu { get; set; }
 
         public virtual IEnumerable<DethiCauhoiViewModel> DethiCauhoi { get; set; }
         public virtual IEnumerable<DapanViewModel> DanhsachDapan { get; set; }

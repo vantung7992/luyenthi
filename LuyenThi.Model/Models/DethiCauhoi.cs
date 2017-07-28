@@ -1,10 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using LuyenThi.Model.Abstract;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace LuyenThi.Model.Models
 {
     [Table("DethiCauhoi")]
-    public class DethiCauhoi
+    public class DethiCauhoi:Auditable
     {
         [Key]
         [Column(Order =1)]

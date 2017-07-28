@@ -5,7 +5,7 @@ namespace LuyenThi.Model.Abstract
 {
     public abstract class Auditable : IAuditable
     {
-        public string Nhan { get; set; }
+        public string Tag { get; set; }
 
         public bool Trangthai { get; set; }
 

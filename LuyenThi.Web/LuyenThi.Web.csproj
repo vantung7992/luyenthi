@@ -215,11 +215,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Api\AccountController.cs" />
     <Compile Include="Api\CauhoiController.cs" />
     <Compile Include="Api\TestController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Global.asax.cs">
@@ -228,6 +231,7 @@
     <Compile Include="Infrastructure\Core\ApiControllerBase.cs" />
     <Compile Include="Infrastructure\Extensions\EntityExtensions.cs" />
     <Compile Include="Mappings\AutoMapperConfiguraion.cs" />
+    <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\CauhoiViewModel.cs" />
     <Compile Include="Models\ChudeCauhoiViewModel.cs" />
     <Compile Include="Models\ChudeDethiViewModel.cs" />

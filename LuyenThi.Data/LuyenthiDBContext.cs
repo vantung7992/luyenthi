@@ -1,9 +1,10 @@
 ﻿using LuyenThi.Model.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity;
 
 namespace LuyenThi.Data
 {
-    public class LuyenthiDBContext : DbContext
+    public class LuyenthiDBContext : IdentityDbContext<ApplicationUser>
     {
         public LuyenthiDBContext() : base("LuyenthiConnections")
         {
@@ -26,6 +27,8 @@ namespace LuyenThi.Data
 
         protected override void OnModelCreating(DbModelBuilder buider)
         {
+            buider.Entity<IdentityUserRole>().HasKey(i => i.UserId);
+            buider.Entity<IdentityUserLogin>().HasKey(i => i.UserId);
         }
     }
 }
