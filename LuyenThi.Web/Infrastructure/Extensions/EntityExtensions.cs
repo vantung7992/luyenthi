@@ -109,5 +109,18 @@ namespace LuyenThi.Web.Infrastructure.Extensions
             dethiCauhoi.Nguoisua = dethiCauhoi.Nguoisua;
             dethiCauhoi.Ghichu = dethiCauhoi.Ghichu;
         }
+
+        public static void UpdateChudeCauhoi(this ChudeCauhoi chudeCauhoi, ChudeCauhoiViewModel chudeCauhoiViewModel)
+        {
+            chudeCauhoi.IDChude = chudeCauhoiViewModel.IDChude;
+            chudeCauhoi.IDCauhoi = chudeCauhoiViewModel.IDCauhoi;
+            chudeCauhoi.Thutu = chudeCauhoiViewModel.Thutu;
+        }
+
+        public static void UpdateChudeDethi(this ChudeDethi chudeDethi, ChudeDethiViewModel chudeDethiViewmodel)
+        {
+            chudeDethi.IDChude = chudeDethiViewmodel.IDChude;
+            chudeDethi.IDDethi = chudeDethiViewmodel.IDDethi;
+        }
     }
 }
