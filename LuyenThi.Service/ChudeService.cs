@@ -1,35 +1,37 @@
 ﻿using LuyenThi.Data.Infrastructure;
 using LuyenThi.Data.Repositories;
 using LuyenThi.Model.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LuyenThi.Service
 {
     public interface IChudeService
     {
         void Add(Chude chude);
+
         void Update(Chude chude);
+
         void Delete(int id);
+
         IEnumerable<Chude> GetAll();
+
         IEnumerable<Chude> GetAllPaging(int page, int pageSize, out int totalRow);
+
         Chude GetById(int id);
+
         void SaveChanges();
     }
+
     public class ChudeService : IChudeService
     {
-        IChudeRepository _chudeRepository;
-        IUnitOfWork _unitOfWork;
+        private IChudeRepository _chudeRepository;
+        private IUnitOfWork _unitOfWork;
 
         public ChudeService(IChudeRepository chudeRepository, IUnitOfWork unitOfWork)
         {
             this._chudeRepository = chudeRepository;
             this._unitOfWork = unitOfWork;
         }
-
 
         public void Add(Chude chude)
         {
@@ -53,7 +55,6 @@ namespace LuyenThi.Service
 
         public IEnumerable<Chude> GetAllPaging(string tag, int page, int pageSize, out int totalRow)
         {
-            //TODO: select all chude by Nhan
             return _chudeRepository.GetMultiPaging(x => x.Trangthai && x.Tag.Contains(tag), out totalRow, page, pageSize);
         }
 

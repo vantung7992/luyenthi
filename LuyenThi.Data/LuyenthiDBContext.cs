@@ -27,7 +27,7 @@ namespace LuyenThi.Data
 
         protected override void OnModelCreating(DbModelBuilder buider)
         {
-            buider.Entity<IdentityUserRole>().HasKey(i => i.UserId);
+            buider.Entity<IdentityUserRole>().HasKey(i => new { i.UserId, i.RoleId });
             buider.Entity<IdentityUserLogin>().HasKey(i => i.UserId);
         }
     }

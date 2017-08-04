@@ -11,6 +11,7 @@ using System.Web.Http;
 
 namespace LuyenThi.Web.Api
 {
+    [RoutePrefix("api/account")]
     public class AccountController : ApiController
     {
         private ApplicationSignInManager _signInManager;
