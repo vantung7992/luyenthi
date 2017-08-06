@@ -1,5 +1,6 @@
 ﻿(function (app) {
     app.controller('chudeListController', chudeListController);
+
     chudeListController.$inject = ['$scope', 'apiService'];
 
     function chudeListController($scope, apiService) {

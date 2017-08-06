@@ -1,20 +1,20 @@
 ﻿/// <reference path="/Assets/admin/libs/angular/angular.js" />
 
 (function (app) {
-    app.service('apiService', apiService);
-    function apiService() {
-        apiService.$inject = ['$http'];
+    app.factory('apiService', apiService);
+    apiService.$inject = ['$http'];
+
         function apiService($http) {
             return {
                 get: get
             }
-            function get(url, params, success, failed) {
+
+            function get(url, params, success, failure) {
                 $http.get(url, params).then(function (result) {
                     success(result);
                 }, function (error) {
-                    failed(error);
+                    failure(error);
                 });
             }
         }
-    }
 })(angular.module('luyenthi.common'));
