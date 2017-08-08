@@ -14,5 +14,20 @@ namespace LuyenThi.Model.Models
         [Required]
         [MaxLength(200)]
         public string Ten { get; set; }
+
+        public int? IDChudeCha { get; set; }
+
+        [Column(TypeName = "varchar")]
+        [MaxLength(200)]
+        public string Tag { get; set; }
+
+        [MaxLength(200)]
+        public string Seo { get; set; }
+
+        [MaxLength(1000)]
+        public string Mota { get; set; }
+
+        [MaxLength(256)]
+        public string Image { get; set; }
     }
 }

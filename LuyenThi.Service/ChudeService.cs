@@ -2,6 +2,7 @@
 using LuyenThi.Data.Repositories;
 using LuyenThi.Model.Models;
 using System.Collections.Generic;
+using System;
 
 namespace LuyenThi.Service
 {
@@ -16,6 +17,8 @@ namespace LuyenThi.Service
         IEnumerable<Chude> GetAll();
 
         IEnumerable<Chude> GetAllPaging(int page, int pageSize, out int totalRow);
+
+        IEnumerable<Chude> GetAll(string keyword);
 
         Chude GetById(int id);
 
@@ -45,6 +48,13 @@ namespace LuyenThi.Service
 
         public IEnumerable<Chude> GetAll()
         {
+            return _chudeRepository.GetAll();
+        }
+
+        public IEnumerable<Chude> GetAll(string keyword)
+        {
+            if (!String.IsNullOrEmpty(keyword))
+                return _chudeRepository.GetMulti(x => x.Ten.Contains(keyword) || x.Ghichu.Contains(keyword));
             return _chudeRepository.GetAll();
         }
 

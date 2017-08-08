@@ -10,6 +10,7 @@
     "fastclick": "~1.0.6",
     "jquery-fast-click": "~1.0.0",
     "font-awesome": "~4.7.0",
-    "ionicons": "~2.0.1"
+    "ionicons": "~2.0.1",
+    "toastr": "~2.1.3"
   }
 }

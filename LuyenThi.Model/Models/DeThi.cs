@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace LuyenThi.Model.Models
 {
     [Table("Dethi")]
-    public class Dethi: Auditable
+    public class Dethi : Auditable
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -15,6 +15,16 @@ namespace LuyenThi.Model.Models
         [Required]
         [MaxLength(200)]
         public string Ten { get; set; }
+
+        [MaxLength(200)]
+        public string Seo { get; set; }
+
+        [MaxLength(500)]
+        public string Mota { get; set; }
+
+        [Column(TypeName = "varchar")]
+        [MaxLength(200)]
+        public string Tag { get; set; }
 
         public virtual IEnumerable<DethiCauhoi> DethiCauhoi { get; set; }
         public virtual IEnumerable<ChudeDethi> ChudeDethi { get; set; }

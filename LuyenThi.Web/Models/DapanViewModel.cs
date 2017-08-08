@@ -19,7 +19,7 @@ namespace LuyenThi.Web.Models
 
         public int IDCauhoi { get; set; }
 
-        public string Photo { get; set; }
+        public string Image { get; set; }
 
         public virtual CauhoiViewModel Cauhoi { get; set; }
 

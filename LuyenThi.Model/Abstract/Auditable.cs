@@ -5,8 +5,6 @@ namespace LuyenThi.Model.Abstract
 {
     public abstract class Auditable : IAuditable
     {
-        public string Tag { get; set; }
-
         public bool Trangthai { get; set; }
 
         public DateTime? Ngaytao { get; set; }
@@ -19,7 +17,7 @@ namespace LuyenThi.Model.Abstract
         [MaxLength(256)]
         public string Nguoisua { get; set; }
 
-        [MaxLength(1000)]
+        [MaxLength(500)]
         public string Ghichu { get; set; }
     }
 }

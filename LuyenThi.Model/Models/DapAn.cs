@@ -26,7 +26,7 @@ namespace LuyenThi.Model.Models
 
         public int IDCauhoi { get; set; }
 
-        public string Photo { get; set; }
+        public string Image { get; set; }
 
         [ForeignKey("IDCauhoi")]
         public virtual Cauhoi Cauhoi { get; set; }

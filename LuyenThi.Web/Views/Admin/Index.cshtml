@@ -12,6 +12,7 @@
     <link href="~/Assets/admin/libs/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
     <!-- Ionicons -->
     <link href="~/Assets/admin/libs/ionicons/css/ionicons.min.css" rel="stylesheet" />
+    <link href="~/Assets/admin/libs/toastr/toastr.css" rel="stylesheet" />
     <!-- Theme style -->
     <link rel="stylesheet" href="/Assets/admin/css/AdminLTE.min.css">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -40,7 +41,7 @@
             <!-- Header Navbar: style can be found in header.less -->
             <nav class="navbar navbar-static-top">
                 <!-- Sidebar toggle button-->
-                <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                <a href="javascripts:void(0)" class="sidebar-toggle" data-toggle="push-menu" role="button">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -584,7 +585,10 @@
     <!-- Begin embed angularJS -->
     <script src="~/Assets/admin/libs/angular/angular.js"></script>
     <script src="~/Assets/admin/libs/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="~/Assets/admin/libs/toastr/toastr.js"></script>
     <script src="~/app/shared/modules/luyenthi.common.js"></script>
+    <script src="~/app/shared/service/notificationService.js"></script>
+    <script src="~/app/shared/directives/pagerDirective.js"></script>
     <script src="~/app/shared/fillter/statusFilter.js"></script>
     <script src="~/app/components/chude/chude.module.js"></script>
     <script src="~/app/app.js"></script>

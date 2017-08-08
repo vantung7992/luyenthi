@@ -9,8 +9,8 @@
             url: "/chude",
             templateUrl: "/app/components/chude/chudeListView.html",
             controller: "chudeListController"
-        }).state("chude_add", {
-            url: "/chude_add",
+        }).state("add_chude", {
+            url: "/add_chude",
             templateUrl: "/app/components/chude/chudeAddView.html",
             controller: "chudeAddController"
         });
