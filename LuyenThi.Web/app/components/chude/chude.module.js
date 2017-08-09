@@ -13,6 +13,10 @@
             url: "/add_chude",
             templateUrl: "/app/components/chude/chudeAddView.html",
             controller: "chudeAddController"
+        }).state("edit_chude", {
+            url: "/edit_chude/:id",
+            templateUrl: "/app/components/chude/chudeEditView.html",
+            controller: "chudeEditController"
         });
     }
 })();

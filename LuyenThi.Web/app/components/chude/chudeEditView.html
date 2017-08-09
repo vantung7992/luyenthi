@@ -1,10 +1,74 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-    <title></title>
-	<meta charset="utf-8" />
-</head>
-<body>
-
-</body>
-</html>
+﻿<section class="content-header">
+    <h1>Chủ đề</h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i>Trang chủ</a></li>
+        <li><a ui-sref="chude">Chủ đề</a></li>
+        <li class="active">Cập nhật</li>
+    </ol>
+</section>
+<section class="content">
+    <!-- Horizontal Form -->
+    <div class="box box-info">
+        <div class="box-header with-border">
+            <h3 class="box-title">Cập nhật chủ đề</h3>
+        </div>
+        <!-- /.box-header -->
+        <!-- form start -->
+        <form class="form-horizontal" novalidate name="frmAddChude" role="form" ng-submit="UpdateChude()">
+            <div class="box-body">
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Tên</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="Ten" ng-change="GetSeoTitle()" ng-model="chude.Ten">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Tên seo</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="Seo" ng-model="chude.Seo">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Danh mục cha</label>
+                    <div class="col-sm-10">
+                        <select name="IDChudeCha" class="form-control" ng-model="chude.IDChudeCha" ng-options="option.ID as option.Ten for option in chudecha">
+                            <option value="">Danh mục gốc</option>
+                        </select>
+                        <input type="hidden" name="IDChudeCha" ng-model="chude.IDChudeCha" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword3" class="col-sm-2 control-label">Mô tả</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" name="Mota" ng-model="chude.Mota"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Hình ảnh</label>
+                    <div class="col-sm-10"></div>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Tag</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="Tag" ng-model="chude.Tag">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="Trangthai" ng-model="chude.Trangthai" ng-checked="chude.Trangthai" />Kích hoạt
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.box-body -->
+            <div class="box-footer">
+                <button class="btn btn-default" ui-sref="chude">Hủy</button>
+                <button type="submit" class="btn btn-info pull-right">Cập nhật</button>
+            </div>
+            <!-- /.box-footer -->
+        </form>
+    </div>
+</section>

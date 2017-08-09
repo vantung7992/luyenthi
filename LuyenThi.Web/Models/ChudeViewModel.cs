@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace LuyenThi.Web.Models
 {
@@ -6,6 +7,7 @@ namespace LuyenThi.Web.Models
     {
         public int ID { get; set; }
 
+        [Required]
         public string Ten { get; set; }
 
         public string Tag { get; set; }

@@ -21,7 +21,7 @@
                 params: {
                     keyword: $scope.keyword,
                     page: page,
-                    pageSize: 2
+                    pageSize: 10
                 }
             }
             apiService.get('/api/chude/getall', config, function (result) {

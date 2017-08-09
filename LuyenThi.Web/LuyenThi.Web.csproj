@@ -260,6 +260,7 @@
     <Content Include="app\shared\fillter\statusFilter.js" />
     <Content Include="app\shared\modules\luyenthi.common.js" />
     <Content Include="app\shared\service\apiService.js" />
+    <Content Include="app\shared\service\commonService.js" />
     <Content Include="app\shared\service\notificationService.js" />
     <Content Include="Assets\admin\css\AdminLTE.css" />
     <Content Include="Assets\admin\css\AdminLTE.min.css" />
@@ -271,6 +272,7 @@
     <Content Include="Assets\admin\css\alt\AdminLTE-select2.min.css" />
     <Content Include="Assets\admin\css\alt\AdminLTE-without-plugins.css" />
     <Content Include="Assets\admin\css\alt\AdminLTE-without-plugins.min.css" />
+    <Content Include="Assets\admin\css\custom.css" />
     <Content Include="Assets\admin\css\skins\skin-black-light.css" />
     <Content Include="Assets\admin\css\skins\skin-black-light.min.css" />
     <Content Include="Assets\admin\css\skins\skin-black.css" />
@@ -2295,6 +2297,14 @@
     <Content Include="Assets\admin\libs\toastr\toastr.js.map" />
     <Content Include="Assets\admin\libs\toastr\toastr.less" />
     <Content Include="Assets\admin\libs\toastr\toastr.scss" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\admin\libs\bootbox\.bower.json" />
+    <Content Include="Assets\admin\libs\bootbox\.gitignore" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\admin\libs\ngBootbox\.bower.json" />
+    <Content Include="Assets\admin\libs\ngBootbox\README.md" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

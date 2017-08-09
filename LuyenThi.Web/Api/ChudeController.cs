@@ -23,6 +23,19 @@ namespace LuyenThi.Web.Api
             this._chudeService = chudeService;
         }
 
+        [Route("getbyid/{id:int}")]
+        [HttpGet]
+        public HttpResponseMessage GetById(HttpRequestMessage request,int id)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                var model = _chudeService.GetById(id);
+                var responseData = Mapper.Map<Chude,ChudeViewModel>(model);
+                var response = request.CreateResponse(HttpStatusCode.OK, responseData);
+                return response;
+            });
+        }
+
         [Route("getall")]
         [HttpGet]
         public HttpResponseMessage GetAll(HttpRequestMessage request, string keyword, int page, int pageSize = 20)
@@ -63,6 +76,7 @@ namespace LuyenThi.Web.Api
 
         [Route("create")]
         [HttpPost]
+        [AllowAnonymous]
         public HttpResponseMessage Create(HttpRequestMessage request, ChudeViewModel chudeVm)
         {
             return CreateHttpResponse(request, () =>
@@ -76,9 +90,36 @@ namespace LuyenThi.Web.Api
                 {
                     var newChude = new Chude();
                     newChude.UpdateChude(chudeVm);
+                    newChude.Ngaytao = DateTime.Now;
                     _chudeService.Add(newChude);
                     _chudeService.SaveChanges();
                     var responseData = Mapper.Map<Chude, ChudeViewModel>(newChude);
+                    response = request.CreateResponse(HttpStatusCode.Created, responseData);
+                }
+                return response;
+            });
+        }
+
+        [Route("update")]
+        [HttpPut]
+        [AllowAnonymous]
+        public HttpResponseMessage Update(HttpRequestMessage request, ChudeViewModel chudeVm)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+                if (!ModelState.IsValid)
+                {
+                    response = request.CreateResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                else
+                {
+                    var dbChude = _chudeService.GetById(chudeVm.ID);
+                    dbChude.UpdateChude(chudeVm);
+                    dbChude.Ngaytao = DateTime.Now;
+                    _chudeService.Update(dbChude);
+                    _chudeService.SaveChanges();
+                    var responseData = Mapper.Map<Chude, ChudeViewModel>(dbChude);
                     response = request.CreateResponse(HttpStatusCode.Created, responseData);
                 }
                 return response;

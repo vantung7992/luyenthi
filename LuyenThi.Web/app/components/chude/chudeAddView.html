@@ -19,20 +19,32 @@
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">Tên</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="Ten" ng-model="chude.Ten">
+                        <input type="text" class="form-control" name="Ten" required ng-maxlength="256" ng-change="GetSeoTitle()" ng-model="chude.Ten">
+                        <span ng-show="frmAddChude.Ten.$invalid" class="has-error" >Phải nhập tên chủ đề</span>
+                        <span ng-show="frmAddChude.Ten.$error.maxlength" class="has-error">Tên chủ đề chỉ dài không quá 256 ký tự</span>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-2 control-label">Danh mục cha</label>
+                    <label class="col-sm-2 control-label">Tên seo</label>
                     <div class="col-sm-10">
-                        <select name="IDChudeCha" class="form-control" ng-model="chude.IDChudeCha" ng-options="option.ID as option.Ten for option in chudecha">Danh mục cha</select>
+                        <input type="text" class="form-control" required name="Seo" ng-model="chude.Seo">
+                        <span ng-show="frmAddChude.Seo.$invalid" class="has-error">Phải nhập tiêu đề SEO</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Danh mục cha</label>
+                    <div class="col-sm-10">
+                        <select name="IDChudeCha" class="form-control" ng-model="chude.IDChudeCha" ng-options="option.ID as option.Ten for option in chudecha">
+                            <option value="">Danh mục gốc</option>
+                        </select>
                         <input type="hidden" name="IDChudeCha" ng-model="chude.IDChudeCha" />
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="inputPassword3" class="col-sm-2 control-label">Mô tả</label>
+                    <label for="inputPassword3" class="col-sm-2 control-label" >Mô tả</label>
                     <div class="col-sm-10">
-                        <textarea class="form-control" name="Mota" ng-model="chude.Mota"></textarea>
+                        <textarea class="form-control" name="Mota" ng-model="chude.Mota" ng-maxlength="500"></textarea>
+                        <span ng-show="frmAddChude.Mota.$error.maxlength" class="has-error">Mô tả không quá 500 ký tự</span>
                     </div>
                 </div>
                 <div class="form-group">
@@ -57,8 +69,8 @@
             </div>
             <!-- /.box-body -->
             <div class="box-footer">
-                <button class="btn btn-default" ui-sref="chude">Cancel</button>
-                <button type="submit" class="btn btn-info pull-right">Thêm mới</button>
+                <button class="btn btn-default" ui-sref="chude">Hủy</button>
+                <button type="submit" class="btn btn-info pull-right" ng-disabled="frmAddChude.$invalid">Thêm mới</button>
             </div>
             <!-- /.box-footer -->
         </form>
