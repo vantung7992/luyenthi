@@ -1,3 +1,3 @@
 ﻿(function () {
-    angular.module('luyenthi.common', ['ui.router']);
+    angular.module('luyenthi.common', ['ui.router','ngBootbox']);
 })();

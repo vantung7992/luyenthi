@@ -1,6 +1,12 @@
-﻿using LuyenThi.Model.Models;
+﻿using AutoMapper;
+using LuyenThi.Model.Models;
 using LuyenThi.Service;
 using LuyenThi.Web.Infrastructure.Core;
+using LuyenThi.Web.Models;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
@@ -18,17 +24,29 @@ namespace LuyenThi.Web.Api
         }
 
         [Route("getall")]
-        public HttpResponseMessage Get(HttpRequestMessage request)
+        [HttpGet]
+        public HttpResponseMessage GetAll(HttpRequestMessage request, string keyword, int page, int pageSize)
         {
             return CreateHttpResponse(request, () =>
             {
-                var listCauhoi = _cauhoiService.GetAll();
-                HttpResponseMessage response = request.CreateResponse(HttpStatusCode.OK, listCauhoi);
+                int totalRow = 0;
+                var model = _cauhoiService.GetAll(keyword);
+                totalRow = model.Count();
+                var query = model.OrderBy(x => x.Ngaytao).Skip(pageSize * page).Take(pageSize);
+                var responData = Mapper.Map<IEnumerable<Cauhoi>, IEnumerable<CauhoiViewModel>>(query);
+
+                var paginationSet = new PaginationSet<CauhoiViewModel>() {
+                    Items = responData,
+                    Page = page,
+                    TotalCount = totalRow,
+                    TotalPages = (int)Math.Ceiling((decimal)totalRow / pageSize)
+                };
+                HttpResponseMessage response = request.CreateResponse(HttpStatusCode.OK, paginationSet);
                 return response;
             });
         }
 
-        public HttpResponseMessage Post(HttpRequestMessage request, Cauhoi cauhoi)
+        public HttpResponseMessage Create(HttpRequestMessage request, Cauhoi cauhoi)
         {
             return CreateHttpResponse(request, () =>
             {
@@ -47,7 +65,7 @@ namespace LuyenThi.Web.Api
             });
         }
 
-        public HttpResponseMessage Put(HttpRequestMessage request, Cauhoi cauhoi)
+        public HttpResponseMessage Update(HttpRequestMessage request, Cauhoi cauhoi)
         {
             return CreateHttpResponse(request, () =>
             {

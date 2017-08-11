@@ -10,6 +10,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Script.Serialization;
 
 namespace LuyenThi.Web.Api
 {
@@ -23,14 +24,64 @@ namespace LuyenThi.Web.Api
             this._chudeService = chudeService;
         }
 
+        [Route("deleteMultiple")]
+        [HttpDelete]
+        [AllowAnonymous]
+        public HttpResponseMessage Delete(HttpRequestMessage request, string checkedChude)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+                if (!ModelState.IsValid)
+                {
+                    response = request.CreateResponse(HttpStatusCode.OK, ModelState);
+                }
+                else
+                {
+                    var listChude = new JavaScriptSerializer().Deserialize<List<int>>(checkedChude);
+                    foreach (var item in listChude)
+                    {
+                        _chudeService.Delete(item);
+                    }
+                    _chudeService.SaveChanges();
+                    response = request.CreateResponse(HttpStatusCode.OK, listChude.Count);
+                }
+                return response;
+            });
+        }
+
+        [Route("delete")]
+        [HttpDelete]
+        public HttpResponseMessage Delete(HttpRequestMessage request, int id)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+                if (!ModelState.IsValid)
+                {
+                    response = request.CreateResponse(HttpStatusCode.OK, ModelState);
+                }
+                else
+                {
+                    var oldChude = _chudeService.Delete(id);
+                    _chudeService.SaveChanges();
+
+                    var responData = Mapper.Map<Chude, ChudeViewModel>(oldChude);
+                    response = request.CreateResponse(HttpStatusCode.OK, responData);
+                }
+                return response;
+            });
+        }
+
+
         [Route("getbyid/{id:int}")]
         [HttpGet]
-        public HttpResponseMessage GetById(HttpRequestMessage request,int id)
+        public HttpResponseMessage GetById(HttpRequestMessage request, int id)
         {
             return CreateHttpResponse(request, () =>
             {
                 var model = _chudeService.GetById(id);
-                var responseData = Mapper.Map<Chude,ChudeViewModel>(model);
+                var responseData = Mapper.Map<Chude, ChudeViewModel>(model);
                 var response = request.CreateResponse(HttpStatusCode.OK, responseData);
                 return response;
             });

@@ -19,7 +19,7 @@
         protected override void Seed(LuyenThi.Data.LuyenthiDBContext context)
         {
             CreateChudeSample(context);
-
+            CreateCauhoiSample(context);
 
 
 
@@ -56,6 +56,21 @@
                 new Chude {Ten="Toán lớp 3" }
             };
                 context.Chude.AddRange(listChude);
+                context.SaveChanges();
+            }
+        }
+
+        private void CreateCauhoiSample(LuyenthiDBContext context)
+        {
+            if (context.Cauhoi.Count() == 0)
+            {
+                List<Cauhoi> listCauhoi = new List<Cauhoi>()
+                {
+                    new Cauhoi {Noidung="Nội dung 1",Ngaytao=DateTime.Now,Trangthai=true},
+                    new Cauhoi {Noidung="Nội dung 2",Ngaytao=DateTime.Now,Trangthai=true},
+                    new Cauhoi {Noidung="Nội dung 3",Ngaytao=DateTime.Now,Trangthai=true},
+                };
+                context.Cauhoi.AddRange(listCauhoi);
                 context.SaveChanges();
             }
         }

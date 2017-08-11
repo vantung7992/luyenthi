@@ -15,9 +15,10 @@ namespace LuyenThi.Service
         Cauhoi Add(Cauhoi cauhoi);
         void Update(Cauhoi cauhoi);
         void Delete(int id);
-        IEnumerable GetAll();
-        IEnumerable GetAllByDethi(int idDethi);
-        IEnumerable GetAllByChude(int idChude);
+        IEnumerable<Cauhoi> GetAll();
+        IEnumerable<Cauhoi> GetAll(string keyword);
+        IEnumerable<Cauhoi> GetAllByDethi(int idDethi);
+        IEnumerable<Cauhoi> GetAllByChude(int idChude);
         void SaveChanges();
     }
     public class CauhoiService : ICauhoiService
@@ -46,6 +47,13 @@ namespace LuyenThi.Service
             return _cauhoiRepository.GetAll();
         }
 
+        public IEnumerable GetAll(string keyword)
+        {
+            if (!String.IsNullOrEmpty(keyword))
+                return _cauhoiRepository.GetMulti(x => x.Noidung.Contains(keyword) || x.Ghichu.Contains(keyword));
+            return _cauhoiRepository.GetAll();
+        }
+
         public IEnumerable GetAllByChude(int idChude)
         {
             return _cauhoiRepository.GetAllByChude(idChude);
@@ -64,6 +72,28 @@ namespace LuyenThi.Service
         public void Update(Cauhoi cauhoi)
         {
             _cauhoiRepository.Update(cauhoi);
+        }
+
+        IEnumerable<Cauhoi> ICauhoiService.GetAll()
+        {
+            return _cauhoiRepository.GetAll();
+        }
+
+        IEnumerable<Cauhoi> ICauhoiService.GetAll(string keyword)
+        {
+            if (!String.IsNullOrEmpty(keyword))
+                return _cauhoiRepository.GetMulti(x => x.Noidung.Contains(keyword) || x.Ghichu.Contains(keyword));
+            return _cauhoiRepository.GetAll();
+        }
+
+        IEnumerable<Cauhoi> ICauhoiService.GetAllByChude(int idChude)
+        {
+            throw new NotImplementedException();
+        }
+
+        IEnumerable<Cauhoi> ICauhoiService.GetAllByDethi(int idDethi)
+        {
+            throw new NotImplementedException();
         }
     }
 }

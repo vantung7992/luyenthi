@@ -17,7 +17,7 @@
         }
 
         function loadChudeDetail() {
-            apiService.get('api/chude/getbyid/' + $stateParams.id, null, function (result) {
+            apiService.get('/api/chude/getbyid/' + $stateParams.id, null, function (result) {
                 $scope.chude = result.data;
             }, function (error) {
                 notificationService.displayError(error.data);

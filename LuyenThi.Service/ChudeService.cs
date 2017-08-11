@@ -12,7 +12,7 @@ namespace LuyenThi.Service
 
         void Update(Chude chude);
 
-        void Delete(int id);
+        Chude Delete(int id);
 
         IEnumerable<Chude> GetAll();
 
@@ -41,9 +41,9 @@ namespace LuyenThi.Service
             _chudeRepository.Add(chude);
         }
 
-        public void Delete(int id)
+        public Chude Delete(int id)
         {
-            _chudeRepository.Delete(id);
+            return _chudeRepository.Delete(id);
         }
 
         public IEnumerable<Chude> GetAll()

@@ -1,3 +1,6 @@
 ﻿.has-error{
     color:red;
 }
+table tr th,td{
+    text-align:center;
+}
