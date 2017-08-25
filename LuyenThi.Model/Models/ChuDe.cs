@@ -29,5 +29,7 @@ namespace LuyenThi.Model.Models
 
         [MaxLength(256)]
         public string Image { get; set; }
+
+        public bool HomeFlag { get; set; }
     }
 }

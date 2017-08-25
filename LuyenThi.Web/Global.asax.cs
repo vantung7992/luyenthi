@@ -20,6 +20,12 @@ namespace LuyenThi.Web
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+        }
+        protected void Session_Start(Object sender, EventArgs e)
+        {
+            string link = "/UploadedFiles/1/";
+            HttpContext.Current.Session.Add("baseUrl", link);
         }
     }
 }

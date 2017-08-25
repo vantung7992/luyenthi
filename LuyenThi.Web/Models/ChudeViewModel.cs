@@ -22,6 +22,8 @@ namespace LuyenThi.Web.Models
 
         public bool Trangthai { get; set; }
 
+        public bool HomeFlag { get; set; }
+
         public DateTime? Ngaytao { get; set; }
 
         public string Nguoitao { get; set; }

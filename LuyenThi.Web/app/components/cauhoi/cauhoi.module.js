@@ -7,6 +7,10 @@
             url: "/cauhoi",
             templateUrl: "/app/components/cauhoi/cauhoiListView.html",
             controller: "cauhoiListController"
+        }).state("add_cauhoi", {
+            url: "/add_cauhoi",
+            templateUrl: "/app/components/cauhoi/cauhoiAddView.html",
+            controller: "cauhoiAddController"
         });
     }
 })();

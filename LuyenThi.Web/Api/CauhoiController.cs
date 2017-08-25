@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Web;
 using System.Web.Http;
 
 namespace LuyenThi.Web.Api
@@ -35,7 +36,8 @@ namespace LuyenThi.Web.Api
                 var query = model.OrderBy(x => x.Ngaytao).Skip(pageSize * page).Take(pageSize);
                 var responData = Mapper.Map<IEnumerable<Cauhoi>, IEnumerable<CauhoiViewModel>>(query);
 
-                var paginationSet = new PaginationSet<CauhoiViewModel>() {
+                var paginationSet = new PaginationSet<CauhoiViewModel>()
+                {
                     Items = responData,
                     Page = page,
                     TotalCount = totalRow,
@@ -44,6 +46,13 @@ namespace LuyenThi.Web.Api
                 HttpResponseMessage response = request.CreateResponse(HttpStatusCode.OK, paginationSet);
                 return response;
             });
+        }
+
+        [Route("getbyid")]
+        [HttpGet]
+        public HttpResponseMessage GetById(HttpRequestMessage request, int id)
+        {
+            return null;
         }
 
         public HttpResponseMessage Create(HttpRequestMessage request, Cauhoi cauhoi)

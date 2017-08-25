@@ -15,7 +15,7 @@ namespace LuyenThi.Service
         void Add(Dapan dapan);
         void Update(Dapan dapan);
         void Delete(int id);
-        IEnumerable GetAllByCauhoi(int idCauhoi);
+        IEnumerable<Dapan> GetAllByCauhoi(int idCauhoi);
         void SaveChanges();
     }
     public class DapanService : IDapanService
@@ -39,7 +39,7 @@ namespace LuyenThi.Service
             _dapanRepository.Delete(id);
         }
 
-        public IEnumerable GetAllByCauhoi(int idCauhoi)
+        public IEnumerable<Dapan> GetAllByCauhoi(int idCauhoi)
         {
             return _dapanRepository.GetMulti(x => x.IDCauhoi == idCauhoi);
         }

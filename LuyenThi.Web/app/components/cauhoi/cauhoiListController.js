@@ -1,16 +1,16 @@
 ﻿(function (app) {
     app.controller('cauhoiListController', cauhoiListController);
 
-    chudeListController.$inject = ['$scope', 'apiService', 'notificationService', '$ngBootbox', '$filter'];
+    cauhoiListController.$inject = ['$scope', 'apiService', 'notificationService', '$ngBootbox', '$filter'];
 
-    function chudeListController($scope, apiService, notificationService, $ngBootbox, $filter) {
-        $scope.chude = [];
+    function cauhoiListController($scope, apiService, notificationService, $ngBootbox, $filter) {
+        $scope.cauhoi = [];
         $scope.page = 0;
         $scope.pagesCount = 0;
         $scope.keyword = '';
         $scope.search = search;
-        $scope.getChude = getChude;
-        $scope.deleteChude = deleteChude;
+        $scope.getCauhoi = getCauhoi;
+        $scope.deleteCauhoi = deleteCauhoi;
         $scope.selectAll = selectAll;
         $scope.isAll = false;
         $scope.deleteMultiple = deleteMultiple;
@@ -23,7 +23,7 @@
             $ngBootbox.confirm('Bạn có chắc muốn xóa ' + listId.length + ' bản ghi không?').then(function () {
                 var config = {
                     params: {
-                        checkedChude: JSON.stringify(listId)
+                        checkedCauhoi: JSON.stringify(listId)
                     }
                 }
                 apiService.del('/api/chude/deleteMultiple', config, function (result) {
@@ -37,19 +37,19 @@
 
         function selectAll() {
             if ($scope.isAll === false) {
-                angular.forEach($scope.chude, function (item) {
+                angular.forEach($scope.cauhoi, function (item) {
                     item.checked = true;
                 });
                 $scope.isAll = true;
             } else {
-                angular.forEach($scope.chude, function (item) {
+                angular.forEach($scope.cauhoi, function (item) {
                     item.checked = false;
                 });
                 $scope.isAll = false;
             }
         }
 
-        $scope.$watch("chude", function (n, o) {
+        $scope.$watch("cauhoi", function (n, o) {
             var checked = $filter("filter")(n, { checked: true });
             if (checked.length) {
                 $scope.selected = checked;
@@ -59,14 +59,14 @@
             }
         }, true);
 
-        function deleteChude(id) {
+        function deleteCauhoi(id) {
             $ngBootbox.confirm('Bạn có chắc muốn xóa?').then(function () {
                 var config = {
                     params: {
                         id: id
                     }
                 }
-                apiService.del('/api/chude/delete', config, function () {
+                apiService.del('/api/cauhoi/delete', config, function () {
                     notificationService.displaySuccess('Xóa thành công');
                     search();
                 }, function () {
@@ -76,10 +76,10 @@
         }
 
         function search() {
-            getChude();
+            getCauhoi();
         }
 
-        function getChude(page) {
+        function getCauhoi(page) {
             page = page || 0;
             var config = {
                 params: {
@@ -88,7 +88,7 @@
                     pageSize: 10
                 }
             }
-            apiService.get('/api/chude/getall', config, function (result) {
+            apiService.get('/api/cauhoi/getall', config, function (result) {
                 if (result.data.TotalCount == 0) {
                     notificationService.displayWarning('Không có bản ghi nào được tìm thấy');
                 } else {
@@ -96,7 +96,7 @@
                         notificationService.displaySuccess('Đã tìm thấy ' + result.data.TotalCount + ' bản ghi')
                     }
                 }
-                $scope.chude = result.data.Items;
+                $scope.cauhoi = result.data.Items;
                 $scope.page = result.data.Page;
                 $scope.pagesCount = result.data.TotalPages;
                 $scope.TotalCount = result.data.TotalCount;
@@ -104,6 +104,6 @@
                 console.log('Load chu de failed.');
             });
         }
-        $scope.getChude();
+        $scope.getCauhoi();
     };
 })(angular.module('luyenthi.chude'));

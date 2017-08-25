@@ -26,6 +26,8 @@ namespace LuyenThi.Model.Models
         [MaxLength(200)]
         public string Tag { get; set; }
 
+        public bool HomeFlag { get; set; }
+
         public virtual IEnumerable<DethiCauhoi> DethiCauhoi { get; set; }
         public virtual IEnumerable<ChudeDethi> ChudeDethi { get; set; }
     }

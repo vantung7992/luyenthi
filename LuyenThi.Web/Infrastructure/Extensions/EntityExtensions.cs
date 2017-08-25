@@ -13,6 +13,7 @@ namespace LuyenThi.Web.Infrastructure.Extensions
             chude.IDChudeCha = chudeViewModel.IDChudeCha;
             chude.Seo = chudeViewModel.Seo;
             chude.Mota = chudeViewModel.Mota;
+            chude.HomeFlag = chudeViewModel.HomeFlag;
             chude.Trangthai = chudeViewModel.Trangthai;
             chude.Ngaytao = chudeViewModel.Ngaytao;
             chude.Nguoitao = chudeViewModel.Nguoitao;

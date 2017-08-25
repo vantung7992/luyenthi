@@ -6,6 +6,8 @@
     "angular-ui-router": "~1.0.5",
     "jQuery": "~3.2.1",
     "bootstrap": "~3.3.7",
+    "ckeditor": "~4.7.2",
+    "ng-ckeditor": "~0.2.1",
     "slimScroll": "~1.3.8",
     "fastclick": "~1.0.6",
     "jquery-fast-click": "~1.0.0",
@@ -13,6 +15,11 @@
     "ionicons": "~2.0.1",
     "toastr": "~2.1.3",
     "bootbox": "~4.4.0",
-    "ngBootbox": "~0.2.0"
+    "ngBootbox": "~0.2.0",
+    "angular-ui-sortable": "~0.17.2"
+  },
+  "resolutions": {
+    "angular": ">=1.3.0",
+    "jquery": ">=3.1.x"
   }
 }

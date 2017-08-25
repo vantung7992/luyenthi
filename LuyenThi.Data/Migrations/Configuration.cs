@@ -70,6 +70,22 @@
                     new Cauhoi {Noidung="Nội dung 2",Ngaytao=DateTime.Now,Trangthai=true},
                     new Cauhoi {Noidung="Nội dung 3",Ngaytao=DateTime.Now,Trangthai=true},
                 };
+                List<Dapan> listDapan = new List<Dapan>()
+                {
+                    new Dapan {IDCauhoi = 1,Noidung = "Nội dung 1",Dungsai=true,Ma="A",Ngaytao=DateTime.Now },
+                    new Dapan {IDCauhoi = 1,Noidung = "Nội dung 2",Dungsai=false,Ma="B",Ngaytao=DateTime.Now },
+                    new Dapan {IDCauhoi = 1,Noidung = "Nội dung 3",Dungsai=false,Ma="C",Ngaytao=DateTime.Now },
+                    new Dapan {IDCauhoi = 1,Noidung = "Nội dung 4",Dungsai=false,Ma="D",Ngaytao=DateTime.Now },
+                    new Dapan {IDCauhoi = 2,Noidung = "Nội dung 1",Dungsai=true,Ma="A",Ngaytao=DateTime.Now },
+                    new Dapan {IDCauhoi = 2,Noidung = "Nội dung 2",Dungsai=false,Ma="B",Ngaytao=DateTime.Now },
+                    new Dapan {IDCauhoi = 2,Noidung = "Nội dung 3",Dungsai=false,Ma="C",Ngaytao=DateTime.Now },
+                    new Dapan {IDCauhoi = 2,Noidung = "Nội dung 4",Dungsai=false,Ma="D",Ngaytao=DateTime.Now },
+                    new Dapan {IDCauhoi = 3,Noidung = "Nội dung 1",Dungsai=true,Ma="A",Ngaytao=DateTime.Now },
+                    new Dapan {IDCauhoi = 3,Noidung = "Nội dung 2",Dungsai=false,Ma="B",Ngaytao=DateTime.Now },
+                    new Dapan {IDCauhoi = 3,Noidung = "Nội dung 3",Dungsai=false,Ma="C",Ngaytao=DateTime.Now },
+                    new Dapan {IDCauhoi = 3,Noidung = "Nội dung 4",Dungsai=false,Ma="D",Ngaytao=DateTime.Now },
+                };
+
                 context.Cauhoi.AddRange(listCauhoi);
                 context.SaveChanges();
             }

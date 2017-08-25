@@ -34,14 +34,15 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="box-body">
-                        <table class="table table-bordered">
+                        <table class="table table-bordered table-hover table-striped">
                             <tr>
-                                <th><label><input type="checkbox" name="all" ng-click="selectAll()" /></label></th>
+                                <th style="width:30px;"><label><input type="checkbox" name="all" ng-click="selectAll()" /></label></th>
                                 <th style="width: 5%">ID</th>
                                 <th style="width:20%;">Tên</th>
                                 <th>Mô tả</th>
                                 <th style="width:10%">Ảnh</th>
                                 <th style="width:10%">Ngày tạo</th>
+                                <th style="width: 10%">Hiển thị trang chủ</th>
                                 <th style="width: 10%">Trạng thái</th>
                                 <th style="width:10%">Thao tác</th>
                             </tr>
@@ -52,6 +53,7 @@
                                 <td style="text-align:left;">{{item.Mota}}</td>
                                 <th></th>
                                 <td>{{item.Ngaytao | date:'dd/MM/yyyy hh:mm:ss'}}</td>
+                                <td><span ng-class="{'badge bg-red':item.HomeFlag==false,'badge bg-green':item.HomeFlag==true}">{{item.HomeFlag | statusFilter}}</span></td>
                                 <td><span ng-class="{'badge bg-red':item.Trangthai==false,'badge bg-green':item.Trangthai==true}">{{item.Trangthai | statusFilter}}</span></td>
                                 <td>
                                     <button class="btn btn-sm btn-primary" ui-sref="edit_chude({id:item.ID})"><i class="fa fa-pencil"></i></button>
@@ -60,7 +62,7 @@
                             </tr>
                             <tfoot>
                                 <tr>
-                                    <td colspan="8"><span class="pull-right">Trang: {{page+1}} | Tổng số bản ghi {{TotalCount}}</span></td>
+                                    <td colspan="9"><span class="pull-right">Trang: {{page+1}} | Tổng số bản ghi {{TotalCount}}</span></td>
                                 </tr>
                             </tfoot>
                         </table>

@@ -6,7 +6,8 @@
 
     function commonService() {
         return {
-            getSeoTitle: getSeoTitle
+            getSeoTitle: getSeoTitle,
+            getMaDapan:getMaDapan
         }
         function getSeoTitle(input) {
             if (input == undefined || input == '')
@@ -37,6 +38,11 @@
             slug = slug.replace(/\@\-|\-\@|\@/gi, '');
 
             return slug;
+        }
+        function getMaDapan(input) {
+            var arr = ["A", "B", "C", "D"];
+            var value = arr[input];
+            return value;
         }
 
     }
