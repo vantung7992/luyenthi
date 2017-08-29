@@ -13,12 +13,13 @@ namespace LuyenThi.Model.Models
         public int ID { get; set; }
 
         [Required]
-        [MaxLength(2000)]
-        [Column(TypeName ="ntext")]
         public string Noidung { get; set; }
 
-        [MaxLength(1000)]
+        [Required]
         [Column(TypeName ="ntext")]
+        public string Noidunghienthi { get; set; }
+
+        [MaxLength(1000)]
         public string Goiy { get; set; }
 
         [MaxLength(256)]

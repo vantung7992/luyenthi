@@ -9,6 +9,8 @@ namespace LuyenThi.Web.Models
 
         public string Noidung { get; set; }
 
+        public string Noidunghienthi { get; set; }
+
         public string Goiy { get; set; }
 
         public string Image { get; set; }
