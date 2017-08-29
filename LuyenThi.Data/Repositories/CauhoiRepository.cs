@@ -9,7 +9,6 @@ namespace LuyenThi.Data.Repositories
     public interface ICauhoiRepository : IRepository<Cauhoi>
     {
         IEnumerable GetAllByChude(int idChude);
-
         IEnumerable GetAllbyDethi(int idDethi);
     }
 

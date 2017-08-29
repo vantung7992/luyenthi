@@ -2,15 +2,15 @@
 using LuyenThi.Model.Models;
 using LuyenThi.Service;
 using LuyenThi.Web.Infrastructure.Core;
+using LuyenThi.Web.Infrastructure.Extensions;
 using LuyenThi.Web.Models;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Web;
 using System.Web.Http;
+using System.Web.Script.Serialization;
 
 namespace LuyenThi.Web.Api
 {
@@ -55,20 +55,36 @@ namespace LuyenThi.Web.Api
             return null;
         }
 
-        public HttpResponseMessage Create(HttpRequestMessage request, Cauhoi cauhoi)
+        [Route("create")]
+        [HttpPost]
+        [AllowAnonymous]
+        public HttpResponseMessage Create(HttpRequestMessage request, CauhoiViewModel cauhoiVm)
         {
             return CreateHttpResponse(request, () =>
             {
+                var a = cauhoiVm.Noidung;
                 HttpResponseMessage response = null;
-                if (ModelState.IsValid)
+                if (!ModelState.IsValid)
                 {
-                    request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+                        request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
                 }
                 else
                 {
-                    var rCauhoi = _cauhoiService.Add(cauhoi);
+                    var newCauhoi = new Cauhoi();
+                    newCauhoi.UpdateCauhoi(cauhoiVm);
+                    newCauhoi.Ngaytao = DateTime.Now;
+                    var listDapanVm = new JavaScriptSerializer().Deserialize<List<DapanViewModel>>(cauhoiVm.strJsonDapan);
+                    var listDapan = new List<Dapan>();
+                    foreach (var dapanVm in listDapanVm)
+                    {
+                        var newDapan = new Dapan();
+                        newDapan.UpdateDapan(dapanVm);
+                        listDapan.Add(newDapan);
+                    }
+                    _cauhoiService.Add(newCauhoi, listDapan);
                     _cauhoiService.SaveChanges();
-                    response = request.CreateResponse(HttpStatusCode.Created, rCauhoi);
+                    var responData = Mapper.Map<Cauhoi, CauhoiViewModel>(newCauhoi);
+                    response = request.CreateResponse(HttpStatusCode.Created, responData);
                 };
                 return response;
             });

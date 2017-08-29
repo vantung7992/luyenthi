@@ -5,7 +5,7 @@ namespace LuyenThi.Data.Repositories
 {
     public interface IDapanRepository : IRepository<Dapan> { }
 
-    public class DapanRepository : RepositoryBase<Dapan>
+    public class DapanRepository : RepositoryBase<Dapan>, IDapanRepository
     {
         public DapanRepository(IDbFactory dbFactory) : base(dbFactory)
         {

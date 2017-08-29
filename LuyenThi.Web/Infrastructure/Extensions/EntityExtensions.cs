@@ -40,9 +40,10 @@ namespace LuyenThi.Web.Infrastructure.Extensions
         {
             cauhoi.ID = cauhoiViewModel.ID;
             cauhoi.Noidung = cauhoiViewModel.Noidung;
-            cauhoi.Image = cauhoiViewModel.Photo;
-
+            cauhoi.Goiy = cauhoiViewModel.Goiy;
             cauhoi.Tag = cauhoi.Tag;
+            cauhoi.Image = cauhoiViewModel.Image;
+
             cauhoi.Trangthai = cauhoi.Trangthai;
             cauhoi.Ngaytao = cauhoi.Ngaytao;
             cauhoi.Nguoitao = cauhoi.Nguoitao;

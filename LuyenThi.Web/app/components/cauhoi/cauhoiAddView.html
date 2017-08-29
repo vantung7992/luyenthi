@@ -14,6 +14,7 @@
         </div>
         <!-- /.box-header -->
         <!-- form start -->
+        <div id="displayHtml" hidden>s</div>
         <form class="form-horizontal" novalidate name="frmAddCauhoi" role="form" ng-submit="AddCauhoi()">
             <div class="box-body">
                 <div class="form-group">
@@ -65,19 +66,18 @@
                                         </span>
                                         <small class="badge bg-green">{{item.Ma}}</small>
                                         <span class="text" style="width:50%;">
-                                            <input type="text" class="form-control" placeholder="Nội dung đáp án..." ng-model="item.Noidung" required name="NoidungDapan"/>
+                                            <input type="text" class="form-control" placeholder="Nội dung đáp án..." ng-model="item.Noidung" required name="NoidungDapan{{item.Ma}}"/>
                                             
                                          </span>
                                         <small><button type="button" ng-class="{'btn btn-xs btn-success':item.Dungsai==true,'btn btn-xs btn-danger':item.Dungsai==false}" ng-click="item.Dungsai=!item.Dungsai">{{item.Dungsai | dapanDungsaiFilter}}</button></small>
-                                        <span ng-show="frmAddCauhoi.NoidungDapan.$invalid" class="has-error">Nội dung đáp án không bỏ trống</span>
+                                        <span ng-show="frmAddCauhoi.NoidungDapan{{item.Ma}}.$invalid" class="has-error">Nội dung đáp án không bỏ trống</span>
                                          <div class="tools">
-                                            <i class="fa fa-trash" ng-click="XoaDapan(item)"></i>
+                                            <i class="fa fa-trash fa-lg" ng-click="XoaDapan(item)"></i>
                                         </div>
                                     </li>
                                 </ul>
                             </div>
                             <div class="box-footer clearfix no-border">
-                                
                                 <button type="button" class="btn btn-default btn-sm pull-right" ng-click="ThemDapan()" ><i class="fa fa-plus"></i></button>
                             </div>
                         </div>
@@ -86,7 +86,7 @@
             </div>
             <!-- /.box-body -->
             <div class="box-footer">
-                <button class="btn btn-default" ui-sref="chude">Hủy</button>
+                <button class="btn btn-default" ui-sref="cauhoi">Hủy</button>
                 <button type="submit" class="btn btn-info pull-right" ng-disabled="frmAddCauhoi.$invalid">Thêm mới</button>
             </div>
             <!-- /.box-footer -->

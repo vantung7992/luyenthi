@@ -19,7 +19,7 @@ namespace LuyenThi.Model.Models
 
         [MaxLength(1000)]
         [Column(TypeName ="ntext")]
-        public string Gioiy { get; set; }
+        public string Goiy { get; set; }
 
         [MaxLength(256)]
         public string Image { get; set; }

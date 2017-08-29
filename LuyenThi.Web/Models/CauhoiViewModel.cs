@@ -9,7 +9,9 @@ namespace LuyenThi.Web.Models
 
         public string Noidung { get; set; }
 
-        public string Photo { get; set; }
+        public string Goiy { get; set; }
+
+        public string Image { get; set; }
 
         public string Tag { get; set; }
 
@@ -24,6 +26,7 @@ namespace LuyenThi.Web.Models
         public string Nguoisua { get; set; }
 
         public string Ghichu { get; set; }
+        public string strJsonDapan { get; set; }
 
         public virtual IEnumerable<DethiCauhoiViewModel> DethiCauhoi { get; set; }
         public virtual IEnumerable<DapanViewModel> DanhsachDapan { get; set; }

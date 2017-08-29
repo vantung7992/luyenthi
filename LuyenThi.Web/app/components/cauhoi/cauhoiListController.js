@@ -101,7 +101,7 @@
                 $scope.pagesCount = result.data.TotalPages;
                 $scope.TotalCount = result.data.TotalCount;
             }, function () {
-                console.log('Load chu de failed.');
+                console.log('Load cau hoi failed.');
             });
         }
         $scope.getCauhoi();

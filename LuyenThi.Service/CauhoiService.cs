@@ -12,7 +12,7 @@ namespace LuyenThi.Service
 {
     public interface ICauhoiService
     {
-        Cauhoi Add(Cauhoi cauhoi);
+        Cauhoi Add(Cauhoi cauhoi, IEnumerable<Dapan> listDapan);
         void Update(Cauhoi cauhoi);
         void Delete(int id);
         IEnumerable<Cauhoi> GetAll();
@@ -24,17 +24,32 @@ namespace LuyenThi.Service
     public class CauhoiService : ICauhoiService
     {
         ICauhoiRepository _cauhoiRepository;
+        IDapanRepository _dapanRepository;
+
         IUnitOfWork _unitOfWork;
 
-        public CauhoiService(ICauhoiRepository cauhoiRepository, IUnitOfWork unitOfWork)
+        public CauhoiService(ICauhoiRepository cauhoiRepository, IDapanRepository dapanRepository, IUnitOfWork unitOfWork)
         {
             this._cauhoiRepository = cauhoiRepository;
+            this._dapanRepository = dapanRepository;
+
             this._unitOfWork = unitOfWork;
         }
 
-        public Cauhoi Add(Cauhoi cauhoi)
+        public Cauhoi Add(Cauhoi cauhoi, IEnumerable<Dapan> listDapan)
         {
-            return _cauhoiRepository.Add(cauhoi);
+            var data = _cauhoiRepository.Add(cauhoi);
+            _unitOfWork.Commit();
+            if (listDapan.Count() > 0)
+            {
+                foreach (var dapan in listDapan)
+                {
+                    dapan.IDCauhoi = data.ID;
+                    _dapanRepository.Add(dapan);
+                }
+                _unitOfWork.Commit();
+            }
+            return null;
         }
 
         public void Delete(int id)
