@@ -48,9 +48,11 @@
         function LayMaDapan() {
             for (var i = 0; i < listDapan.length; i++) {
                 listDapan[i].Ma = commonService.getMaDapan(i);
+                listDapan[i].Thutu = i + 1;
             }
         }
 
+        //Mặc định có 4 đáp án
         for (var i = 0; i < 4; i++) {
             ThemDapan();
         }
@@ -68,5 +70,4 @@
             finder.popup();
         }
     }
-
 })(angular.module('luyenthi.cauhoi'));

@@ -226,6 +226,7 @@
     <Compile Include="Api\CauhoiController.cs" />
     <Compile Include="Api\ChudeController.cs" />
     <Compile Include="Api\DapanController.cs" />
+    <Compile Include="Api\DethiController.cs" />
     <Compile Include="Api\TestController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -254,6 +255,8 @@
   <ItemGroup>
     <Content Include="app\app.js" />
     <Content Include="app\components\cauhoi\cauhoi.module.js" />
+    <Content Include="app\components\cauhoi\cauhoiEditController.js" />
+    <Content Include="app\components\cauhoi\cauhoiEditView.html" />
     <Content Include="app\components\cauhoi\cauhoiListController.js" />
     <Content Include="app\components\cauhoi\cauhoiListView.html" />
     <Content Include="app\components\cauhoi\cauhoiAddController.js" />
@@ -265,6 +268,11 @@
     <Content Include="app\components\chude\chudeEditView.html" />
     <Content Include="app\components\chude\chudeListController.js" />
     <Content Include="app\components\chude\chudeListView.html" />
+    <Content Include="app\components\dethi\dethi.module.js" />
+    <Content Include="app\components\dethi\dethiAddController.js" />
+    <Content Include="app\components\dethi\dethiAddView.html" />
+    <Content Include="app\components\dethi\dethiListController.js" />
+    <Content Include="app\components\dethi\dethiListView.html" />
     <Content Include="app\components\home\homeController.js" />
     <Content Include="app\components\home\homeView.html" />
     <Content Include="app\shared\directives\pagerDirective.html" />
@@ -6328,7 +6336,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="app\components\dapan\" />
-    <Folder Include="app\components\dethi\" />
     <Folder Include="app\components\role\" />
     <Folder Include="app\components\users\" />
     <Folder Include="app\shared\footer\" />

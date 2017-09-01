@@ -14,6 +14,7 @@ namespace LuyenThi.Web.Infrastructure.Extensions
             chude.Seo = chudeViewModel.Seo;
             chude.Mota = chudeViewModel.Mota;
             chude.HomeFlag = chudeViewModel.HomeFlag;
+
             chude.Trangthai = chudeViewModel.Trangthai;
             chude.Ngaytao = chudeViewModel.Ngaytao;
             chude.Nguoitao = chudeViewModel.Nguoitao;
@@ -27,13 +28,13 @@ namespace LuyenThi.Web.Infrastructure.Extensions
         {
             dethi.ID = dethiViewModel.ID;
             dethi.Ten = dethiViewModel.Ten;
-            dethi.Tag = dethi.Tag;
-            dethi.Trangthai = dethi.Trangthai;
-            dethi.Ngaytao = dethi.Ngaytao;
-            dethi.Nguoitao = dethi.Nguoitao;
-            dethi.Ngaysua = dethi.Ngaysua;
-            dethi.Nguoisua = dethi.Nguoisua;
-            dethi.Ghichu = dethi.Ghichu;
+            dethi.Tag = dethiViewModel.Tag;
+            dethi.Trangthai = dethiViewModel.Trangthai;
+            dethi.Ngaytao = dethiViewModel.Ngaytao;
+            dethi.Nguoitao = dethiViewModel.Nguoitao;
+            dethi.Ngaysua = dethiViewModel.Ngaysua;
+            dethi.Nguoisua = dethiViewModel.Nguoisua;
+            dethi.Ghichu = dethiViewModel.Ghichu;
         }
 
         public static void UpdateCauhoi(this Cauhoi cauhoi, CauhoiViewModel cauhoiViewModel)
@@ -42,15 +43,15 @@ namespace LuyenThi.Web.Infrastructure.Extensions
             cauhoi.Noidung = cauhoiViewModel.Noidung;
             cauhoi.Noidunghienthi = cauhoiViewModel.Noidunghienthi;
             cauhoi.Goiy = cauhoiViewModel.Goiy;
-            cauhoi.Tag = cauhoi.Tag;
+            cauhoi.Tag = cauhoiViewModel.Tag;
             cauhoi.Image = cauhoiViewModel.Image;
 
-            cauhoi.Trangthai = cauhoi.Trangthai;
-            cauhoi.Ngaytao = cauhoi.Ngaytao;
-            cauhoi.Nguoitao = cauhoi.Nguoitao;
-            cauhoi.Ngaysua = cauhoi.Ngaysua;
-            cauhoi.Nguoisua = cauhoi.Nguoisua;
-            cauhoi.Ghichu = cauhoi.Ghichu;
+            cauhoi.Trangthai = cauhoiViewModel.Trangthai;
+            cauhoi.Ngaytao = cauhoiViewModel.Ngaytao;
+            cauhoi.Nguoitao = cauhoiViewModel.Nguoitao;
+            cauhoi.Ngaysua = cauhoiViewModel.Ngaysua;
+            cauhoi.Nguoisua = cauhoiViewModel.Nguoisua;
+            cauhoi.Ghichu = cauhoiViewModel.Ghichu;
         }
 
         public static void UpdateDapan(this Dapan dapan, DapanViewModel dapanViewModel)
@@ -63,26 +64,26 @@ namespace LuyenThi.Web.Infrastructure.Extensions
             dapan.IDCauhoi = dapanViewModel.IDCauhoi;
             dapan.Image = dapanViewModel.Image;
 
-            dapan.Trangthai = dapan.Trangthai;
-            dapan.Ngaytao = dapan.Ngaytao;
-            dapan.Nguoitao = dapan.Nguoitao;
-            dapan.Ngaysua = dapan.Ngaysua;
-            dapan.Nguoisua = dapan.Nguoisua;
-            dapan.Ghichu = dapan.Ghichu;
+            dapan.Trangthai = dapanViewModel.Trangthai;
+            dapan.Ngaytao = dapanViewModel.Ngaytao;
+            dapan.Nguoitao = dapanViewModel.Nguoitao;
+            dapan.Ngaysua = dapanViewModel.Ngaysua;
+            dapan.Nguoisua = dapanViewModel.Nguoisua;
+            dapan.Ghichu = dapanViewModel.Ghichu;
         }
 
         public static void UpdateChudeCauhoi(this ChudeCauhoi chudeCauhoi, ChudeCauhoiViewModel chudeCauhoiViewModel)
         {
             chudeCauhoi.IDChude = chudeCauhoiViewModel.IDChude;
             chudeCauhoi.IDCauhoi = chudeCauhoiViewModel.IDCauhoi;
-            chudeCauhoi.Thutu = chudeCauhoi.Thutu;
+            chudeCauhoi.Thutu = chudeCauhoiViewModel.Thutu;
 
-            chudeCauhoi.Trangthai = chudeCauhoi.Trangthai;
-            chudeCauhoi.Ngaytao = chudeCauhoi.Ngaytao;
-            chudeCauhoi.Nguoitao = chudeCauhoi.Nguoitao;
-            chudeCauhoi.Ngaysua = chudeCauhoi.Ngaysua;
-            chudeCauhoi.Nguoisua = chudeCauhoi.Nguoisua;
-            chudeCauhoi.Ghichu = chudeCauhoi.Ghichu;
+            chudeCauhoi.Trangthai = chudeCauhoiViewModel.Trangthai;
+            chudeCauhoi.Ngaytao = chudeCauhoiViewModel.Ngaytao;
+            chudeCauhoi.Nguoitao = chudeCauhoiViewModel.Nguoitao;
+            chudeCauhoi.Ngaysua = chudeCauhoiViewModel.Ngaysua;
+            chudeCauhoi.Nguoisua = chudeCauhoiViewModel.Nguoisua;
+            chudeCauhoi.Ghichu = chudeCauhoiViewModel.Ghichu;
         }
 
         public static void UpdateChudeDethi(this ChudeDethi chudeDethi, ChudeDethiViewModel chudeDethiViewModel)
@@ -90,12 +91,12 @@ namespace LuyenThi.Web.Infrastructure.Extensions
             chudeDethi.IDChude = chudeDethiViewModel.IDChude;
             chudeDethi.IDDethi = chudeDethiViewModel.IDDethi;
 
-            chudeDethi.Trangthai = chudeDethi.Trangthai;
-            chudeDethi.Ngaytao = chudeDethi.Ngaytao;
-            chudeDethi.Nguoitao = chudeDethi.Nguoitao;
-            chudeDethi.Ngaysua = chudeDethi.Ngaysua;
-            chudeDethi.Nguoisua = chudeDethi.Nguoisua;
-            chudeDethi.Ghichu = chudeDethi.Ghichu;
+            chudeDethi.Trangthai = chudeDethiViewModel.Trangthai;
+            chudeDethi.Ngaytao = chudeDethiViewModel.Ngaytao;
+            chudeDethi.Nguoitao = chudeDethiViewModel.Nguoitao;
+            chudeDethi.Ngaysua = chudeDethiViewModel.Ngaysua;
+            chudeDethi.Nguoisua = chudeDethiViewModel.Nguoisua;
+            chudeDethi.Ghichu = chudeDethiViewModel.Ghichu;
         }
 
         public static void UpdateDethiCauhoi(this DethiCauhoi dethiCauhoi, DethiCauhoiViewModel dethiCauhoiViewModel)
@@ -104,12 +105,12 @@ namespace LuyenThi.Web.Infrastructure.Extensions
             dethiCauhoi.IDCauhoi = dethiCauhoiViewModel.IDCauhoi;
             dethiCauhoi.Thutu = dethiCauhoiViewModel.Thutu;
 
-            dethiCauhoi.Trangthai = dethiCauhoi.Trangthai;
-            dethiCauhoi.Ngaytao = dethiCauhoi.Ngaytao;
-            dethiCauhoi.Nguoitao = dethiCauhoi.Nguoitao;
-            dethiCauhoi.Ngaysua = dethiCauhoi.Ngaysua;
-            dethiCauhoi.Nguoisua = dethiCauhoi.Nguoisua;
-            dethiCauhoi.Ghichu = dethiCauhoi.Ghichu;
+            dethiCauhoi.Trangthai = dethiCauhoiViewModel.Trangthai;
+            dethiCauhoi.Ngaytao = dethiCauhoiViewModel.Ngaytao;
+            dethiCauhoi.Nguoitao = dethiCauhoiViewModel.Nguoitao;
+            dethiCauhoi.Ngaysua = dethiCauhoiViewModel.Ngaysua;
+            dethiCauhoi.Nguoisua = dethiCauhoiViewModel.Nguoisua;
+            dethiCauhoi.Ghichu = dethiCauhoiViewModel.Ghichu;
         }
     }
 }

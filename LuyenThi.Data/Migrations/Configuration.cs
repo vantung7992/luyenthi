@@ -20,6 +20,7 @@
         {
             CreateChudeSample(context);
             CreateCauhoiSample(context);
+            CreateDethiSample(context);
 
 
 
@@ -87,6 +88,20 @@
                 };
 
                 context.Cauhoi.AddRange(listCauhoi);
+                context.SaveChanges();
+            }
+        }
+
+        private void CreateDethiSample(LuyenthiDBContext context)
+        {
+            if (context.Dethi.Count() == 0)
+            {
+                List<Dethi> listDethi = new List<Dethi>() {
+                    new Dethi {Ten="De thi 1",Ngaytao=DateTime.Now,Trangthai=true},
+                    new Dethi {Ten="De thi 2",Ngaytao=DateTime.Now,Trangthai=true},
+                    new Dethi {Ten="De thi 3",Ngaytao=DateTime.Now,Trangthai=true}
+                };
+                context.Dethi.AddRange(listDethi);
                 context.SaveChanges();
             }
         }

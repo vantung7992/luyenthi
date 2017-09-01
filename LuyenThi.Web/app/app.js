@@ -3,6 +3,7 @@
     angular.module('luyenthi',
         ['luyenthi.chude',
          'luyenthi.cauhoi',
+         'luyenthi.dethi',
          'luyenthi.common'])
         .config(config);
     config.$inject = ['$stateProvider', '$urlRouterProvider'];

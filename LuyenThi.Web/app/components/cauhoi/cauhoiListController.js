@@ -26,7 +26,7 @@
                         checkedCauhoi: JSON.stringify(listId)
                     }
                 }
-                apiService.del('/api/chude/deleteMultiple', config, function (result) {
+                apiService.del('/api/cauhoi/deleteMultiple', config, function (result) {
                     notificationService.displaySuccess('Xóa thành công ' + result.data + ' bản ghi');
                     search();
                 }, function () {
@@ -106,4 +106,4 @@
         }
         $scope.getCauhoi();
     };
-})(angular.module('luyenthi.chude'));
+})(angular.module('luyenthi.cauhoi'));

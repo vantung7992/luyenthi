@@ -28,7 +28,6 @@ namespace LuyenThi.Model.Models
         [Column(TypeName = "varchar")]
         [MaxLength(200)]
         public string Tag { get; set; }
-
         public virtual IEnumerable<DethiCauhoi> DethiCauhoi { get; set; }
         public virtual IEnumerable<Dapan> DanhsachDapan { get; set; }
     }

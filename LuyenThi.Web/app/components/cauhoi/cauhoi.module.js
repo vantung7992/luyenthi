@@ -11,6 +11,10 @@
             url: "/add_cauhoi",
             templateUrl: "/app/components/cauhoi/cauhoiAddView.html",
             controller: "cauhoiAddController"
+        }).state("edit_cauhoi", {
+            url: "/edit_cauhoi/:id",
+            templateUrl: "/app/components/cauhoi/cauhoiEditView.html",
+            controller: "cauhoiEditController"
         });
     }
 })();

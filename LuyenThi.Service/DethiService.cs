@@ -2,6 +2,8 @@
 using LuyenThi.Data.Repositories;
 using LuyenThi.Model.Models;
 using System.Collections;
+using System.Collections.Generic;
+using System;
 
 namespace LuyenThi.Service
 {
@@ -11,14 +13,14 @@ namespace LuyenThi.Service
 
         void Update(Dethi dethi);
 
-        void Delete(int id);
+        Dethi Delete(int id);
 
         IEnumerable GetAllByChude(int idChude, int pageIndex, int pageSize, out int totalRow);
 
         Dethi GetAllById(int id);
 
-        IEnumerable GetAll();
-
+        IEnumerable<Dethi> GetAll();
+        IEnumerable<Dethi> GetAll(string keyword);
         void SaveChanges();
     }
 
@@ -38,14 +40,21 @@ namespace LuyenThi.Service
             _dethiRepository.Add(dethi);
         }
 
-        public void Delete(int id)
+        public Dethi Delete(int id)
         {
-            _dethiRepository.Delete(id);
+            return _dethiRepository.Delete(id);
         }
 
-        public IEnumerable GetAll()
+        public IEnumerable<Dethi> GetAll()
         {
             return _dethiRepository.GetAll(new string[] { "ChudeDethi" });
+        }
+
+        public IEnumerable<Dethi> GetAll(string keyword)
+        {
+            if (!string.IsNullOrEmpty(keyword))
+                return _dethiRepository.GetMulti(x => x.Ten.Contains(keyword) || x.Ghichu.Contains(keyword));
+            return _dethiRepository.GetAll();
         }
 
         public IEnumerable GetAllByChude(int idChude, int pageIndex, int pageSize, out int totalRow)

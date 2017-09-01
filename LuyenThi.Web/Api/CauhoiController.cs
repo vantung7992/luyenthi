@@ -19,7 +19,8 @@ namespace LuyenThi.Web.Api
     {
         private ICauhoiService _cauhoiService;
 
-        public CauhoiController(IErrorService errorService, ICauhoiService cauhoiService) : base(errorService)
+        public CauhoiController(IErrorService errorService, ICauhoiService cauhoiService)
+            : base(errorService)
         {
             this._cauhoiService = cauhoiService;
         }
@@ -48,11 +49,17 @@ namespace LuyenThi.Web.Api
             });
         }
 
-        [Route("getbyid")]
+        [Route("getbyid/{id:int}")]
         [HttpGet]
         public HttpResponseMessage GetById(HttpRequestMessage request, int id)
         {
-            return null;
+            return CreateHttpResponse(request, () =>
+            {
+                var model = _cauhoiService.GetAllById(id);
+                var responData = Mapper.Map<Cauhoi, CauhoiViewModel>(model);
+                var response = request.CreateResponse(HttpStatusCode.OK, responData);
+                return response;
+            });
         }
 
         [Route("create")]
@@ -62,25 +69,27 @@ namespace LuyenThi.Web.Api
         {
             return CreateHttpResponse(request, () =>
             {
-                var a = cauhoiVm.Noidung;
                 HttpResponseMessage response = null;
                 if (!ModelState.IsValid)
                 {
-                        request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+                    request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
                 }
                 else
                 {
+                    var listDapanVm = new List<DapanViewModel>();
+                    var listDapan = new List<Dapan>();
+                    if (!String.IsNullOrEmpty(cauhoiVm.strJsonDapan))
+                    {
+                        listDapanVm = new JavaScriptSerializer().Deserialize<List<DapanViewModel>>(cauhoiVm.strJsonDapan);
+                        foreach (var dapanVm in listDapanVm)
+                        {
+                            var newDapan = new Dapan();
+                            newDapan.UpdateDapan(dapanVm);
+                            listDapan.Add(newDapan);
+                        }
+                    }
                     var newCauhoi = new Cauhoi();
                     newCauhoi.UpdateCauhoi(cauhoiVm);
-                    newCauhoi.Ngaytao = DateTime.Now;
-                    var listDapanVm = new JavaScriptSerializer().Deserialize<List<DapanViewModel>>(cauhoiVm.strJsonDapan);
-                    var listDapan = new List<Dapan>();
-                    foreach (var dapanVm in listDapanVm)
-                    {
-                        var newDapan = new Dapan();
-                        newDapan.UpdateDapan(dapanVm);
-                        listDapan.Add(newDapan);
-                    }
                     _cauhoiService.Add(newCauhoi, listDapan);
                     _cauhoiService.SaveChanges();
                     var responData = Mapper.Map<Cauhoi, CauhoiViewModel>(newCauhoi);
@@ -90,18 +99,35 @@ namespace LuyenThi.Web.Api
             });
         }
 
-        public HttpResponseMessage Update(HttpRequestMessage request, Cauhoi cauhoi)
+        [Route("update")]
+        [HttpPut]
+        [AllowAnonymous]
+        public HttpResponseMessage Update(HttpRequestMessage request, CauhoiViewModel cauhoiVm)
         {
             return CreateHttpResponse(request, () =>
             {
                 HttpResponseMessage response = null;
-                if (ModelState.IsValid)
+                if (!ModelState.IsValid)
                 {
                     request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
                 }
                 else
                 {
-                    _cauhoiService.Update(cauhoi);
+                    var listDapanVm = new List<DapanViewModel>();
+                    var listDapan = new List<Dapan>();
+                    if (!String.IsNullOrEmpty(cauhoiVm.strJsonDapan))
+                    {
+                        listDapanVm = new JavaScriptSerializer().Deserialize<List<DapanViewModel>>(cauhoiVm.strJsonDapan);
+                        foreach (var dapanVm in listDapanVm)
+                        {
+                            var newDapan = new Dapan();
+                            newDapan.UpdateDapan(dapanVm);
+                            listDapan.Add(newDapan);
+                        }
+                    }
+                    var newCauhoi = new Cauhoi();
+                    newCauhoi.UpdateCauhoi(cauhoiVm);
+                    _cauhoiService.Update(newCauhoi,listDapan);
                     _cauhoiService.SaveChanges();
                     response = request.CreateResponse(HttpStatusCode.OK);
                 };
@@ -109,12 +135,15 @@ namespace LuyenThi.Web.Api
             });
         }
 
+        [Route("delete")]
+        [HttpDelete]
+        [AllowAnonymous]
         public HttpResponseMessage Delete(HttpRequestMessage request, int id)
         {
             return CreateHttpResponse(request, () =>
             {
                 HttpResponseMessage response = null;
-                if (ModelState.IsValid)
+                if (!ModelState.IsValid)
                 {
                     request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
                 }
@@ -124,6 +153,32 @@ namespace LuyenThi.Web.Api
                     _cauhoiService.SaveChanges();
                     response = request.CreateResponse(HttpStatusCode.OK);
                 };
+                return response;
+            });
+        }
+
+        [Route("deleteMultiple")]
+        [HttpDelete]
+        [AllowAnonymous]
+        public HttpResponseMessage DeleteMultiple(HttpRequestMessage request, string checkedCauhoi)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+                if (!ModelState.IsValid)
+                {
+                    response = request.CreateResponse(HttpStatusCode.OK, ModelState);
+                }
+                else
+                {
+                    var listCauhoi = new JavaScriptSerializer().Deserialize<List<int>>(checkedCauhoi);
+                    foreach (var cauhoi in listCauhoi)
+                    {
+                        _cauhoiService.Delete(cauhoi);
+                    }
+                    _cauhoiService.SaveChanges();
+                    response = request.CreateResponse(HttpStatusCode.OK, listCauhoi.Count);
+                }
                 return response;
             });
         }

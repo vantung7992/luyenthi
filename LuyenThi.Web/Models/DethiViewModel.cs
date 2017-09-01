@@ -11,6 +11,12 @@ namespace LuyenThi.Web.Models
 
         public string Ten { get; set; }
 
+        public string Mota { get; set; }
+
+        public string Seo { get; set; }
+
+        public string   Image { get; set; }
+
         public string Tag { get; set; }
 
         public bool Trangthai { get; set; }

@@ -19,8 +19,14 @@ namespace LuyenThi.Model.Models
         [MaxLength(200)]
         public string Seo { get; set; }
 
-        [MaxLength(500)]
+        [MaxLength(1000)]
+        [Column(TypeName ="ntext")]
         public string Mota { get; set; }
+
+        [MaxLength(500)]
+        public string Image { get; set; }
+
+        public int Thoigianlambai { get; set; }
 
         [Column(TypeName = "varchar")]
         [MaxLength(200)]
