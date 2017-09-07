@@ -8,13 +8,13 @@
         $scope.pageCount = 0;
         $scope.keyword = '';
         $scope.search = Search;
-        $scope.getCauhoi = GetCauhoi;
-        //$scope.deleteCauhoi = DeleteCauhoi;
+        $scope.getDethi = GetDethi;
+        $scope.deleteDethi = DeleteDethi;
         //$scope.deleteMultipleCauhoi = DeleteMultipleCauhoi;
         //$scope.selectAll = SelectAll;
         $scope.isAll = false;
 
-        function GetCauhoi(page) {
+        function GetDethi(page) {
             page = page || 0;
             var config = {
                 params: {
@@ -42,10 +42,26 @@
         }
 
         function Search() {
-            GetCauhoi();
+            GetDethi();
         }
 
-        $scope.getCauhoi();
+        function DeleteDethi(id) {
+            $ngBootbox.confirm('Bạn có chắc muốn xóa ?').then(function () {
+                var config = {
+                    params: {
+                        id: id
+                    }
+                };
+                apiService.del('/api/dethi/delete', config, function (result) {
+                    notificationService.displaySuccess('Xóa thành công đề thi mã: ' + result.data.ID);
+                    Search();
+                }, function (error) {
+                    notificationService.displayError('Xóa không thành công: ' + error.data);
+                });
+            });
+        }
+
+        $scope.getDethi();
 
     }
 }
