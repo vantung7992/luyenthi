@@ -9,9 +9,9 @@ namespace LuyenThi.Service
 {
     public interface IDethiService
     {
-        void Add(Dethi dethi);
+        Dethi Add(Dethi dethi, List<int> listIdCauhoi);
 
-        void Update(Dethi dethi);
+        void Update(Dethi dethi, List<int> listIdCauhoi);
 
         Dethi Delete(int id);
 
@@ -27,17 +27,37 @@ namespace LuyenThi.Service
     public class DethiService : IDethiService
     {
         private IDethiRepository _dethiRepository;
+        private IDethiCauhoiRepository _dethiCauhoiRepositpry;
         private IUnitOfWork _unitOfWork;
 
-        public DethiService(IDethiRepository dethiRepository, IUnitOfWork unitOfWork)
+        public DethiService(IDethiRepository dethiRepository, IDethiCauhoiRepository dethiCauhoiRepository, IUnitOfWork unitOfWork)
         {
             this._dethiRepository = dethiRepository;
+            this._dethiCauhoiRepositpry = dethiCauhoiRepository;
             this._unitOfWork = unitOfWork;
         }
 
-        public void Add(Dethi dethi)
+        public Dethi Add(Dethi dethi, List<int> listIdCauhoi)
         {
             _dethiRepository.Add(dethi);
+            _unitOfWork.Commit();
+            if (listIdCauhoi.Count > 0)
+            {
+                for (var i = 0; i < listIdCauhoi.Count; i++)
+                {
+                    DethiCauhoi dethicauhoi = new DethiCauhoi()
+                    {
+                        IDDethi = dethi.ID,
+                        Thutu = i,
+                        Trangthai = true,
+                        Ngaytao = DateTime.Now,
+                        Nguoitao = "Admin"
+                    };
+                    _dethiCauhoiRepositpry.Add(dethicauhoi);
+                }
+                _unitOfWork.Commit();
+            }
+            return dethi;
         }
 
         public Dethi Delete(int id)
@@ -72,9 +92,26 @@ namespace LuyenThi.Service
             _unitOfWork.Commit();
         }
 
-        public void Update(Dethi dethi)
+        public void Update(Dethi dethi, List<int> listIdCauhoi)
         {
             _dethiRepository.Update(dethi);
+            _dethiCauhoiRepositpry.DeleteMulti(x => x.IDDethi == dethi.ID);
+            if (listIdCauhoi.Count > 0)
+            {
+                for (var i = 0; i < listIdCauhoi.Count; i++)
+                {
+                    DethiCauhoi dethicauhoi = new DethiCauhoi()
+                    {
+                        IDDethi = dethi.ID,
+                        Thutu = i,
+                        Trangthai = true,
+                        Ngaytao = DateTime.Now,
+                        Nguoitao = "Admin"
+                    };
+                    _dethiCauhoiRepositpry.Add(dethicauhoi);
+                }
+                _unitOfWork.Commit();
+            }
         }
     }
 }

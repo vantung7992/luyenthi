@@ -7,6 +7,10 @@
             url: "/dethi",
             templateUrl: "/app/components/dethi/dethiListView.html",
             controller: "dethiListController"
+        }).state("add_dethi", {
+            url: "/add_dethi",
+            templateUrl: "/app/components/dethi/dethiAddView.html",
+            controller: "dethiAddController"
         });
     }
 })();

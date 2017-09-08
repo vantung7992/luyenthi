@@ -13,11 +13,17 @@ namespace LuyenThi.Web.Models
 
         public string Mota { get; set; }
 
+        public string StrListIdCauhoi { get; set; }
+
         public string Seo { get; set; }
 
         public string   Image { get; set; }
 
+        public int ThoigianLambai { get; set; }
+
         public string Tag { get; set; }
+
+        public bool HomeFlag { get; set; }
 
         public bool Trangthai { get; set; }
 

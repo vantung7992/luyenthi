@@ -5,9 +5,9 @@ namespace LuyenThi.Data.Repositories
 {
     public interface IDethiCauhoiRepository : IRepository<DethiCauhoi> { }
 
-    public class DethiCauhoirepository : RepositoryBase<DethiCauhoi>, IDethiCauhoiRepository
+    public class DethiCauhoiRepository : RepositoryBase<DethiCauhoi>, IDethiCauhoiRepository
     {
-        public DethiCauhoirepository(IDbFactory dbFactory) : base(dbFactory)
+        public DethiCauhoiRepository(IDbFactory dbFactory) : base(dbFactory)
         {
         }
     }

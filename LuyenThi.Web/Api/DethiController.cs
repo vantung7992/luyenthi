@@ -112,12 +112,39 @@ namespace LuyenThi.Web.Api
                 }
                 else
                 {
+                    List<int> ListIdCauhoi = new JavaScriptSerializer().Deserialize<List<int>>(dethiVm.StrListIdCauhoi);
                     var newdeThi = new Dethi();
                     newdeThi.UpdateDethi(dethiVm);
-                    _dethiService.Add(newdeThi);
+                    _dethiService.Add(newdeThi, ListIdCauhoi);
+                    _dethiService.SaveChanges();
                     var responseData = Mapper.Map<Dethi, DethiViewModel>(newdeThi);
                     response = request.CreateResponse(HttpStatusCode.OK, responseData);
+                }
+                return response;
+            });
+        }
 
+        [Route("update")]
+        [HttpPost]
+        [AllowAnonymous]
+        public HttpResponseMessage Update(HttpRequestMessage request, DethiViewModel dethiVm)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response;
+                if (!ModelState.IsValid)
+                {
+                    response = request.CreateResponse(HttpStatusCode.OK, ModelState);
+                }
+                else
+                {
+                    List<int> ListIdCauhoi = new JavaScriptSerializer().Deserialize<List<int>>(dethiVm.StrListIdCauhoi);
+                    var newdeThi = new Dethi();
+                    newdeThi.UpdateDethi(dethiVm);
+                    _dethiService.Update(newdeThi, ListIdCauhoi);
+                    _dethiService.SaveChanges();
+                    var responseData = Mapper.Map<Dethi, DethiViewModel>(newdeThi);
+                    response = request.CreateResponse(HttpStatusCode.OK, responseData);
                 }
                 return response;
             });

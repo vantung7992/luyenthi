@@ -23,7 +23,7 @@
                     pageSize: 10
                 }
             }
-            apiService.get('api/dethi/getall', config, function (result) {
+            apiService.get('/api/dethi/getall', config, function (result) {
                 if (result.data.TotalCount == 0) {
                     notificationService.displaySuccess('Không tìm thấy đề thi nào');
                 } else {
@@ -62,7 +62,6 @@
         }
 
         $scope.getDethi();
-
     }
 }
 )(angular.module('luyenthi.dethi'));
