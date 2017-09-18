@@ -17,13 +17,13 @@ namespace Luyenthi.UnitTest.RepositoryTest
         public void Initialize()
         {
             dbFactory = new DbFactory();
-            objRepository = new DethiRepository(dbFactory);
+            objRepository = new ExamRepository(dbFactory);
             unitOfWork = new UnitOfWork(dbFactory);
         }
         [TestMethod]
         public void Chude_Repository_Create()
         {
-            Dethi dt = new Dethi();
+            Exam dt = new Exam();
             dt.Ten = "Bằng lái xe A1";
             dt.Ngaytao = DateTime.Now;
             dt.Nguoitao = "Tungnv";

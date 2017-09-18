@@ -66,7 +66,7 @@ namespace LuyenThi.Web.Api
                     var oldChude = _chudeService.Delete(id);
                     _chudeService.SaveChanges();
 
-                    var responData = Mapper.Map<Chude, ChudeViewModel>(oldChude);
+                    var responData = Mapper.Map<Chude, TopicViewModel>(oldChude);
                     response = request.CreateResponse(HttpStatusCode.OK, responData);
                 }
                 return response;
@@ -81,7 +81,7 @@ namespace LuyenThi.Web.Api
             return CreateHttpResponse(request, () =>
             {
                 var model = _chudeService.GetById(id);
-                var responseData = Mapper.Map<Chude, ChudeViewModel>(model);
+                var responseData = Mapper.Map<Chude, TopicViewModel>(model);
                 var response = request.CreateResponse(HttpStatusCode.OK, responseData);
                 return response;
             });
@@ -99,8 +99,8 @@ namespace LuyenThi.Web.Api
 
                 var query = model.OrderByDescending(x => x.Ngaytao).Skip(pageSize * page).Take(pageSize);
 
-                var responData = Mapper.Map<IEnumerable<Chude>, IEnumerable<ChudeViewModel>>(query);
-                var paginationSet = new PaginationSet<ChudeViewModel>()
+                var responData = Mapper.Map<IEnumerable<Chude>, IEnumerable<TopicViewModel>>(query);
+                var paginationSet = new PaginationSet<TopicViewModel>()
                 {
                     Items = responData,
                     Page = page,
@@ -119,7 +119,7 @@ namespace LuyenThi.Web.Api
             return CreateHttpResponse(request, () =>
             {
                 var model = _chudeService.GetAll();
-                var responseData = Mapper.Map<IEnumerable<Chude>, IEnumerable<ChudeViewModel>>(model);
+                var responseData = Mapper.Map<IEnumerable<Chude>, IEnumerable<TopicViewModel>>(model);
                 var response = request.CreateResponse(HttpStatusCode.OK, responseData);
                 return response;
             });
@@ -128,7 +128,7 @@ namespace LuyenThi.Web.Api
         [Route("create")]
         [HttpPost]
         [AllowAnonymous]
-        public HttpResponseMessage Create(HttpRequestMessage request, ChudeViewModel chudeVm)
+        public HttpResponseMessage Create(HttpRequestMessage request, TopicViewModel chudeVm)
         {
             var chude = chudeVm;
             return CreateHttpResponse(request, () =>
@@ -145,7 +145,7 @@ namespace LuyenThi.Web.Api
                     newChude.Ngaytao = DateTime.Now;
                     _chudeService.Add(newChude);
                     _chudeService.SaveChanges();
-                    var responseData = Mapper.Map<Chude, ChudeViewModel>(newChude);
+                    var responseData = Mapper.Map<Chude, TopicViewModel>(newChude);
                     response = request.CreateResponse(HttpStatusCode.Created, responseData);
                 }
                 return response;
@@ -155,7 +155,7 @@ namespace LuyenThi.Web.Api
         [Route("update")]
         [HttpPut]
         [AllowAnonymous]
-        public HttpResponseMessage Update(HttpRequestMessage request, ChudeViewModel chudeVm)
+        public HttpResponseMessage Update(HttpRequestMessage request, TopicViewModel chudeVm)
         {
             return CreateHttpResponse(request, () =>
             {
@@ -171,7 +171,7 @@ namespace LuyenThi.Web.Api
                     dbChude.Ngaytao = DateTime.Now;
                     _chudeService.Update(dbChude);
                     _chudeService.SaveChanges();
-                    var responseData = Mapper.Map<Chude, ChudeViewModel>(dbChude);
+                    var responseData = Mapper.Map<Chude, TopicViewModel>(dbChude);
                     response = request.CreateResponse(HttpStatusCode.Created, responseData);
                 }
                 return response;

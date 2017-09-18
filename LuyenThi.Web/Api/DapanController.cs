@@ -22,11 +22,11 @@ namespace LuyenThi.Web.Api
 
         [Route("getbycauhoi/{idCauhoi:int}")]
         [HttpGet]
-        public IEnumerable<DapanViewModel> GetAllByCauhoi(int idCauhoi)
+        public IEnumerable<AnswerViewModel> GetAllByCauhoi(int idCauhoi)
         {
             var model = _dapanService.GetAllByCauhoi(idCauhoi);
             var query = model.OrderBy(x => x.Thutu);
-            var responseData = Mapper.Map<IEnumerable<Dapan>, IEnumerable<DapanViewModel>>(query);
+            var responseData = Mapper.Map<IEnumerable<Answer>, IEnumerable<AnswerViewModel>>(query);
             return responseData;
         }
     }

@@ -48,60 +48,60 @@
 
         private void CreateChudeSample(LuyenThi.Data.LuyenthiDBContext context)
         {
-            if (context.Chude.Count() == 0)
+            if (context.Topic.Count() == 0)
             {
-                List<Chude> listChude = new List<Chude>()
+                List<Topic> listChude = new List<Topic>()
             {
-                new Chude {Ten="Toán lớp 1"},
-                new Chude {Ten="Toán lớp 2" },
-                new Chude {Ten="Toán lớp 3" }
+                new Topic {Name="Toán lớp 1"},
+                new Topic {Name="Toán lớp 2" },
+                new Topic {Name="Toán lớp 3" }
             };
-                context.Chude.AddRange(listChude);
+                context.Topic.AddRange(listChude);
                 context.SaveChanges();
             }
         }
 
         private void CreateCauhoiSample(LuyenthiDBContext context)
         {
-            if (context.Cauhoi.Count() == 0)
+            if (context.Question.Count() == 0)
             {
-                List<Cauhoi> listCauhoi = new List<Cauhoi>()
+                List<Question> listQuestion = new List<Question>()
                 {
-                    new Cauhoi {Noidung="Nội dung 1",Ngaytao=DateTime.Now,Trangthai=true},
-                    new Cauhoi {Noidung="Nội dung 2",Ngaytao=DateTime.Now,Trangthai=true},
-                    new Cauhoi {Noidung="Nội dung 3",Ngaytao=DateTime.Now,Trangthai=true},
+                    new Question {Content="Nội dung 1",CreatedDate=DateTime.Now,Status=true},
+                    new Question {Content="Nội dung 2",CreatedDate=DateTime.Now,Status=true},
+                    new Question {Content="Nội dung 3",CreatedDate=DateTime.Now,Status=true},
                 };
-                List<Dapan> listDapan = new List<Dapan>()
+                List<Answer> listDapan = new List<Answer>()
                 {
-                    new Dapan {IDCauhoi = 1,Noidung = "Nội dung 1",Dungsai=true,Ma="A",Ngaytao=DateTime.Now },
-                    new Dapan {IDCauhoi = 1,Noidung = "Nội dung 2",Dungsai=false,Ma="B",Ngaytao=DateTime.Now },
-                    new Dapan {IDCauhoi = 1,Noidung = "Nội dung 3",Dungsai=false,Ma="C",Ngaytao=DateTime.Now },
-                    new Dapan {IDCauhoi = 1,Noidung = "Nội dung 4",Dungsai=false,Ma="D",Ngaytao=DateTime.Now },
-                    new Dapan {IDCauhoi = 2,Noidung = "Nội dung 1",Dungsai=true,Ma="A",Ngaytao=DateTime.Now },
-                    new Dapan {IDCauhoi = 2,Noidung = "Nội dung 2",Dungsai=false,Ma="B",Ngaytao=DateTime.Now },
-                    new Dapan {IDCauhoi = 2,Noidung = "Nội dung 3",Dungsai=false,Ma="C",Ngaytao=DateTime.Now },
-                    new Dapan {IDCauhoi = 2,Noidung = "Nội dung 4",Dungsai=false,Ma="D",Ngaytao=DateTime.Now },
-                    new Dapan {IDCauhoi = 3,Noidung = "Nội dung 1",Dungsai=true,Ma="A",Ngaytao=DateTime.Now },
-                    new Dapan {IDCauhoi = 3,Noidung = "Nội dung 2",Dungsai=false,Ma="B",Ngaytao=DateTime.Now },
-                    new Dapan {IDCauhoi = 3,Noidung = "Nội dung 3",Dungsai=false,Ma="C",Ngaytao=DateTime.Now },
-                    new Dapan {IDCauhoi = 3,Noidung = "Nội dung 4",Dungsai=false,Ma="D",Ngaytao=DateTime.Now },
+                    new Answer {QuestionID = 1,Content = "Nội dung 1",TrueAnswer=true,Code="A",CreatedDate=DateTime.Now },
+                    new Answer {QuestionID = 1,Content = "Nội dung 2",TrueAnswer=false,Code="B",CreatedDate=DateTime.Now },
+                    new Answer {QuestionID = 1,Content = "Nội dung 3",TrueAnswer=false,Code="C",CreatedDate=DateTime.Now },
+                    new Answer {QuestionID = 1,Content = "Nội dung 4",TrueAnswer=false,Code="D",CreatedDate=DateTime.Now },
+                    new Answer {QuestionID = 2,Content = "Nội dung 1",TrueAnswer=true,Code="A",CreatedDate=DateTime.Now },
+                    new Answer {QuestionID = 2,Content = "Nội dung 2",TrueAnswer=false,Code="B",CreatedDate=DateTime.Now },
+                    new Answer {QuestionID = 2,Content = "Nội dung 3",TrueAnswer=false,Code="C",CreatedDate=DateTime.Now },
+                    new Answer {QuestionID = 2,Content = "Nội dung 4",TrueAnswer=false,Code="D",CreatedDate=DateTime.Now },
+                    new Answer {QuestionID = 3,Content = "Nội dung 1",TrueAnswer=true,Code="A",CreatedDate=DateTime.Now },
+                    new Answer {QuestionID = 3,Content = "Nội dung 2",TrueAnswer=false,Code="B",CreatedDate=DateTime.Now },
+                    new Answer {QuestionID = 3,Content = "Nội dung 3",TrueAnswer=false,Code="C",CreatedDate=DateTime.Now },
+                    new Answer {QuestionID = 3,Content = "Nội dung 4",TrueAnswer=false,Code="D",CreatedDate=DateTime.Now },
                 };
 
-                context.Cauhoi.AddRange(listCauhoi);
+                context.Question.AddRange(listQuestion);
                 context.SaveChanges();
             }
         }
 
         private void CreateDethiSample(LuyenthiDBContext context)
         {
-            if (context.Dethi.Count() == 0)
+            if (context.Exam.Count() == 0)
             {
-                List<Dethi> listDethi = new List<Dethi>() {
-                    new Dethi {Ten="De thi 1",Ngaytao=DateTime.Now,Trangthai=true},
-                    new Dethi {Ten="De thi 2",Ngaytao=DateTime.Now,Trangthai=true},
-                    new Dethi {Ten="De thi 3",Ngaytao=DateTime.Now,Trangthai=true}
+                List<Exam> listDethi = new List<Exam>() {
+                    new Exam {Name="De thi 1",CreatedDate=DateTime.Now,Status=true},
+                    new Exam {Name="De thi 2",CreatedDate=DateTime.Now,Status=true},
+                    new Exam {Name="De thi 3",CreatedDate=DateTime.Now,Status=true}
                 };
-                context.Dethi.AddRange(listDethi);
+                context.Exam.AddRange(listDethi);
                 context.SaveChanges();
             }
         }

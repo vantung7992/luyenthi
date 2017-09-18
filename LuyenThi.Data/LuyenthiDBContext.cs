@@ -11,13 +11,12 @@ namespace LuyenThi.Data
             this.Configuration.LazyLoadingEnabled = false;
         }
 
-        public DbSet<Chude> Chude { get; set; }
-        public DbSet<Cauhoi> Cauhoi { get; set; }
-        public DbSet<Dapan> Dapan { get; set; }
-        public DbSet<Dethi> Dethi { get; set; }
-        public DbSet<DethiCauhoi> DethiCauhoi { get; set; }
-        public DbSet<ChudeCauhoi> ChudeCauhoi { get; set; }
-        public DbSet<ChudeDethi> ChudeDethi { get; set; }
+        public DbSet<Topic> Topic { get; set; }
+        public DbSet<Question> Question { get; set; }
+        public DbSet<Answer> Answer { get; set; }
+        public DbSet<Exam> Exam { get; set; }
+        public DbSet<ExamDetail> ExamDetail { get; set; }
+        public DbSet<ExamTopic> ExamTopic { get; set; }
         public DbSet<Error> Error { get; set; }
 
         public static LuyenthiDBContext Create()

@@ -33,8 +33,8 @@ namespace LuyenThi.Web.Api
                 var model = _dethiService.GetAll(keyword);
                 totalRow = model.Count();
                 var query = model.OrderByDescending(x => x.Ngaytao).Skip(pageSize * page).Take(pageSize);
-                var responseData = Mapper.Map<IEnumerable<Dethi>, IEnumerable<DethiViewModel>>(query);
-                var paginationSet = new PaginationSet<DethiViewModel>()
+                var responseData = Mapper.Map<IEnumerable<Exam>, IEnumerable<ExamViewModel>>(query);
+                var paginationSet = new PaginationSet<ExamViewModel>()
                 {
                     Items = responseData,
                     Page = page,
@@ -64,7 +64,7 @@ namespace LuyenThi.Web.Api
                     var oldDethi = _dethiService.Delete(id);
                     _dethiService.SaveChanges();
 
-                    var responseData = Mapper.Map<Dethi, DethiViewModel>(oldDethi);
+                    var responseData = Mapper.Map<Exam, ExamViewModel>(oldDethi);
                     response = request.CreateResponse(HttpStatusCode.OK, responseData);
                 }
                 return response;
@@ -101,7 +101,7 @@ namespace LuyenThi.Web.Api
         [Route("create")]
         [HttpPost]
         [AllowAnonymous]
-        public HttpResponseMessage Create(HttpRequestMessage request, DethiViewModel dethiVm)
+        public HttpResponseMessage Create(HttpRequestMessage request, ExamViewModel dethiVm)
         {
             return CreateHttpResponse(request, () =>
             {
@@ -113,11 +113,11 @@ namespace LuyenThi.Web.Api
                 else
                 {
                     List<int> ListIdCauhoi = new JavaScriptSerializer().Deserialize<List<int>>(dethiVm.StrListIdCauhoi);
-                    var newdeThi = new Dethi();
+                    var newdeThi = new Exam();
                     newdeThi.UpdateDethi(dethiVm);
                     _dethiService.Add(newdeThi, ListIdCauhoi);
                     _dethiService.SaveChanges();
-                    var responseData = Mapper.Map<Dethi, DethiViewModel>(newdeThi);
+                    var responseData = Mapper.Map<Exam, ExamViewModel>(newdeThi);
                     response = request.CreateResponse(HttpStatusCode.OK, responseData);
                 }
                 return response;
@@ -127,7 +127,7 @@ namespace LuyenThi.Web.Api
         [Route("update")]
         [HttpPost]
         [AllowAnonymous]
-        public HttpResponseMessage Update(HttpRequestMessage request, DethiViewModel dethiVm)
+        public HttpResponseMessage Update(HttpRequestMessage request, ExamViewModel dethiVm)
         {
             return CreateHttpResponse(request, () =>
             {
@@ -139,11 +139,11 @@ namespace LuyenThi.Web.Api
                 else
                 {
                     List<int> ListIdCauhoi = new JavaScriptSerializer().Deserialize<List<int>>(dethiVm.StrListIdCauhoi);
-                    var newdeThi = new Dethi();
+                    var newdeThi = new Exam();
                     newdeThi.UpdateDethi(dethiVm);
                     _dethiService.Update(newdeThi, ListIdCauhoi);
                     _dethiService.SaveChanges();
-                    var responseData = Mapper.Map<Dethi, DethiViewModel>(newdeThi);
+                    var responseData = Mapper.Map<Exam, ExamViewModel>(newdeThi);
                     response = request.CreateResponse(HttpStatusCode.OK, responseData);
                 }
                 return response;

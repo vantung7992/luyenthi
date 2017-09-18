@@ -223,11 +223,10 @@
   <ItemGroup>
     <Compile Include="Api\AccountController.cs" />
     <Compile Include="Api\AdminController.cs" />
-    <Compile Include="Api\CauhoiController.cs" />
+    <Compile Include="Api\QuestionController.cs" />
     <Compile Include="Api\ChudeController.cs" />
     <Compile Include="Api\DapanController.cs" />
     <Compile Include="Api\DethiController.cs" />
-    <Compile Include="Api\TestController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -243,13 +242,12 @@
     <Compile Include="Infrastructure\Extensions\EntityExtensions.cs" />
     <Compile Include="Mappings\AutoMapperConfiguraion.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
-    <Compile Include="Models\CauhoiViewModel.cs" />
-    <Compile Include="Models\ChudeCauhoiViewModel.cs" />
-    <Compile Include="Models\ChudeDethiViewModel.cs" />
-    <Compile Include="Models\ChudeViewModel.cs" />
-    <Compile Include="Models\DapanViewModel.cs" />
-    <Compile Include="Models\DethiCauhoiViewModel.cs" />
-    <Compile Include="Models\DethiViewModel.cs" />
+    <Compile Include="Models\QuestionViewModel.cs" />
+    <Compile Include="Models\ExamTopicViewModel.cs" />
+    <Compile Include="Models\TopicViewModel.cs" />
+    <Compile Include="Models\AnswerViewModel.cs" />
+    <Compile Include="Models\ExamDetailViewModel.cs" />
+    <Compile Include="Models\ExamViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

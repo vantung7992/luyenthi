@@ -111,13 +111,12 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\CauhoiRepository.cs" />
-    <Compile Include="Repositories\ChudeCauhoiRepository.cs" />
-    <Compile Include="Repositories\ChudeDethiRepository.cs" />
-    <Compile Include="Repositories\ChudeRepository.cs" />
-    <Compile Include="Repositories\DapanRepository.cs" />
-    <Compile Include="Repositories\DethiCauhoirepository.cs" />
-    <Compile Include="Repositories\DethiRepository.cs" />
+    <Compile Include="Repositories\QuestionRepository.cs" />
+    <Compile Include="Repositories\ExamTopicRepository.cs" />
+    <Compile Include="Repositories\TopicRepository.cs" />
+    <Compile Include="Repositories\AnswerRepository.cs" />
+    <Compile Include="Repositories\ExamDetailRepository.cs" />
+    <Compile Include="Repositories\ExamRepository.cs" />
     <Compile Include="Repositories\ErrorRepository.cs" />
   </ItemGroup>
   <ItemGroup>

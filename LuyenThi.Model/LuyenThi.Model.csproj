@@ -60,13 +60,12 @@
     <Compile Include="Abstract\Auditable.cs" />
     <Compile Include="Abstract\IAuditable.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
-    <Compile Include="Models\Cauhoi.cs" />
-    <Compile Include="Models\Chude.cs" />
-    <Compile Include="Models\ChudeCauhoi.cs" />
-    <Compile Include="Models\ChudeDethi.cs" />
-    <Compile Include="Models\Dapan.cs" />
-    <Compile Include="Models\Dethi.cs" />
-    <Compile Include="Models\DethiCauhoi.cs" />
+    <Compile Include="Models\Question.cs" />
+    <Compile Include="Models\Topic.cs" />
+    <Compile Include="Models\ExamTopic.cs" />
+    <Compile Include="Models\Answer.cs" />
+    <Compile Include="Models\Exam.cs" />
+    <Compile Include="Models\ExamDetail.cs" />
     <Compile Include="Models\Error.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

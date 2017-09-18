@@ -44,11 +44,11 @@ namespace LuyenThi.Web.App_Start
             builder.Register(c => app.GetDataProtectionProvider()).InstancePerRequest();
 
             //Repository
-            builder.RegisterAssemblyTypes(typeof(CauhoiRepository).Assembly)
+            builder.RegisterAssemblyTypes(typeof(QuestionRepository).Assembly)
                 .Where(t => t.Name.EndsWith("Repository"))
                 .AsImplementedInterfaces().InstancePerRequest();
             //Service
-            builder.RegisterAssemblyTypes(typeof(CauhoiService).Assembly)
+            builder.RegisterAssemblyTypes(typeof(QuestionService).Assembly)
                 .Where(t => t.Name.EndsWith("Service"))
                 .AsImplementedInterfaces().InstancePerRequest();
 

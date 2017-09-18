@@ -10,12 +10,12 @@ namespace LuyenThi.Web.Mappings
         {
             Mapper.Initialize(cfg =>
             {
-                cfg.CreateMap<Chude, ChudeViewModel>();
-                cfg.CreateMap<Dethi, DethiViewModel>();
-                cfg.CreateMap<Cauhoi, CauhoiViewModel>();
-                cfg.CreateMap<Dapan, DapanViewModel>();
-                cfg.CreateMap<ChudeCauhoi, ChudeCauhoiViewModel>();
-                cfg.CreateMap<ChudeDethi, ChudeDethiViewModel>();
+                cfg.CreateMap<Chude, TopicViewModel>();
+                cfg.CreateMap<Exam, ExamViewModel>();
+                cfg.CreateMap<Question, QuestionViewModel>();
+                cfg.CreateMap<Answer, AnswerViewModel>();
+                cfg.CreateMap<QuestionTopic, ChudeCauhoiViewModel>();
+                cfg.CreateMap<ExamTopic, ExamTopicViewModel>();
             });
         }
     }

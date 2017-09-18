@@ -1,23 +1,28 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
 
-namespace LuyenThi.Model.Abstract
+namespace LuyenThi.Web.Models
 {
-    public abstract class Auditable : IAuditable
+    public class ExamDetailViewModel
     {
+        public int ExamID { get; set; }
+        public int QuestionID { get; set; }
+
+        public int Order { get; set; }
+
+        public virtual QuestionViewModel Question { get; set; }
+
+        public virtual ExamViewModel Exam { get; set; }
+
         public bool? Status { get; set; }
 
         public DateTime? CreatedDate { get; set; }
 
-        [MaxLength(256)]
         public string CreatedBy { get; set; }
 
         public DateTime? UpdatedDate { get; set; }
 
-        [MaxLength(256)]
         public string UpdatedBy { get; set; }
 
-        [MaxLength(500)]
         public string Note { get; set; }
     }
 }
