@@ -25,12 +25,12 @@ namespace LuyenThi.Service
         void SaveChanges();
     }
 
-    public class Topicservice : ITopicService
+    public class TopicService : ITopicService
     {
         private ITopicRepository _topicRepository;
         private IUnitOfWork _unitOfWork;
 
-        public Topicservice(ITopicRepository topicRepository, IUnitOfWork unitOfWork)
+        public TopicService(ITopicRepository topicRepository, IUnitOfWork unitOfWork)
         {
             this._topicRepository = topicRepository;
             this._unitOfWork = unitOfWork;

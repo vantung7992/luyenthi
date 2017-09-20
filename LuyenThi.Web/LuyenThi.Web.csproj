@@ -224,9 +224,9 @@
     <Compile Include="Api\AccountController.cs" />
     <Compile Include="Api\AdminController.cs" />
     <Compile Include="Api\QuestionController.cs" />
-    <Compile Include="Api\ChudeController.cs" />
-    <Compile Include="Api\DapanController.cs" />
-    <Compile Include="Api\DethiController.cs" />
+    <Compile Include="Api\TopicController.cs" />
+    <Compile Include="Api\AnswerController.cs" />
+    <Compile Include="Api\ExamController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -252,25 +252,25 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\app.js" />
-    <Content Include="app\components\cauhoi\cauhoi.module.js" />
-    <Content Include="app\components\cauhoi\cauhoiEditController.js" />
-    <Content Include="app\components\cauhoi\cauhoiEditView.html" />
-    <Content Include="app\components\cauhoi\cauhoiListController.js" />
-    <Content Include="app\components\cauhoi\cauhoiListView.html" />
-    <Content Include="app\components\cauhoi\cauhoiAddController.js" />
-    <Content Include="app\components\cauhoi\cauhoiAddView.html" />
-    <Content Include="app\components\chude\chude.module.js" />
-    <Content Include="app\components\chude\chudeAddController.js" />
-    <Content Include="app\components\chude\chudeAddView.html" />
-    <Content Include="app\components\chude\chudeEditController.js" />
-    <Content Include="app\components\chude\chudeEditView.html" />
-    <Content Include="app\components\chude\chudeListController.js" />
-    <Content Include="app\components\chude\chudeListView.html" />
-    <Content Include="app\components\dethi\dethi.module.js" />
-    <Content Include="app\components\dethi\dethiAddController.js" />
-    <Content Include="app\components\dethi\dethiAddView.html" />
-    <Content Include="app\components\dethi\dethiListController.js" />
-    <Content Include="app\components\dethi\dethiListView.html" />
+    <Content Include="app\components\question\question.module.js" />
+    <Content Include="app\components\question\questionEditController.js" />
+    <Content Include="app\components\question\questionEditView.html" />
+    <Content Include="app\components\question\questionListController.js" />
+    <Content Include="app\components\question\questionListView.html" />
+    <Content Include="app\components\question\questionAddController.js" />
+    <Content Include="app\components\question\questionAddView.html" />
+    <Content Include="app\components\topic\topic.module.js" />
+    <Content Include="app\components\topic\topicAddController.js" />
+    <Content Include="app\components\topic\topicAddView.html" />
+    <Content Include="app\components\topic\topicEditController.js" />
+    <Content Include="app\components\topic\topicEditView.html" />
+    <Content Include="app\components\topic\topicListController.js" />
+    <Content Include="app\components\topic\topicListView.html" />
+    <Content Include="app\components\exam\exam.module.js" />
+    <Content Include="app\components\exam\examAddController.js" />
+    <Content Include="app\components\exam\examAddView.html" />
+    <Content Include="app\components\exam\examListController.js" />
+    <Content Include="app\components\exam\examListView.html" />
     <Content Include="app\components\home\homeController.js" />
     <Content Include="app\components\home\homeView.html" />
     <Content Include="app\shared\directives\pagerDirective.html" />
@@ -6333,7 +6333,6 @@
     <Content Include="Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="app\components\dapan\" />
     <Folder Include="app\components\role\" />
     <Folder Include="app\components\users\" />
     <Folder Include="app\shared\footer\" />
@@ -6343,7 +6342,6 @@
     <Folder Include="Scripts\plugin\" />
     <Folder Include="Scripts\spa\" />
     <Folder Include="UploadedFiles\" />
-    <Folder Include="Views\chudeAdd\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

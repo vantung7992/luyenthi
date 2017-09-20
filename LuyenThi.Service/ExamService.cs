@@ -15,7 +15,7 @@ namespace LuyenThi.Service
 
         Exam Delete(int id);
 
-        IEnumerable GetAllByChude(int topicID, int pageIndex, int pageSize, out int totalRow);
+        IEnumerable<Exam> GetAllByTopic(int topicID, int pageIndex, int pageSize, out int totalRow);
 
         Exam GetAllById(int id);
 
@@ -77,14 +77,14 @@ namespace LuyenThi.Service
             return _examRepository.GetAll();
         }
 
-        public IEnumerable GetAllByChude(int idChude, int pageIndex, int pageSize, out int totalRow)
+        public IEnumerable<Exam> GetAllByTopic(int topicID, int pageIndex, int pageSize, out int totalRow)
         {
-            return _dethiRepository.GetAllByChude(idChude, pageIndex, pageSize, out totalRow);
+            return _examRepository.GetAllByTopic(topicID, pageIndex, pageSize, out totalRow);
         }
 
         public Exam GetAllById(int id)
         {
-            return _dethiRepository.GetSingleById(id);
+            return _examRepository.GetSingleById(id);
         }
 
         public void SaveChanges()
@@ -92,23 +92,23 @@ namespace LuyenThi.Service
             _unitOfWork.Commit();
         }
 
-        public void Update(Exam dethi, List<int> listIdCauhoi)
+        public void Update(Exam exam, List<int> listQuestionID)
         {
-            _dethiRepository.Update(dethi);
-            _dethiCauhoiRepositpry.DeleteMulti(x => x.IDDethi == dethi.ID);
-            if (listIdCauhoi.Count > 0)
+            _examRepository.Update(exam);
+            _examDetailRepositpry.DeleteMulti(x => x.ExamID == exam.ID);
+            if (listQuestionID.Count > 0)
             {
-                for (var i = 0; i < listIdCauhoi.Count; i++)
+                for (var i = 0; i < listQuestionID.Count; i++)
                 {
-                    ExamDetail dethicauhoi = new ExamDetail()
+                    ExamDetail examDetail = new ExamDetail()
                     {
-                        IDDethi = dethi.ID,
-                        Thutu = i,
-                        Trangthai = true,
-                        Ngaytao = DateTime.Now,
-                        Nguoitao = "Admin"
+                        ExamID = exam.ID,
+                        Order = i,
+                        Status = true,
+                        CreatedDate = DateTime.Now,
+                        CreatedBy = "Admin"
                     };
-                    _dethiCauhoiRepositpry.Add(dethicauhoi);
+                    _examDetailRepositpry.Add(examDetail);
                 }
                 _unitOfWork.Commit();
             }

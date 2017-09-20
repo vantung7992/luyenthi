@@ -1,9 +1,7 @@
 ﻿/// <reference path="/Assets/admin/libs/angular/angular.js" />
 (function () {
     angular.module('luyenthi',
-        ['luyenthi.chude',
-         'luyenthi.cauhoi',
-         'luyenthi.dethi',
+        ['luyenthi.topic',
          'luyenthi.common'])
         .config(config);
     config.$inject = ['$stateProvider', '$urlRouterProvider'];

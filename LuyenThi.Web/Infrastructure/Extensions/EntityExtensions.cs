@@ -24,7 +24,6 @@ namespace LuyenThi.Web.Infrastructure.Extensions
             topic.UpdatedDate = topicViewModel.UpdatedDate;
             topic.UpdatedBy = topicViewModel.UpdatedBy;
             topic.Note = topicViewModel.Note;
-
         }
 
         public static void UpdateExam(this Exam exam, ExamViewModel examViewModel)
@@ -50,76 +49,60 @@ namespace LuyenThi.Web.Infrastructure.Extensions
         public static void UpdateQuestion(this Question question, QuestionViewModel questionViewModel)
         {
             question.ID = questionViewModel.ID;
-            question.Noidung = questionViewModel.Noidung;
-            question.Noidunghienthi = questionViewModel.Noidunghienthi;
-            question.Goiy = questionViewModel.Goiy;
+            question.TopicID = questionViewModel.TopicID;
+            question.Content = questionViewModel.Content;
+            question.DisplayContent = questionViewModel.DisplayContent;
+            question.Suggest = questionViewModel.Suggest;
             question.Tag = questionViewModel.Tag;
             question.Image = questionViewModel.Image;
-            question.Trangthai = questionViewModel.Trangthai;
-            question.Ngaytao = questionViewModel.Ngaytao;
-            question.Nguoitao = questionViewModel.Nguoitao;
-            question.Ngaysua = questionViewModel.Ngaysua;
-            question.Nguoisua = questionViewModel.Nguoisua;
-            question.Ghichu = questionViewModel.Ghichu;
+            question.Status = questionViewModel.Status;
+            question.CreatedDate = questionViewModel.CreatedDate;
+            question.CreatedBy = questionViewModel.CreatedBy;
+            question.UpdatedDate = questionViewModel.UpdatedDate;
+            question.UpdatedBy = questionViewModel.UpdatedBy;
+            question.Note = questionViewModel.Note;
         }
 
-        public static void UpdateDapan(this Answer dapan, AnswerViewModel dapanViewModel)
+        public static void UpdateAnswer(this Answer answer, AnswerViewModel answerViewModel)
         {
-            dapan.ID = dapanViewModel.ID;
-            dapan.Noidung = dapanViewModel.Noidung;
-            dapan.Ma = dapanViewModel.Ma;
-            dapan.Thutu = dapanViewModel.Thutu;
-            dapan.Dungsai = dapanViewModel.Dungsai;
-            dapan.IDCauhoi = dapanViewModel.IDCauhoi;
-            dapan.Image = dapanViewModel.Image;
-
-            dapan.Trangthai = dapanViewModel.Trangthai;
-            dapan.Ngaytao = dapanViewModel.Ngaytao;
-            dapan.Nguoitao = dapanViewModel.Nguoitao;
-            dapan.Ngaysua = dapanViewModel.Ngaysua;
-            dapan.Nguoisua = dapanViewModel.Nguoisua;
-            dapan.Ghichu = dapanViewModel.Ghichu;
+            answer.ID = answerViewModel.ID;
+            answer.QuestionID = answerViewModel.QuestionID;
+            answer.Content = answerViewModel.Content;
+            answer.Code = answerViewModel.Code;
+            answer.Order = answerViewModel.Order;
+            answer.TrueAnswer = answerViewModel.TrueAnswer;
+            answer.Image = answerViewModel.Image;
+            answer.Status = answerViewModel.Status;
+            answer.CreatedDate = answerViewModel.CreatedDate;
+            answer.CreatedBy = answerViewModel.CreatedBy;
+            answer.UpdatedDate = answerViewModel.UpdatedDate;
+            answer.UpdatedBy = answerViewModel.UpdatedBy;
+            answer.Note = answerViewModel.Note;
         }
 
-        public static void UpdateChudeCauhoi(this QuestionTopic chudeCauhoi, ChudequestionViewModel chudequestionViewModel)
+        public static void UpdateExamTopic(this ExamTopic examTopic, ExamTopicViewModel examTopicViewModel)
         {
-            chudeCauhoi.IDChude = chudequestionViewModel.IDChude;
-            chudeCauhoi.IDCauhoi = chudequestionViewModel.IDCauhoi;
-            chudeCauhoi.Thutu = chudequestionViewModel.Thutu;
-
-            chudeCauhoi.Trangthai = chudequestionViewModel.Trangthai;
-            chudeCauhoi.Ngaytao = chudequestionViewModel.Ngaytao;
-            chudeCauhoi.Nguoitao = chudequestionViewModel.Nguoitao;
-            chudeCauhoi.Ngaysua = chudequestionViewModel.Ngaysua;
-            chudeCauhoi.Nguoisua = chudequestionViewModel.Nguoisua;
-            chudeCauhoi.Ghichu = chudequestionViewModel.Ghichu;
+            examTopic.TopicID = examTopicViewModel.TopicID;
+            examTopic.ExamID = examTopicViewModel.ExamID;
+            examTopic.Status = examTopicViewModel.Status;
+            examTopic.CreatedDate = examTopicViewModel.CreatedDate;
+            examTopic.CreatedBy = examTopicViewModel.CreatedBy;
+            examTopic.UpdatedDate = examTopicViewModel.UpdatedDate;
+            examTopic.UpdatedBy = examTopicViewModel.UpdatedBy;
+            examTopic.Note = examTopicViewModel.Note;
         }
 
-        public static void UpdateChudeDethi(this ExamTopic chudeDethi, ExamTopicViewModel chudeexamViewModel)
+        public static void UpdateDethiCauhoi(this ExamDetail examDetail, ExamDetailViewModel dethiquestionViewModel)
         {
-            chudeDethi.IDChude = chudeexamViewModel.IDChude;
-            chudeDethi.IDDethi = chudeexamViewModel.IDDethi;
-
-            chudeDethi.Trangthai = chudeexamViewModel.Trangthai;
-            chudeDethi.Ngaytao = chudeexamViewModel.Ngaytao;
-            chudeDethi.Nguoitao = chudeexamViewModel.Nguoitao;
-            chudeDethi.Ngaysua = chudeexamViewModel.Ngaysua;
-            chudeDethi.Nguoisua = chudeexamViewModel.Nguoisua;
-            chudeDethi.Ghichu = chudeexamViewModel.Ghichu;
-        }
-
-        public static void UpdateDethiCauhoi(this ExamDetail dethiCauhoi, ExamDetailViewModel dethiquestionViewModel)
-        {
-            dethiCauhoi.IDDethi = dethiquestionViewModel.IDDethi;
-            dethiCauhoi.IDCauhoi = dethiquestionViewModel.IDCauhoi;
-            dethiCauhoi.Thutu = dethiquestionViewModel.Thutu;
-
-            dethiCauhoi.Trangthai = dethiquestionViewModel.Trangthai;
-            dethiCauhoi.Ngaytao = dethiquestionViewModel.Ngaytao;
-            dethiCauhoi.Nguoitao = dethiquestionViewModel.Nguoitao;
-            dethiCauhoi.Ngaysua = dethiquestionViewModel.Ngaysua;
-            dethiCauhoi.Nguoisua = dethiquestionViewModel.Nguoisua;
-            dethiCauhoi.Ghichu = dethiquestionViewModel.Ghichu;
+            examDetail.ExamID = dethiquestionViewModel.ExamID;
+            examDetail.QuestionID = dethiquestionViewModel.QuestionID;
+            examDetail.Order = dethiquestionViewModel.Order;
+            examDetail.Status = dethiquestionViewModel.Status;
+            examDetail.CreatedDate = dethiquestionViewModel.CreatedDate;
+            examDetail.CreatedBy = dethiquestionViewModel.CreatedBy;
+            examDetail.UpdatedDate = dethiquestionViewModel.UpdatedDate;
+            examDetail.UpdatedBy = dethiquestionViewModel.UpdatedBy;
+            examDetail.Note = dethiquestionViewModel.Note;
         }
     }
 }

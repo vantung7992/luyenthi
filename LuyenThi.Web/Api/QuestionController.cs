@@ -81,15 +81,15 @@ namespace LuyenThi.Web.Api
                     if (!String.IsNullOrEmpty(questionVm.StringJsonAnswer))
                     {
                         listAnswerVm = new JavaScriptSerializer().Deserialize<List<AnswerViewModel>>(questionVm.StringJsonAnswer);
-                        foreach (var dapanVm in listAnswerVm)
+                        foreach (var answerVm in listAnswerVm)
                         {
                             var newDapan = new Answer();
-                            newDapan.UpdateDapan(dapanVm);
+                            newDapan.UpdateAnswer(answerVm);
                             listAnswer.Add(newDapan);
                         }
                     }
                     var newQuestion = new Question();
-                    newQuestion.UpdateCauhoi(questionVm);
+                    newQuestion.UpdateQuestion(questionVm);
                     _questionService.Add(newQuestion, listAnswer);
                     _questionService.SaveChanges();
                     var responData = Mapper.Map<Question, QuestionViewModel>(newQuestion);
@@ -121,13 +121,13 @@ namespace LuyenThi.Web.Api
                         foreach (var answerVm in listAnswerVm)
                         {
                             var newAnswer = new Answer();
-                            newAnswer.UpdateDapan(answerVm);
+                            newAnswer.UpdateAnswer(answerVm);
                             listAnswer.Add(newAnswer);
                         }
                     }
                     var newCauhoi = new Question();
-                    newCauhoi.UpdateCauhoi(questionVm);
-                    _questionService.Update(newCauhoi, listDapan);
+                    newCauhoi.UpdateQuestion(questionVm);
+                    _questionService.Update(newCauhoi, listAnswer);
                     _questionService.SaveChanges();
                     response = request.CreateResponse(HttpStatusCode.OK);
                 };

@@ -1,13 +1,14 @@
 ﻿using LuyenThi.Data.Infrastructure;
 using LuyenThi.Model.Models;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace LuyenThi.Data.Repositories
 {
     public interface IExamRepository : IRepository<Exam>
     {
-        IEnumerable GetAllByTopic(int idChude, int pageIndex, int pageSize, out int totalRow);
+        IEnumerable<Exam> GetAllByTopic(int idChude, int pageIndex, int pageSize, out int totalRow);
     }
 
     public class ExamRepository : RepositoryBase<Exam>, IExamRepository
@@ -16,7 +17,7 @@ namespace LuyenThi.Data.Repositories
         {
         }
 
-        public IEnumerable GetAllByTopic(int topicID, int pageIndex, int pageSize, out int totalRow)
+        public IEnumerable<Exam> GetAllByTopic(int topicID, int pageIndex, int pageSize, out int totalRow)
         {
             var query = from d in DbContext.Exam
                         join cd in DbContext.ExamTopic

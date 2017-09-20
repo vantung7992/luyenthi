@@ -32,6 +32,7 @@ namespace LuyenThi.Model.Models
         [MaxLength(200)]
         public string Tag { get; set; }
 
+        [ForeignKey("TopicID")]
         public virtual Topic Topic { get; set; }
 
         public virtual IEnumerable<ExamDetail> ExamDetail { get; set; }
