@@ -5,20 +5,20 @@
 
     function topicAddController(apiService, $scope, notificationService, $state,commonService) {
         $scope.topic = {
-            Ngaytao: new Date(),
-            Trangthai: true
+            CreatedDate: new Date(),
+            Status: true
         }
 
         $scope.AddTopic = AddTopic;
         $scope.GetSeoTitle = GetSeoTitle;
 
         function GetSeoTitle() {
-            $scope.topic.Seo = commonService.getSeoTitle($scope.topic.Ten);
+            $scope.topic.Seo = commonService.getSeoTitle($scope.topic.Name);
         }
 
         function AddTopic() {
             apiService.post('/api/topic/create', $scope.topic, function (result) {
-                notificationService.displaySuccess(result.data.Ten + ' đã được thêm mới.');
+                notificationService.displaySuccess(result.data.Name + ' đã được thêm mới.');
                 $state.go('topic');
             },
                 function (error) {
@@ -26,14 +26,14 @@
                 });
         }
 
-        function loadTopicCha() {
+        function loadTopicParent() {
             apiService.get('/api/topic/getallparents', null, function (result) {
-                $scope.topiccha = result.data;
+                $scope.topicParents = result.data;
             }, function () {
-                console.log('Cannot get list parent');
+                console.log('Cannot get list topic parent');
             })
         }
-        loadTopicCha();
+        loadTopicParent();
     }
 
 })(angular.module('luyenthi.topic'));

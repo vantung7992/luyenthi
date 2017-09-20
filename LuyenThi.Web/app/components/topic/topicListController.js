@@ -68,7 +68,7 @@
                 }
                 apiService.del('/api/topic/delete', config, function () {
                     notificationService.displaySuccess('Xóa thành công');
-                    search();
+                    Search();
                 }, function () {
                     notificationService.displayError('Xóa không thành công');
                 });
@@ -76,7 +76,7 @@
         }
 
         function Search() {
-            gettopic();
+            GetTopic();
         }
 
         function GetTopic(page) {

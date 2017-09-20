@@ -20,7 +20,7 @@
                     <label for="inputEmail3" class="col-sm-2 control-label">Tên</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" name="Ten" required ng-maxlength="256" ng-change="GetSeoTitle()" ng-model="topic.Name">
-                        <span ng-show="frmAddTopic.Ten.$invalid" class="has-error" >Phải nhập tên chủ đề</span>
+                        <span ng-show="frmAddTopic.Ten.$invalid" class="has-error">Phải nhập tên chủ đề</span>
                         <span ng-show="frmAddTopic.Ten.$error.maxlength" class="has-error">Tên chủ đề chỉ dài không quá 256 ký tự</span>
                     </div>
                 </div>
@@ -34,14 +34,14 @@
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Danh mục cha</label>
                     <div class="col-sm-10">
-                        <select name="ParentID" class="form-control" ng-model="topic.ParentID" ng-options="option.ID as option.Name for option in Parent">
+                        <select name="ParentID" class="form-control" ng-model="topic.ParentID" ng-options="option.ID as option.Name for option in topicParents">
                             <option value="">Danh mục gốc</option>
                         </select>
                         <input type="hidden" name="ParentID" ng-model="topic.ParentID" />
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="inputPassword3" class="col-sm-2 control-label" >Mô tả</label>
+                    <label for="inputPassword3" class="col-sm-2 control-label">Mô tả</label>
                     <div class="col-sm-10">
                         <textarea class="form-control" name="Mota" ng-model="topic.Description" ng-maxlength="500"></textarea>
                         <span ng-show="frmAddTopic.Description.$error.maxlength" class="has-error">Mô tả không quá 500 ký tự</span>
@@ -49,7 +49,10 @@
                 </div>
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">Hình ảnh</label>
-                    <div class="col-sm-10"></div>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" ng-model="topic.Image" />
+                        <button type="button" class="btn btn-sm btn-default">Chọn ảnh</button>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">Tag</label>
@@ -61,18 +64,35 @@
                     <div class="col-sm-offset-2 col-sm-10">
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" name="Trangthai" ng-model="topic.Status" ng-checked="topic.Status" />Kích hoạt
+                                <input type="checkbox" name="hotFlag" ng-model="topic.HotFlag" ng-checked="topic.HotFlag" />Hot flag
                             </label>
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- /.box-body -->
-            <div class="box-footer">
-                <button class="btn btn-default" ui-sref="topic">Hủy</button>
-                <button type="submit" class="btn btn-info pull-right" ng-disabled="frmAddTopic.$invalid">Thêm mới</button>
-            </div>
-            <!-- /.box-footer -->
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="homeFlag" ng-model="topic.HomeFlag" ng-checked="topic.HomeFlag" />Hiển thị trang chủ
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="Status" ng-model="topic.Status" ng-checked="topic.Status" />Kích hoạt
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.box-body -->
+                <div class="box-footer">
+                    <button class="btn btn-default" ui-sref="topic">Hủy</button>
+                    <button type="submit" class="btn btn-info pull-right" ng-disabled="frmAddTopic.$invalid">Thêm mới</button>
+                </div>
+                <!-- /.box-footer -->
         </form>
     </div>
 </section>

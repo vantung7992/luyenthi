@@ -27,8 +27,6 @@ namespace LuyenThi.Web.Models
 
         public int? ViewCount { get; set; }
 
-        public bool Trangthai { get; set; }
-
         public bool? Status { get; set; }
 
         public DateTime? CreatedDate { get; set; }
