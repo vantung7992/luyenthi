@@ -25,7 +25,7 @@ namespace LuyenThi.Model.Models
         [MaxLength(200)]
         public string Tag { get; set; }
 
-        [MaxLength(500)]
+        [Column(TypeName ="ntext")]
         public string Description { get; set; }
 
         [MaxLength(256)]

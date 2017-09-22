@@ -67,9 +67,9 @@
             {
                 List<Question> listQuestion = new List<Question>()
                 {
-                    new Question {TopicID=1, Content="Nội dung 1",DisplayContent="123", CreatedDate=DateTime.Now,Status=true},
-                    new Question {TopicID=1,Content="Nội dung 2",DisplayContent="123",CreatedDate=DateTime.Now,Status=true},
-                    new Question {TopicID=1,Content="Nội dung 3",DisplayContent="123",CreatedDate=DateTime.Now,Status=true},
+                    new Question {TopicID=15, Content="Nội dung 1",DisplayContent="123", CreatedDate=DateTime.Now,Status=true},
+                    new Question {TopicID=15,Content="Nội dung 2",DisplayContent="123",CreatedDate=DateTime.Now,Status=true},
+                    new Question {TopicID=15,Content="Nội dung 3",DisplayContent="123",CreatedDate=DateTime.Now,Status=true},
                 };
                 List<Answer> listDapan = new List<Answer>()
                 {

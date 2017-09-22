@@ -1,19 +1,14 @@
 ﻿(function (app) {
     app.controller('topicEditController', topicUpdateController);
 
-    topicUpdateController.$inject = ['apiService', '$scope', 'notificationService', '$state', '$stateParams','commonService'];
+    topicUpdateController.$inject = ['apiService', '$scope', 'notificationService', '$state', '$stateParams', 'commonService'];
 
-    function topicUpdateController(apiService, $scope, notificationService, $state, $stateParams,commonService) {
-        $scope.topic = {
-            Ngaytao: new Date(),
-            Trangthai: true
-        }
-
+    function topicUpdateController(apiService, $scope, notificationService, $state, $stateParams, commonService) {
         $scope.UpdateTopic = UpdateTopic;
         $scope.GetSeoTitle = GetSeoTitle;
 
         function GetSeoTitle() {
-            $scope.topic.Seo = commonService.getSeoTitle($scope.topic.Ten);
+            $scope.topic.Seo = commonService.getSeoTitle($scope.topic.Name);
         }
 
         function loadTopicDetail() {
@@ -34,16 +29,30 @@
                 });
         }
 
-        function loadTopicCha() {
-            apiService.get('/api/topic/getallparents', null, function (result) {
-                $scope.topiccha = result.data;
+        function loadTopicParent() {
+            apiService.get('/api/topic/getallparents', $stateParams.id, function (result) {
+                $scope.topicParents = result.data;
             }, function () {
                 console.log('Cannot get list parent');
             })
         }
 
-        loadTopicCha();
+        // CKEditer - Trình soạn thảo
+        $scope.ckeditorOptions = {
+            language: 'vi',
+            height: '200px',
+        }
+        // CKFinder - ảnh
+        $scope.ChoseImage = function () {
+            var finder = new CKFinder();
+            finder.selectActionFunction = function (fileUrl) {
+                $scope.topic.Image = fileUrl;
+            }
+            finder.popup();
+        }
         loadTopicDetail();
+        loadTopicParent();
+
     }
 
 })(angular.module('luyenthi.topic'));

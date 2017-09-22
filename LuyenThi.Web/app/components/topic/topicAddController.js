@@ -6,7 +6,9 @@
     function topicAddController(apiService, $scope, notificationService, $state,commonService) {
         $scope.topic = {
             CreatedDate: new Date(),
-            Status: true
+            Status: true,
+            HotFlag: false,
+            HomeFlag:false
         }
 
         $scope.AddTopic = AddTopic;
@@ -33,7 +35,19 @@
                 console.log('Cannot get list topic parent');
             })
         }
+        // CKEditer - Trình soạn thảo
+        $scope.ckeditorOptions = {
+            language: 'vi',
+            height: '200px',
+        }
+        // CKFinder - ảnh
+        $scope.ChoseImage = function () {
+            var finder = new CKFinder();
+            finder.selectActionFunction = function (fileUrl) {
+                $scope.topic.Image = fileUrl;
+            }
+            finder.popup();
+        }
         loadTopicParent();
     }
-
 })(angular.module('luyenthi.topic'));

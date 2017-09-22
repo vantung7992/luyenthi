@@ -22,13 +22,12 @@
                         <input type="text" class="form-control" placeholder="Từ khóa..." ng-model="keyword" />
                         <span class="input-group-btn">
                             <button class="btn btn-default" type="button" ng-click="search()">Tìm kiếm</button>
-
                         </span>
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <button class="btn btn-success" ui-sref="add_cauhoi">Thêm mới</button>
-                    <button class="btn btn-danger" type="button" id="btnDelete" disabled ng-click="deleteMultiple()">Xóa</button>
+                    <button class="btn btn-success btn-sm" ui-sref="add_question">Thêm mới</button>
+                    <button class="btn btn-danger btn-sm" type="button" id="btnDelete" disabled ng-click="deleteMultiple()">Xóa</button>
                 </div>
             </div>
             <div class="row">
@@ -43,15 +42,15 @@
                                 <th style="width:7%">Trạng thái</th>
                                 <th style="width:10%">Thao tác</th>
                             </tr>
-                            <tr ng-repeat="item in cauhoi">
-                                <td><input type="checkbox" name="all" ng-model="item.checked" /></td>
-                                <td>{{item.ID}}</td>
-                                <td style="text-align:left;">{{item.Noidung}}</td>
-                                <td>{{item.Ngaytao | date:'dd/MM/yyyy hh:mm:ss'}}</td>
-                                <td><span ng-class="{'badge bg-red':item.Trangthai==false,'badge bg-green':item.Trangthai==true}">{{item.Trangthai | statusFilter}}</span></td>
+                            <tr ng-repeat="question in questions">
+                                <td><input type="checkbox" name="all" ng-model="question.checked" /></td>
+                                <td>{{question.ID}}</td>
+                                <td style="text-align:left;">{{question.Content}}</td>
+                                <td>{{question.CreatedDate | date:'dd/MM/yyyy hh:mm:ss'}}</td>
+                                <td><span ng-class="{'badge bg-red':question.Status==false,'badge bg-green':question.Status==true}">{{question.Trangthai | statusFilter}}</span></td>
                                 <td>
-                                    <button class="btn btn-sm btn-primary" ui-sref="edit_cauhoi({id:item.ID})"><i class="fa fa-pencil"></i></button>
-                                    <button class="btn btn-sm btn-danger" ng-click="deleteCauhoi(item.ID)"><i class="fa fa-trash"></i></button>
+                                    <button class="btn btn-sm btn-primary" ui-sref="edit_question({id:question.ID})"><i class="fa fa-pencil"></i></button>
+                                    <button class="btn btn-sm btn-danger" ng-click="deleteQuestion(question.ID)"><i class="fa fa-trash"></i></button>
                                 </td>
                             </tr>
                             <tfoot>

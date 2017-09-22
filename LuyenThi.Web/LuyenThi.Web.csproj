@@ -333,6 +333,7 @@
     <Content Include="Assets\admin\img\credit\visa.png" />
     <Content Include="Assets\admin\img\default-50x50.gif" />
     <Content Include="Assets\admin\img\icons.png" />
+    <Content Include="Assets\admin\img\No-image-found.jpg" />
     <Content Include="Assets\admin\img\photo1.png" />
     <Content Include="Assets\admin\img\photo2.png" />
     <Content Include="Assets\admin\img\photo3.jpg" />

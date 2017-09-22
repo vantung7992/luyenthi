@@ -2,7 +2,7 @@
     <h1>Câu hỏi</h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i>Trang chủ</a></li>
-        <li><a ui-sref="cauhoi">Câu hỏi</a></li>
+        <li><a ui-sref="question">Câu hỏi</a></li>
         <li class="active">Thêm mới</li>
     </ol>
 </section>
@@ -14,42 +14,36 @@
         </div>
         <!-- /.box-header -->
         <!-- form start -->
-        <form class="form-horizontal" novalidate name="frmAddCauhoi" role="form" ng-submit="EditCauhoi()">
+        <form class="form-horizontal" novalidate name="frmEditQuestion" role="form" ng-submit="editQuestion()">
             <div class="box-body">
                 <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-2 control-label">Nội dung câu hỏi</label>
+                    <label class="col-sm-2 control-label">Chủ đề</label>
                     <div class="col-sm-10">
-                        <textarea class="form-control" name="noidunghienthi" ckeditor="ckeditorOptions" required ng-maxlength="200" ng-model="cauhoi.Noidunghienthi" placeholder="Nội dung câu hỏi..."></textarea>
-                        <span ng-show="frmAddCauhoi.noidunghienthi.$invalid" class="has-error">Phải nhập nội dung câu hỏi</span>
-                        <span ng-show="frmAddCauhoi.noidunghienthi.$error.maxlength" class="has-error">Nội dung câu hỏi có độ dài không quá 2000 ký tự</span>
-                        <div id="noidung" name="Noidung" hidden></div>
+                        <select name="topicID" class="form-control" ng-model="question.TopicID" ng-options="option.ID as option.Name for option in Topics">
+                        </select>
+                        <input type="hidden" name="topicID" ng-model="question.TopicID" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Nội dung câu hỏi</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" name="displayContent" ckeditor="ckeditorOptions" required ng-maxlength="200" ng-model="question.DisplayContent" placeholder="Nội dung câu hỏi..."></textarea>
+                        <span ng-show="frmEditQuestion.displayContent.$invalid" class="has-error">Phải nhập nội dung câu hỏi</span>
+                        <span ng-show="frmEditQuestion.displayContent.$error.maxlength" class="has-error">Nội dung câu hỏi có độ dài không quá 2000 ký tự</span>
+                        <div id="content" name="content" hidden></div>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Gợi ý trả lời</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" placeholder="Gợi ý trả lời..." name="Goiy" ng-model="cauhoi.Goiy">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-2 control-label">Hình ảnh</label>
-                    <div class="col-sm-10">
-                        <!--<input type="text" class="form-control" ng-model="cauhoi.Image" />-->
-                        <img src="{{cauhoi.Image}}" />
-                        <button type="button" class="btn btn-default" ng-click="ChoseImage()">Chọn ảnh</button>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-2 control-label">Tag</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" name="Tag" ng-model="cauhoi.Tag">
+                        <input type="text" class="form-control" placeholder="Gợi ý trả lời..." name="suggest" ng-model="question.Suggest">
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" name="Trangthai" ng-model="cauhoi.Trangthai" ng-checked="cauhoi.Trangthai" />Kích hoạt
+                                <input type="checkbox" name="Trangthai" ng-model="question.Status" ng-checked="question.Status" />Kích hoạt
                             </label>
                         </div>
                     </div>
@@ -59,26 +53,25 @@
                     <div class="col-sm-10">
                         <div class="box box-default no-border">
                             <div class="box-body no-border">
-                                <ul class="todo-list" ui-sortable="sortableOptions" ng-model="listDapan" name="dapanUL">
-                                    <li ng-repeat="dapan in listDapan">
+                                <ul class="todo-list" ui-sortable="sortableOptions" ng-model="listAnswer" name="dapanUL">
+                                    <li ng-repeat="answer in listAnswer">
                                         <span class="handle ui-sortable-handle">
                                             <i class="fa fa-arrows fa-lg"></i>
                                         </span>
-                                        <small class="badge bg-green">{{dapan.Ma}}</small>
+                                        <small class="badge bg-green">{{answer.Code}}</small>
                                         <span class="text" style="width:50%;">
-                                            <input type="text" class="form-control" placeholder="Nội dung đáp án..." ng-model="dapan.Noidung" required name="NoidungDapan{{dapan.Ma}}" />
-
+                                            <input type="text" class="form-control" placeholder="Nội dung đáp án..." ng-model="answer.Content" required name="AnswerContent_{{answer.Code}}" />
                                         </span>
-                                        <small><button type="button" ng-class="{'btn btn-xs btn-success':dapan.Dungsai==true,'btn btn-xs btn-danger':dapan.Dungsai==false}" ng-click="dapan.Dungsai=!dapan.Dungsai">{{dapan.Dungsai | dapanDungsaiFilter}}</button></small>
-                                        <span ng-show="frmAddCauhoi.NoidungDapan{{dapan.Ma}}.$invalid" class="has-error">Nội dung đáp án không bỏ trống</span>
+                                        <small><button type="button" ng-class="{'btn btn-xs btn-success':answer.TrueAnswer==true,'btn btn-xs btn-danger':answer.TrueAnswer==false}" ng-click="answer.TrueAnswer=!answer.TrueAnswer">{{answer.TrueAnswer | TrueFasleAnswerFilter}}</button></small>
+                                        <span ng-show="frmEditQuestion.AnswerContent_{{answer.Code}}.$invalid" class="has-error">Nội dung đáp án không bỏ trống</span>
                                         <div class="tools">
-                                            <i class="fa fa-trash fa-lg" ng-click="XoaDapan(dapan)"></i>
+                                            <i class="fa fa-trash fa-lg" ng-click="deleteAnswer(answer)"></i>
                                         </div>
                                     </li>
                                 </ul>
                             </div>
                             <div class="box-footer clearfix no-border">
-                                <button type="button" class="btn btn-default btn-sm pull-right" ng-click="ThemDapan()"><i class="fa fa-plus"></i></button>
+                                <button type="button" class="btn btn-default btn-sm pull-right" ng-click="NewAnswer()"><i class="fa fa-plus"></i></button>
                             </div>
                         </div>
                     </div>
@@ -86,8 +79,8 @@
             </div>
             <!-- /.box-body -->
             <div class="box-footer">
-                <button class="btn btn-default" ui-sref="cauhoi">Hủy</button>
-                <button type="submit" class="btn btn-info pull-right" ng-disabled="frmAddCauhoi.$invalid">Lưu</button>
+                <button class="btn btn-default" ui-sref="question">Hủy</button>
+                <button type="submit" class="btn btn-info pull-right" ng-disabled="frmAddQuestion.$invalid">Lưu</button>
             </div>
             <!-- /.box-footer -->
         </form>

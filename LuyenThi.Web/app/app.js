@@ -2,6 +2,7 @@
 (function () {
     angular.module('luyenthi',
         ['luyenthi.topic',
+         'luyenthi.question',
          'luyenthi.common'])
         .config(config);
     config.$inject = ['$stateProvider', '$urlRouterProvider'];

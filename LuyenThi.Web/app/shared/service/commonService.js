@@ -7,7 +7,7 @@
     function commonService() {
         return {
             getSeoTitle: getSeoTitle,
-            getMaDapan:getMaDapan
+            getAnswerCode:GetAnswerCode
         }
         function getSeoTitle(input) {
             if (input == undefined || input == '')
@@ -39,8 +39,8 @@
 
             return slug;
         }
-        function getMaDapan(input) {
-            var arr = ["A", "B", "C", "D"];
+        function GetAnswerCode(input) {
+            var arr = ["A", "B", "C", "D","E","F","G","H"];
             var value = arr[input];
             return value;
         }

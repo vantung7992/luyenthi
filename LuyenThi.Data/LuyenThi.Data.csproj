@@ -117,6 +117,10 @@
     <Compile Include="Migrations\201709190413241_change2.Designer.cs">
       <DependentUpon>201709190413241_change2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201709210813299_changeDescriptionField.cs" />
+    <Compile Include="Migrations\201709210813299_changeDescriptionField.Designer.cs">
+      <DependentUpon>201709210813299_changeDescriptionField.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\QuestionRepository.cs" />
@@ -178,6 +182,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201709190413241_change2.resx">
       <DependentUpon>201709190413241_change2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709210813299_changeDescriptionField.resx">
+      <DependentUpon>201709210813299_changeDescriptionField.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

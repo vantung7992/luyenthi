@@ -1,14 +1,78 @@
 ﻿(function (app) {
-    app.controller('cauhoiEditController', cauhoiUpdateController);
+    app.controller('questionEditController', questionUpdateController);
 
-    cauhoiUpdateController.$inject = ['apiService', '$scope', 'notificationService', '$state', '$stateParams', 'commonService'];
+    questionUpdateController.$inject = ['apiService', '$scope', 'notificationService', '$state', '$stateParams', 'commonService'];
 
-    function cauhoiUpdateController(apiService, $scope, notificationService, $state, $stateParams, commonService) {
+    function questionUpdateController(apiService, $scope, notificationService, $state, $stateParams, commonService) {
+        $scope.listAnswer = new Array();
+        $scope.newAnswers = NewAnswer;
+        $scope.deleteAnswer = DeleteteAnswer;
+        $scope.editQuestion = UpdateQuestion;
+        $scope.getAllTopic = GetAllTopic;
+        function UpdateQuestion() {
+            $scope.question.strJsonDapan = JSON.stringify($scope.listDapan);
+            apiService.put('api/question/update', $scope.question, function (result) {
+                notificationService.displaySuccess('Cập nhật thành công!');
+                $state.go('question');
+            }, function (error) {
+                notificationService.displayError('Cập nhật không thành công: ' + error.data);
+            })
+        }
+
+        function LoadQuestionDetail() {
+            apiService.get('api/question/getbyid/' + $stateParams.id, null, function (result) {
+                $scope.question = result.data;
+                apiService.get('api/answer/getbyquestion/' + $scope.question.ID, null, function (result) {
+                    $scope.listAnswer = result.data;
+                }, function (error) {
+                    notificationService.displayError(error.data);
+                });
+            }, function (error) {
+                notificationService.displayError(error.data);
+            });
+        }
+
+        function LoadAnswer(questionID) {
+            apiService.get('api/dapan/getbyquestion/' + questionID, null, function (result) {
+                $scope.listAnswer = result.data;
+            }, function (error) {
+                notificationService.displayError(error.data);
+            });
+        }
+
+        function NewAnswer() {
+            var newAnswer = new Object();
+            newAnswer.Content = "";
+            newAnswer.TrueAnswer = false;
+            listDapan.push(newAnswer);
+            GetAnswerCode();
+
+        }
+
+        function DeleteAnswer(input) {
+            const index = $scope.listAnswer.indexOf(input);
+            $scope.listAnswer.splice(index, 1);
+            GetAnswerCode();
+        }
+
+        function GetAnswerCode() {
+            for (var i = 0; i < $scope.listAnswer.length; i++) {
+                $scope.listAnswer[i].Code = commonService.getAnswerCode(i);
+                $scope.listAnswer[i].Order = i + 1;
+            }
+        }
+        function GetAllTopic() {
+            apiService.get('/api/topic/getallparents', null, function (result) {
+                $scope.Topics = result.data;
+            }, function (error) {
+                console.log('Can not load Topic');
+            });
+        }
         // CKFinder - ảnh
         $scope.ChoseImage = function () {
             var finder = new CKFinder();
             finder.selectActionFunction = function (fileUrl) {
-                $scope.cauhoi.Image = fileUrl;
+                $scope.question.Image = fileUrl;
             }
             finder.popup();
         }
@@ -19,77 +83,15 @@
         }
         $scope.sortableOptions = {
             stop: function (e, ui) {
-                LayMaDapan();
+                GetAnswerCode();
             }
         };
-        $scope.cauhoi = {
+        $scope.question = {
             ID: 0,
             Ngaytao: new Date(),
             Nguoitao: "Admin",
             Trangthai: true
         }
-        var listDapan = new Array();
-        $scope.listDapan = listDapan;
-        $scope.ThemDapan = ThemDapan
-        $scope.XoaDapan = XoaDapan
-        $scope.EditCauhoi = UpdateCauhoi
-
-        function UpdateCauhoi() {
-            $scope.cauhoi.strJsonDapan = JSON.stringify($scope.listDapan);
-            apiService.put('api/cauhoi/update', $scope.cauhoi, function (result) {
-                notificationService.displaySuccess('Cập nhật câu hỏi thành công');
-                $state.go('cauhoi');
-            }, function (error) {
-                notificationService.displayError('Cập nhật câu hỏi không thành công ' + error.data);
-            })
-        }
-
-        function LoadCauhoiDetail() {
-            apiService.get('api/cauhoi/getbyid/' + $stateParams.id, null, function (result) {
-                $scope.cauhoi = result.data;
-                apiService.get('api/dapan/getbycauhoi/' + $scope.cauhoi.ID, null, function (result) {
-                    listDapan = result.data;
-                    $scope.listDapan = listDapan;
-                }, function (error) {
-                    notificationService.displayError(error.dapan);
-                });
-            }, function (error) {
-                notificationService.displayError(error.data);
-            });
-        }
-
-        function LoadDapan(idCauhoi) {
-            apiService.get('api/dapan/getbycauhoi/' + idCauhoi, null, function (result) {
-                $scope.listDapan = result.data;
-            }, function (error) {
-                notificationService.displayError(error.dapan);
-            });
-        }
-
-        //Đáp án
-        function ThemDapan() {
-            var dapan = new Object();
-            dapan.Noidung = "";
-            dapan.Dungsai = false;
-            listDapan.push(dapan);
-            LayMaDapan();
-
-        }
-
-        function XoaDapan(input) {
-            const index = listDapan.indexOf(input);
-            listDapan.splice(index, 1);
-            LayMaDapan();
-        }
-
-        function LayMaDapan() {
-            for (var i = 0; i < listDapan.length; i++) {
-                listDapan[i].Ma = commonService.getMaDapan(i);
-                listDapan[i].Thutu = i + 1;
-            }
-        }
-
-
-        LoadCauhoiDetail();
+        LoadQuestionDetail();
     }
-})(angular.module('luyenthi.cauhoi'));
+})(angular.module('luyenthi.question'));

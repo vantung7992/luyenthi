@@ -130,7 +130,6 @@ namespace LuyenThi.Web.Api
         [AllowAnonymous]
         public HttpResponseMessage Create(HttpRequestMessage request, TopicViewModel topicVm)
         {
-            var chude = topicVm;
             return CreateHttpResponse(request, () =>
             {
                 HttpResponseMessage response = null;

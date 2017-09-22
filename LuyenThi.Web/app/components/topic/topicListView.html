@@ -27,8 +27,8 @@
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <button class="btn btn-success" ui-sref="add_topic">Thêm mới</button>
-                    <button class="btn btn-danger" type="button" id="btnDelete" disabled ng-click="deleteMultiple()">Xóa</button>
+                    <button class="btn btn-sm btn-success" ui-sref="add_topic">Thêm mới</button>
+                    <button class="btn btn-sm btn-danger" type="button" id="btnDelete" disabled ng-click="deleteMultiple()">Xóa</button>
                 </div>
             </div>
             <div class="row">
@@ -37,27 +37,27 @@
                         <table class="table table-bordered table-hover table-striped">
                             <tr>
                                 <th style="width:30px;"><label><input type="checkbox" name="all" ng-click="selectAll()" /></label></th>
-                                <th style="width: 5%">ID</th>
-                                <th style="width:20%;">Tên</th>
-                                <th>Mô tả</th>
-                                <th style="width:10%">Ảnh</th>
+                                <th style="width: 5%">Id</th>
+                                <th style="width: 5%">Img</th>
+                                <th >Tên chủ đề</th>
+                                <th style="width:5%">Lượt xem</th>
                                 <th style="width:10%">Ngày tạo</th>
-                                <th style="width: 10%">Hiển thị trang chủ</th>
+                                <th style="width: 10%">Trang chủ</th>
                                 <th style="width: 10%">Trạng thái</th>
                                 <th style="width:10%">Thao tác</th>
                             </tr>
                             <tr ng-repeat="topic in topics">
                                 <td><input type="checkbox" name="all" ng-model="topic.checked" /></td>
-                                <td>{{topic.ID}}</td>
+                                <td>#{{topic.ID}}</td>
+                                <td></td>
                                 <td style="text-align:left;">{{topic.Name}}</td>
-                                <td style="text-align:left;">{{topic.Description}}</td>
-                                <th></th>
+                                <td style="text-align:center">{{topic.ViewCount}}</td>
                                 <td>{{topic.CreatedDate | date:'dd/MM/yyyy hh:mm:ss'}}</td>
-                                <td><span ng-class="{'badge bg-red':topic.HomeFlag==false,'badge bg-green':topic.HomeFlag==true}">{{item.HomeFlag | statusFilter}}</span></td>
-                                <td><span ng-class="{'badge bg-red':topic.Status==false,'badge bg-green':topic.Status==true}">{{item.Status | statusFilter}}</span></td>
+                                <td><span ng-class="{'badge bg-red':topic.HomeFlag==false,'badge bg-green':topic.HomeFlag==true}">{{topic.HomeFlag | statusFilter}}</span></td>
+                                <td><span ng-class="{'badge bg-red':topic.Status==false,'badge bg-green':topic.Status==true}">{{topic.Status | statusFilter}}</span></td>
                                 <td>
-                                    <button class="btn btn-sm btn-primary" ui-sref="edit_chude({id:item.ID})"><i class="fa fa-pencil"></i></button>
-                                    <button class="btn btn-sm btn-danger" ng-click="deleteChude(topic.ID)"><i class="fa fa-trash"></i></button>
+                                    <button class="btn btn-sm btn-primary" ui-sref="edit_topic({id:topic.ID})"><i class="fa fa-pencil"></i></button>
+                                    <button class="btn btn-sm btn-danger" ng-click="deleteTopic(topic.ID)"><i class="fa fa-trash"></i></button>
                                 </td>
                             </tr>
                             <tfoot>

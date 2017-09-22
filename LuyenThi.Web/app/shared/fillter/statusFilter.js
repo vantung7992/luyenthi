@@ -7,7 +7,7 @@
                 return 'Khóa';
         }
     });
-    app.filter('dapanDungsaiFilter', function () {
+    app.filter('TrueFasleAnswerFilter', function () {
         return function (input) {
             if (input == true)
                 return 'Đáp án đúng';

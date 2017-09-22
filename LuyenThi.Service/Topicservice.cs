@@ -15,6 +15,7 @@ namespace LuyenThi.Service
         Topic Delete(int id);
 
         IEnumerable<Topic> GetAll();
+        IEnumerable<Topic> GetAllParents(int id);
 
         IEnumerable<Topic> GetAllPaging(int page, int pageSize, out int totalRow);
 
@@ -66,6 +67,11 @@ namespace LuyenThi.Service
         public IEnumerable<Topic> GetAllPaging(string tag, int page, int pageSize, out int totalRow)
         {
             return _topicRepository.GetMultiPaging(x => x.Status == true && x.Tag.Contains(tag), out totalRow, page, pageSize);
+        }
+
+        public IEnumerable<Topic> GetAllParents(int id)
+        {
+            return _topicRepository.GetMulti(x => x.ID != id);
         }
 
         public Topic GetById(int id)

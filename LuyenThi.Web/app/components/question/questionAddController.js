@@ -1,62 +1,65 @@
 ﻿(function (app) {
-    app.controller('cauhoiAddController', cauhoiAddController);
+    app.controller('questionAddController', questionAddController);
 
-    cauhoiAddController.$inject = ['apiService', '$scope', 'notificationService', '$state', 'commonService'];
+    questionAddController.$inject = ['apiService', '$scope', 'notificationService', '$state', 'commonService'];
 
-    function cauhoiAddController(apiService, $scope, notificationService, $state, commonService) {
-        $scope.cauhoi = {
-            Ngaytao: new Date(),
-            Nguoitao: "Admin",
-            Trangthai: true
+    function questionAddController(apiService, $scope, notificationService, $state, commonService) {
+        $scope.question = {
+            CreatedDate: new Date(),
+            CreatedBy: "Tungnv",
+            Status: true
         }
-        $scope.AddCauhoi = AddCauhoi;
-        function AddCauhoi() {
-            document.getElementById('noidung').innerHTML = CKEDITOR.instances['noidunghienthi'].getData();
-            $scope.cauhoi.Noidung = document.getElementById('noidung').innerText;
-            $scope.cauhoi.strJsonDapan = JSON.stringify($scope.listDapan);
-            apiService.post('/api/cauhoi/create', $scope.cauhoi, function (result) {
+        $scope.addQuestion = AddQuestion;
+        $scope.listAnswer = new Array();
+        $scope.newAnswer = NewAnswer;
+        $scope.deleteAnswer = DeleteAnswer;
+        $scope.getAllTopic = GetAllTopic;
+        function AddQuestion() {
+            document.getElementById('content').innerHTML = CKEDITOR.instances['displayContent'].getData();
+            $scope.question.Content = document.getElementById('content').innerText;
+            $scope.question.StringJsonAnswer = JSON.stringify($scope.listAnswer);
+            apiService.post('/api/question/create', $scope.question, function (result) {
                 notificationService.displaySuccess('Thêm mới thành công');
-                $state.go('cauhoi');
+                $state.go('question');
             },
                 function (error) {
                     notificationService.displayError('Thêm mới không thành công: ' + error);
                 });
         }
-        //Đáp án
-        var listDapan = new Array();
-        $scope.listDapan = listDapan;
-        $scope.ThemDapan = ThemDapan
-        function ThemDapan() {
-            var dapan = new Object();
-            dapan.Noidung = "";
-            dapan.Dungsai = false;
-            listDapan.push(dapan);
-            LayMaDapan();
-
+        function NewAnswer() {
+            var newAnswer = new Object();
+            newAnswer.Content = "";
+            newAnswer.TrueAnswer = false;
+            $scope.listAnswer.push(newAnswer);
+            GetAnswerCode();
         }
-        $scope.XoaDapan = XoaDapan
-        function XoaDapan(input) {
-            const index = listDapan.indexOf(input);
-            listDapan.splice(index, 1);
-            LayMaDapan();
+        function DeleteAnswer(input) {
+            const index = $scope.listAnswer.indexOf(input);
+            $scope.listAnswer.splice(index, 1);
+            GetAnswerCode();
+        }
+        function GetAnswerCode() {
+            for (var i = 0; i < $scope.listAnswer.length; i++) {
+                $scope.listAnswer[i].Code = commonService.getAnswerCode(i);
+                $scope.listAnswer[i].Order = i + 1;
+            }
+        }
+        function GetAllTopic() {
+            apiService.get('/api/topic/getallparents', null, function (result) {
+                $scope.Topics = result.data;
+            }, function (error) {
+                console.log('Can not load Topic');
+            });
+        }
+        //Mặc định có 4 đáp án
+        for (var i = 0; i < 4; i++) {
+            NewAnswer();
         }
         $scope.sortableOptions = {
             stop: function (e, ui) {
-                LayMaDapan();
+                GetAnswerCode();
             }
         };
-        function LayMaDapan() {
-            for (var i = 0; i < listDapan.length; i++) {
-                listDapan[i].Ma = commonService.getMaDapan(i);
-                listDapan[i].Thutu = i + 1;
-            }
-        }
-
-        //Mặc định có 4 đáp án
-        for (var i = 0; i < 4; i++) {
-            ThemDapan();
-        }
-
         $scope.ckeditorOptions = {
             language: 'vi',
             height: '200px',
@@ -65,9 +68,10 @@
         $scope.ChoseImage = function () {
             var finder = new CKFinder();
             finder.selectActionFunction = function (fileUrl) {
-                $scope.cauhoi.Image = fileUrl;
+                $scope.question.Image = fileUrl;
             }
             finder.popup();
         }
+        $scope.getAllTopic();
     }
-})(angular.module('luyenthi.cauhoi'));
+})(angular.module('luyenthi.question'));
