@@ -5,12 +5,14 @@
 
     function questionUpdateController(apiService, $scope, notificationService, $state, $stateParams, commonService) {
         $scope.listAnswer = new Array();
-        $scope.newAnswers = NewAnswer;
-        $scope.deleteAnswer = DeleteteAnswer;
+        $scope.newAnswer = NewAnswer;
+        $scope.deleteAnswer = DeleteAnswer;
         $scope.editQuestion = UpdateQuestion;
         $scope.getAllTopic = GetAllTopic;
+
+
         function UpdateQuestion() {
-            $scope.question.strJsonDapan = JSON.stringify($scope.listDapan);
+            $scope.question.StringJsonAnswer = JSON.stringify($scope.listAnswer);
             apiService.put('api/question/update', $scope.question, function (result) {
                 notificationService.displaySuccess('Cập nhật thành công!');
                 $state.go('question');
@@ -44,7 +46,7 @@
             var newAnswer = new Object();
             newAnswer.Content = "";
             newAnswer.TrueAnswer = false;
-            listDapan.push(newAnswer);
+            $scope.listAnswer.push(newAnswer);
             GetAnswerCode();
 
         }
@@ -92,6 +94,7 @@
             Nguoitao: "Admin",
             Trangthai: true
         }
+        GetAllTopic();
         LoadQuestionDetail();
     }
 })(angular.module('luyenthi.question'));

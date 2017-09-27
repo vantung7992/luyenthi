@@ -5,6 +5,7 @@
 
     function questionListController($scope, apiService, notificationService, $ngBootbox, $filter) {
         $scope.questions = [];
+        $scope.Topics = [];
         $scope.page = 0;
         $scope.pagesCount = 0;
         $scope.keyword = '';
@@ -14,6 +15,9 @@
         $scope.deleteQuestion = DeleteQuestion;
         $scope.deleteMultiple = DeleteMultiple;
         $scope.selectAll = SelectAll;
+        $scope.getAllTopic = GetAllTopic;
+        $scope.changeTopic = ChangeTopic;
+
         function Search() {
             GetQuestion();
         }
@@ -30,7 +34,7 @@
                 }
                 apiService.del('/api/question/deleteMultiple', config, function (result) {
                     notificationService.displaySuccess('Xóa thành công ' + result.data + ' bản ghi');
-                    search();
+                    Search();
                 }, function () {
                     notificationService.displayError('Xóa không thành công');
                 })
@@ -56,6 +60,7 @@
             var config = {
                 params: {
                     keyword: $scope.keyword,
+                    topicID: $scope.Topic.ID,
                     page: page,
                     pageSize: 10
                 }
@@ -78,16 +83,26 @@
         }
         function SelectAll() {
             if ($scope.isAll === false) {
-                angular.forEach($scope.question, function (item) {
+                angular.forEach($scope.questions, function (item) {
                     item.checked = true;
                 });
                 $scope.isAll = true;
             } else {
-                angular.forEach($scope.question, function (item) {
+                angular.forEach($scope.questions, function (item) {
                     item.checked = false;
                 });
                 $scope.isAll = false;
             }
+        }
+        function GetAllTopic() {
+            apiService.get('/api/topic/getallparents', null, function (result) {
+                $scope.Topics = result.data;
+            }, function (error) {
+                console.log('Can not load Topic');
+            });
+        }
+        function ChangeTopic() {
+            Search();
         }
         $scope.$watch("questions", function (n, o) {
             var checked = $filter("filter")(n, { checked: true });
@@ -98,6 +113,7 @@
                 $('#btnDelete').attr('disabled', 'disabled');
             }
         }, true);
+        $scope.getAllTopic();
         $scope.getQuestion();
     };
 })(angular.module('luyenthi.question'));

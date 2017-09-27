@@ -27,12 +27,12 @@ namespace LuyenThi.Web.Api
 
         [Route("getall")]
         [HttpGet]
-        public HttpResponseMessage GetAll(HttpRequestMessage request, string keyword, int page, int pageSize)
+        public HttpResponseMessage GetAll(HttpRequestMessage request, string keyword, int topicID, int page, int pageSize)
         {
             return CreateHttpResponse(request, () =>
             {
                 int totalRow = 0;
-                var model = _questionService.GetAll(keyword);
+                var model = _questionService.GetAll(keyword, topicID);
                 totalRow = model.Count();
                 var query = model.OrderBy(x => x.CreatedDate).Skip(pageSize * page).Take(pageSize);
                 var responData = Mapper.Map<IEnumerable<Question>, IEnumerable<QuestionViewModel>>(query);
@@ -125,9 +125,9 @@ namespace LuyenThi.Web.Api
                             listAnswer.Add(newAnswer);
                         }
                     }
-                    var newCauhoi = new Question();
-                    newCauhoi.UpdateQuestion(questionVm);
-                    _questionService.Update(newCauhoi, listAnswer);
+                    var newQuestion = new Question();
+                    newQuestion.UpdateQuestion(questionVm);
+                    _questionService.Update(newQuestion, listAnswer);
                     _questionService.SaveChanges();
                     response = request.CreateResponse(HttpStatusCode.OK);
                 };
@@ -160,7 +160,7 @@ namespace LuyenThi.Web.Api
         [Route("deleteMultiple")]
         [HttpDelete]
         [AllowAnonymous]
-        public HttpResponseMessage DeleteMultiple(HttpRequestMessage request, string checkedCauhoi)
+        public HttpResponseMessage DeleteMultiple(HttpRequestMessage request, string checkedQuestion)
         {
             return CreateHttpResponse(request, () =>
             {
@@ -171,13 +171,13 @@ namespace LuyenThi.Web.Api
                 }
                 else
                 {
-                    var listCauhoi = new JavaScriptSerializer().Deserialize<List<int>>(checkedCauhoi);
-                    foreach (var cauhoi in listCauhoi)
+                    var listQuestion = new JavaScriptSerializer().Deserialize<List<int>>(checkedQuestion);
+                    foreach (var cauhoi in listQuestion)
                     {
                         _questionService.Delete(cauhoi);
                     }
                     _questionService.SaveChanges();
-                    response = request.CreateResponse(HttpStatusCode.OK, listCauhoi.Count);
+                    response = request.CreateResponse(HttpStatusCode.OK, listQuestion.Count);
                 }
                 return response;
             });

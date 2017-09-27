@@ -9,15 +9,15 @@ namespace LuyenThi.Service
 {
     public interface IQuestionService
     {
-        Question Add(Question question, IEnumerable<Answer> answers);
+        Question Add(Question question, IEnumerable<Answer> listAnswer);
 
-        void Update(Question question, IEnumerable<Answer> answers);
+        void Update(Question question, IEnumerable<Answer> listAnswer);
 
         void Delete(int id);
 
         IEnumerable<Question> GetAll();
 
-        IEnumerable<Question> GetAll(string keyword);
+        IEnumerable<Question> GetAll(string keyword, int topicID);
 
         Question GetAllById(int id);
 
@@ -75,15 +75,17 @@ namespace LuyenThi.Service
             _unitOfWork.Commit();
         }
 
-        public void Update(Question cauhoi, IEnumerable<Answer> listDapan)
+        public void Update(Question question, IEnumerable<Answer> listAnswer)
         {
-            _questionRepository.Update(cauhoi);
-            _answerRepository.DeleteMulti(x => x.QuestionID == cauhoi.ID);
-            if (listDapan.Count() > 0)
-                foreach (var dapan in listDapan)
+            _questionRepository.Update(question);
+            _answerRepository.DeleteMulti(x => x.QuestionID == question.ID);
+            if (listAnswer.Count() > 0)
+                foreach (var answer in listAnswer)
                 {
-                    _answerRepository.Add(dapan);
+                    answer.QuestionID = question.ID;
+                    _answerRepository.Add(answer);
                 }
+            _unitOfWork.Commit();
         }
 
         public IEnumerable<Question> GetAll()
@@ -91,11 +93,22 @@ namespace LuyenThi.Service
             return _questionRepository.GetAll();
         }
 
-        public IEnumerable<Question> GetAll(string keyword)
+        public IEnumerable<Question> GetAll(string keyword, int topicID = -1)
         {
-            if (!String.IsNullOrEmpty(keyword))
-                return _questionRepository.GetMulti(x => x.Content.Contains(keyword) || x.Note.Contains(keyword));
-            return _questionRepository.GetAll();
+            if (topicID == -1)
+            {
+                if (!String.IsNullOrEmpty(keyword))
+                    return _questionRepository.GetMulti(x => x.Content.Contains(keyword) || x.Note.Contains(keyword));
+                else
+                    return _questionRepository.GetAll();
+            }
+            else
+            {
+                if (!String.IsNullOrEmpty(keyword))
+                    return _questionRepository.GetMulti(x => x.Content.Contains(keyword) || x.Note.Contains(keyword) && x.TopicID == topicID);
+                else
+                    return _questionRepository.GetMulti(x => x.TopicID == topicID);
+            }
         }
 
         public IEnumerable<Question> GetAllByTopic(int topicID)

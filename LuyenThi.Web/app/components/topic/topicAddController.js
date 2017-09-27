@@ -3,12 +3,12 @@
 
     topicAddController.$inject = ['apiService', '$scope', 'notificationService', '$state', 'commonService'];
 
-    function topicAddController(apiService, $scope, notificationService, $state,commonService) {
+    function topicAddController(apiService, $scope, notificationService, $state, commonService) {
         $scope.topic = {
             CreatedDate: new Date(),
             Status: true,
             HotFlag: false,
-            HomeFlag:false
+            HomeFlag: false
         }
 
         $scope.AddTopic = AddTopic;
