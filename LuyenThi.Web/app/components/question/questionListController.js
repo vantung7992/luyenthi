@@ -5,7 +5,9 @@
 
     function questionListController($scope, apiService, notificationService, $ngBootbox, $filter) {
         $scope.questions = [];
-        $scope.Topics = [];
+        $scope.Topics = {
+            toppic:{ID:-1, Name:"Tất cả chủ đề"}
+        };
         $scope.page = 0;
         $scope.pagesCount = 0;
         $scope.keyword = '';
@@ -17,7 +19,14 @@
         $scope.selectAll = SelectAll;
         $scope.getAllTopic = GetAllTopic;
         $scope.changeTopic = ChangeTopic;
-
+        $scope.topicID = -1;
+        function GetAllTopic() {
+            apiService.get('/api/topic/getallparents', null, function (result) {
+                $scope.Topics = result.data;
+            }, function (error) {
+                console.log('Can not load Topic');
+            });
+        }
         function Search() {
             GetQuestion();
         }
@@ -60,7 +69,7 @@
             var config = {
                 params: {
                     keyword: $scope.keyword,
-                    topicID: $scope.Topic.ID,
+                    topicID: $scope.Topics.toppic.ID,
                     page: page,
                     pageSize: 10
                 }
@@ -94,13 +103,7 @@
                 $scope.isAll = false;
             }
         }
-        function GetAllTopic() {
-            apiService.get('/api/topic/getallparents', null, function (result) {
-                $scope.Topics = result.data;
-            }, function (error) {
-                console.log('Can not load Topic');
-            });
-        }
+
         function ChangeTopic() {
             Search();
         }

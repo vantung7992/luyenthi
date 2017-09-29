@@ -17,7 +17,13 @@
         </div>
         <div class="box-body">
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-1">
+                    <div class="input-group">
+                        <select name="topicID" ng-model="Topics.topic" class="form-control" ng-options="topic.ID as topic.Name for topic in Topics">
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3">
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="Từ khóa..." ng-model="keyword" />
                         <span class="input-group-btn">
@@ -25,13 +31,7 @@
                         </span>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="input-group">
-                        <select name="topicID" ng-model="Topic" class="form-control" ng-options="Topic.Name for Topic in Topics track by Topic.ID" ng-change="changeTopic()">
-                            <option value="">Tất cả chủ đề</option>
-                        </select>
-                    </div>
-                </div>
+
                 <div class="col-md-4">
                     <button class="btn btn-success btn-sm" ui-sref="add_question">Thêm mới</button>
                     <button class="btn btn-danger btn-sm" type="button" id="btnDelete" disabled ng-click="deleteMultiple()">Xóa</button>
