@@ -1,0 +1,34 @@
+﻿
+@{
+    ViewBag.Title = "Exams";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <div class="col-md-8">
+        <div class="row">
+            @for (int i = 0; i < 10; i++)
+            {
+                <div class="col-lg-4 col-xs-6">
+                    <!-- small box -->
+                    <div class="small-box bg-aqua">
+                        <div class="inner">
+                            <h3>Bộ đề 1</h3>
+
+                            <h4>New Orders<h4/>
+                        </div>
+                        <div class="icon">
+                            <i class="fa fa-shopping-cart"></i>
+                        </div>
+                        <a href="/home/test" class="small-box-footer">
+                            Vào Thi <i class="fa fa-arrow-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+    <div class="col-md-4">
+
+    </div>
+</div>

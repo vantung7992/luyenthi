@@ -1,0 +1,95 @@
+﻿
+@{
+    ViewBag.Title = "Exams";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <div class="col-md-4 pull-right" id="list-question">
+        <div class="box box-info">
+            <div class="box-header with-border">
+                <h3 class="box-title">Câu hỏi</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                @for (int i = 0; i < 30; i++)
+                {
+                    <div class="question-number">
+                        <button class="btn btn-info">
+                            @(i + 1)
+                        </button>
+                    </div>
+                }
+            </div>
+            <!-- /.box-body -->
+        </div>
+    </div>
+
+    <div class="col-md-8 pull-left">
+        <div class="box box-info">
+            <div class="box-header with-border">
+                <h3 class="box-title">Thời gian làm bài: </h3>
+                <div class="pull-right box-tools">
+                    <button type="button" class="btn btn-info btn-sm" data-widget="remove" data-toggle="tooltip" title="" data-original-title="Remove">
+                        Nộp bài<i class="fa fa-send"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="box box-info">
+            <div class="box-header with-border">
+                <h3 class="box-title">Câu hỏi 1</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                <div id="question_1" class="detail_cauhoi width_common">
+                    <p class="noidung_cauhoi">
+                        Khái niệm “làn đường” được hiểu như thế nào là đúng ?
+                    </p>
+                    <div class="width_common noidung_dapan">
+                        <ul>
+                            <li>
+                                <label>
+                                    <input data-id="1" class="answer_option" type="checkbox" value="251-11718_50928">
+                                    <span id="span_50928">Là một phần của đường xe chạy được chia theo chiều dọc của đường, có bề rộng đủ cho xe chạy an toàn.</span>
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input data-id="1" class="answer_option" type="checkbox" value="251-11718_50927">
+                                    <span id="span_50927">Là một phần của đường được chia theo chiều ngang của đường, có bề rộng đủ cho xe đỗ an toàn.</span>
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input data-id="1" class="answer_option" type="checkbox" value="251-11718_50926">
+                                    <span id="span_50926">Cả 2 ý trên.</span>
+                                </label>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- /.box-body -->
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <button class="btn btn-primary pull-left"><i class="fa fa-arrow-left"></i> Câu trước</button>
+                <button class="btn btn-primary pull-right">Câu tiếp theo <i class="fa fa-arrow-right"></i></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    #list-question .question-number {
+        padding: 4px;
+        width: 16.66666667%;
+        display: block;
+        float: left;
+    }
+    #list-question .question-number button {
+        width: 100%;
+    }
+</style>

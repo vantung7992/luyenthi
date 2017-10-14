@@ -1,0 +1,130 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-8" >
+        <div class="box box-info">
+            <div class="box-header with-border">
+                <h3 class="box-title">Danh sách chủ đề</h3>
+            </div>
+            <!-- /.box-header -->
+
+            <div class="box-body">
+                <div class="row docs-premium-template">
+
+                    @for (int i = 0; i < 10; i++)
+                    {
+                        <div class="col-sm-12 col-md-6">
+                            <div class="box box-solid">
+                                <div class="box-body">
+                                    <h4 style="background-color:#f7f7f7; font-size: 18px; text-align: center; padding: 7px 10px; margin-top: 0;">
+                                        Thi bang xe may A1
+                                    </h4>
+                                    <div class="media">
+                                        <div class="media-left">
+                                            <a href="#" class="ad-click-event">
+                                                <img src="https://adminlte.io/uploads/images/free_templates/now_ui_kit.jpg" alt="Now UI Kit" class="media-object" style="width: 150px;height: auto;border-radius: 4px;box-shadow: 0 1px 3px rgba(0,0,0,.15);">
+                                            </a>
+                                        </div>
+                                        <div class="media-body">
+                                            <div class="clearfix">
+                                                <h4 style="margin-top: 0">Now UI Kit ─ $69</h4>
+
+                                                <p>thi cai gi day hehe</p>
+
+                                                <p class="text-right">
+                                                    <a href="/home/exams" class="btn btn-primary ad-click-event">
+                                                        Chọn đề thi
+                                                        <i class="fa fa-arrow-right"></i>
+                                                    </a>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                </div>
+            </div>
+            <!-- /.box-body -->
+            
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">Recently Added Products</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                <ul class="products-list product-list-in-box">
+                    <li class="item">
+                        <div class="product-img">
+                            <img src="dist/img/default-50x50.gif" alt="Product Image">
+                        </div>
+                        <div class="product-info">
+                            <a href="javascript:void(0)" class="product-title">
+                                Samsung TV
+                                <span class="label label-warning pull-right">$1800</span>
+                            </a>
+                            <span class="product-description">
+                                Samsung 32" 1080p 60Hz LED Smart HDTV.
+                            </span>
+                        </div>
+                    </li>
+                    <!-- /.item -->
+                    <li class="item">
+                        <div class="product-img">
+                            <img src="dist/img/default-50x50.gif" alt="Product Image">
+                        </div>
+                        <div class="product-info">
+                            <a href="javascript:void(0)" class="product-title">
+                                Bicycle
+                                <span class="label label-info pull-right">$700</span>
+                            </a>
+                            <span class="product-description">
+                                26" Mongoose Dolomite Men's 7-speed, Navy Blue.
+                            </span>
+                        </div>
+                    </li>
+                    <!-- /.item -->
+                    <li class="item">
+                        <div class="product-img">
+                            <img src="dist/img/default-50x50.gif" alt="Product Image">
+                        </div>
+                        <div class="product-info">
+                            <a href="javascript:void(0)" class="product-title">Xbox One <span class="label label-danger pull-right">$350</span></a>
+                            <span class="product-description">
+                                Xbox One Console Bundle with Halo Master Chief Collection.
+                            </span>
+                        </div>
+                    </li>
+                    <!-- /.item -->
+                    <li class="item">
+                        <div class="product-img">
+                            <img src="dist/img/default-50x50.gif" alt="Product Image">
+                        </div>
+                        <div class="product-info">
+                            <a href="javascript:void(0)" class="product-title">
+                                PlayStation 4
+                                <span class="label label-success pull-right">$399</span>
+                            </a>
+                            <span class="product-description">
+                                PlayStation 4 500GB Console (PS4)
+                            </span>
+                        </div>
+                    </li>
+                    <!-- /.item -->
+                </ul>
+            </div>
+            <!-- /.box-body -->
+        </div>
+    </div>
+</div>
+
