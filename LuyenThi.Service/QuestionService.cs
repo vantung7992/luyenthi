@@ -105,7 +105,7 @@ namespace LuyenThi.Service
             else
             {
                 if (!String.IsNullOrEmpty(keyword))
-                    return _questionRepository.GetMulti(x => x.Content.Contains(keyword) || x.Note.Contains(keyword) && x.TopicID == topicID);
+                    return _questionRepository.GetMulti(x => x.Content.Contains(keyword) && x.TopicID == topicID);
                 else
                     return _questionRepository.GetMulti(x => x.TopicID == topicID);
             }

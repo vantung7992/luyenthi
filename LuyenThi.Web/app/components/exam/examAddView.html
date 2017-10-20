@@ -1,8 +1,8 @@
 ﻿<section class="content-header">
-    <h1>Đề thi</h1>
+    <h1>Tạo đề thi</h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i>Trang chủ</a></li>
-        <li><a ui-sref="dethi">Đề thi</a></li>
+        <li><a ui-sref="exam">Đề thi</a></li>
         <li class="active">Tạo đề thi</li>
     </ol>
 </section>
@@ -10,109 +10,123 @@
     <!-- Horizontal Form -->
     <div class="box box-info">
         <div class="box-header with-border">
-            <h3 class="box-title">Tạo đề thi</h3>
+            <h3 class="box-title">Thông tin đề thi</h3>
         </div>
         <!-- /.box-header -->
         <!-- form start -->
-        <form class="form-horizontal" novalidate name="frmAddDethi" role="form" ng-submit="AddDethi()">
+        <form class="form-horizontal" novalidate name="frmAddExam" role="form" ng-submit="AddExam()">
             <div class="box-body">
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">Tiêu đề</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="Ten" required ng-maxlength="256" ng-change="GetSeoTitle()" ng-model="dethi.Ten">
-                        <span ng-show="frmAddDethi.Ten.$invalid" class="has-error">
-                            Phải nhập tiêu đề
-                        </span>
-                        <span ng-show="frmAddDethi.Ten.$error.maxlength" class="has-error">Tiêu đề chỉ dài không quá 256 ký tự</span>
+                        <input type="text" class="form-control" name="Name" required ng-maxlength="256" ng-change="GetSeoTitle()" ng-model="exam.Name">
+                        <span ng-show="frmAddExam.Name.$invalid" class="has-error">Phải nhập tiêu đề</span>
+                        <span ng-show="frmAddExam.Name.$error.maxlength" class="has-error">Tiêu đề chỉ dài không quá 256 ký tự</span>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Tiêu đề seo</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" required name="Seo" ng-model="dethi.Seo">
-                        <span ng-show="frmAddDethi.Seo.$invalid" class="has-error">Phải nhập tiêu đề SEO</span>
+                        <input type="text" class="form-control" required name="Seo" ng-model="exam.Seo">
+                        <span ng-show="frmAddExam.Seo.$invalid" class="has-error">Phải nhập tiêu đề SEO</span>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="inputPassword3" class="col-sm-2 control-label">Mô tả</label>
                     <div class="col-sm-10">
-                        <textarea class="form-control" name="Mota" ng-model="dethi.Mota" ng-maxlength="500"></textarea>
-                        <span ng-show="frmAddDethi.Mota.$error.maxlength" class="has-error">Mô tả không quá 500 ký tự</span>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-2 control-label">Hình ảnh</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" name="Tag" ng-model="dethi.Image">
-                        <input type="button" class="btn btn-default" value="Chọn ảnh" />
+                        <textarea class="form-control" name="Description" ng-model="exam.Description" ng-maxlength="500"></textarea>
+                        <span ng-show="frmAddExam.Description.$error.maxlength" class="has-error">Mô tả không quá 500 ký tự</span>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">Tag</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="Tag" ng-model="dethi.Tag">
+                        <input type="text" class="form-control" name="Tag" ng-model="exam.Tag">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">Thời gian làm bài</label>
                     <div class="col-sm-10">
-                        <input type="number" class="form-control" name="Tag" ng-model="dethi.ThoigianLambai">
+                        <input type="number" class="form-control" name="TimeToDo" ng-model="exam.TimeToDo">
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" name="Trangthai" ng-model="dethi.Trangthai" ng-checked="dethi.Trangthai" />Kích hoạt
+                                <input type="checkbox" name="Trangthai" ng-model="exam.Status" ng-checked="exam.Status" />Kích hoạt
                             </label>
                         </div>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-2 control-label">Câu hỏi</label>
-                    <div class="col-sm-10">
-                        <div class="box no-border">
-                            <div class="box-header">
-                                <h3 class="box-title">Câu hỏi trong đề thi</h3>
-                                <div class="box-tools pull-right">
-                                    <button type="button" class="btn btn-sm btn-default" title="">
-                                        <i class="fa fa-trash"></i>
-                                    </button>
-                                    <button type="button" class="btn btn-sm btn-default">
-                                        <i class="fa fa-plus"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="box-body table-responsive no-padding">
-                                <table class="table table-hover">
-                                    <tr>
-                                        <th style="width:30px;"><label><input type="checkbox" name="all" ng-click="" /></label></th>
-                                        <th style="width:5%">STT</th>
-                                        <th>Nội dung</th>
-                                        <th style="width:10%">Thao tác</th>
-                                    </tr>
-                                    <tr ng-repeat="cauhoi in listCauhoi">
-                                        <td><input type="checkbox" name="all" ng-model="cauhoi.checked" /></td>
-                                        <td>{{cauhoi.STT}}</td>
-                                        <td style="text-align:left;">{{cauhoi.Noidung}}</td>
-                                        <td>
-                                            <button type="button" class="btn btn-sm btn-primary" ui-sref=""><i class="fa fa-pencil"></i></button>
-                                            <button type="button" class="btn btn-sm btn-danger" ui-sref=""><i class="fa fa-trash"></i></button>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
             </div>
-            <!-- /.box-body -->
-            <div class="box-footer">
-                <button class="btn btn-default" ui-sref="dethi">Hủy</button>
-                <button type="submit" class="btn btn-info pull-right" ng-disabled="frmAddDethi.$invalid">Tạo</button>
-            </div>
-            <!-- /.box-footer -->
         </form>
     </div>
+    <div class="box box-primary">
+        <div class="box-header">
+            <h4 class="box-title">Danh sách câu hỏi</h4>
+            <div class="pull-right box-tools">
+                <button class="btn btn-box-tool" data-toggle="modal" data-target="#addQuestionModal"><i class="fa fa-plus"></i></button>
+            </div>
+        </div>
+        <div class="box-body">
+            <table class="table table-hover">
+                <tr>
+                    <th style="width:30px;">STT</th>
+                    <th>Nội dung</th>
+                    <th style="width:100px;">Thao tác</th>
+                </tr>
+            </table>
+        </div>
+    </div>
 </section>
+<!-- Modal -->
+<div class="modal fade" id="addQuestionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Danh sách câu hỏi</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="input-group input-group-sm pull-left">
+                        <select name="topicID" class="form-control" ng-model="topicID" ng-options="topic.ID as topic.Name for topic in Topics" ng-change="changeTopic()">
+                            <option value="">Tất cả chủ để</option>
+                        </select>
+                    </div>
+                    <div class="input-group input-group-sm pull-right col-md-5">
+                        <input type="text" class="form-control">
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default btn-flat"><i class="fa fa-search"></i></button>
+                        </span>
+                    </div>
+
+                </div>
+                <hr />
+                <div class="row">
+                    <table class="table table-hover table-bordered">
+                        <tr>
+                            <th style="width:30px;"><input type="checkbox" /></th>
+                            <th style="width:30px;">ID</th>
+                            <th>Nội dung</th>
+                            <th style="width:30%;">Chủ đề</th>
+                        </tr>
+                        <tr ng-repeat="item in listUncheckedQuestion">
+                            <td><input type="checkbox"></td>
+                            <td>{{item.ID}}</td>
+                            <td class="text-left">{{item.Content}}</td>
+                            <td></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                <button type="button" class="btn btn-primary">Thêm</button>
+            </div>
+        </div>
+    </div>
+</div>

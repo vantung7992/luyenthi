@@ -34,7 +34,7 @@
             });
         }
 
-        function LoadAnswer(questionID) {
+        function LoadAnswer(questionID) { 
             apiService.get('api/dapan/getbyquestion/' + questionID, null, function (result) {
                 $scope.listAnswer = result.data;
             }, function (error) {

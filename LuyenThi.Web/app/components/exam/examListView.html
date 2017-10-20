@@ -26,7 +26,7 @@
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <button class="btn btn-success" ui-sref="add_dethi">Tạo đề thi</button>
+                    <button class="btn btn-success" ui-sref="add_exam">Tạo đề thi</button>
                     <button class="btn btn-danger" type="button" id="btnDelete" disabled ng-click="deleteMultiple()">Xóa</button>
                 </div>
             </div>
@@ -42,15 +42,15 @@
                                 <th style="width:7%">Trạng thái</th>
                                 <th style="width:10%">Thao tác</th>
                             </tr>
-                            <tr ng-repeat="dethi in listDethi">
-                                <td><input type="checkbox" name="all" ng-model="dethi.checked" /></td>
-                                <td>{{dethi.ID}}</td>
-                                <td style="text-align:left;">{{dethi.Ten}}</td>
-                                <td>{{dethi.Ngaytao | date:'dd/MM/yyyy hh:mm:ss'}}</td>
-                                <td><span ng-class="{'badge bg-red':dethi.Trangthai==false,'badge bg-green':dethi.Trangthai==true}">{{dethi.Trangthai | statusFilter}}</span></td>
+                            <tr ng-repeat="exam in listExam">
+                                <td><input type="checkbox" name="all" ng-model="exam.checked" /></td>
+                                <td>{{exam.ID}}</td>
+                                <td style="text-align:left;">{{exam.Name}}</td>
+                                <td>{{exam.CreatedDate | date:'dd/MM/yyyy hh:mm:ss'}}</td>
+                                <td><span ng-class="{'badge bg-red':exam.Status==false,'badge bg-green':exam.Status==true}">{{exam.Status| statusFilter}}</span></td>
                                 <td>
                                     <button class="btn btn-sm btn-primary" ui-sref="edit_cauhoi({id:item.ID})"><i class="fa fa-pencil"></i></button>
-                                    <button class="btn btn-sm btn-danger" ng-click="deleteDethi(dethi.ID)"><i class="fa fa-trash"></i></button>
+                                    <button class="btn btn-sm btn-danger" ng-click="deleteExam(exam.ID)"><i class="fa fa-trash"></i></button>
                                 </td>
                             </tr>
                             <tfoot>

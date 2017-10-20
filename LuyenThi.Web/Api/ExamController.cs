@@ -61,10 +61,10 @@ namespace LuyenThi.Web.Api
                 }
                 else
                 {
-                    var oldDethi = _examService.Delete(id);
+                    var oldExam = _examService.Delete(id);
                     _examService.SaveChanges();
 
-                    var responseData = Mapper.Map<Exam, ExamViewModel>(oldDethi);
+                    var responseData = Mapper.Map<Exam, ExamViewModel>(oldExam);
                     response = request.CreateResponse(HttpStatusCode.OK, responseData);
                 }
                 return response;
@@ -75,7 +75,7 @@ namespace LuyenThi.Web.Api
         [Route("deleteMultiple")]
         [HttpDelete]
         [AllowAnonymous]
-        public HttpResponseMessage DeleteMutilple(HttpRequestMessage request, string checkDethi)
+        public HttpResponseMessage DeleteMutilple(HttpRequestMessage request, string checkExam)
         {
             return CreateHttpResponse(request, () =>
             {
@@ -86,13 +86,13 @@ namespace LuyenThi.Web.Api
                 }
                 else
                 {
-                    var listDethi = new JavaScriptSerializer().Deserialize<List<int>>(checkDethi);
-                    foreach (var item in listDethi)
+                    var listExam = new JavaScriptSerializer().Deserialize<List<int>>(checkExam);
+                    foreach (var item in listExam)
                     {
                         _examService.Delete(item);
                     }
                     _examService.SaveChanges();
-                    response = request.CreateResponse(HttpStatusCode.OK, listDethi.Count);
+                    response = request.CreateResponse(HttpStatusCode.OK, listExam.Count);
                 }
                 return response;
             });
@@ -127,7 +127,7 @@ namespace LuyenThi.Web.Api
         [Route("update")]
         [HttpPost]
         [AllowAnonymous]
-        public HttpResponseMessage Update(HttpRequestMessage request, ExamViewModel dethiVm)
+        public HttpResponseMessage Update(HttpRequestMessage request, ExamViewModel examVm)
         {
             return CreateHttpResponse(request, () =>
             {
@@ -138,9 +138,9 @@ namespace LuyenThi.Web.Api
                 }
                 else
                 {
-                    List<int> ListIdCauhoi = new JavaScriptSerializer().Deserialize<List<int>>(dethiVm.ListQuestionID);
+                    List<int> ListIdCauhoi = new JavaScriptSerializer().Deserialize<List<int>>(examVm.ListQuestionID);
                     var newdeThi = new Exam();
-                    newdeThi.UpdateExam(dethiVm);
+                    newdeThi.UpdateExam(examVm);
                     _examService.Update(newdeThi, ListIdCauhoi);
                     _examService.SaveChanges();
                     var responseData = Mapper.Map<Exam, ExamViewModel>(newdeThi);

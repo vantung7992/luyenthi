@@ -19,7 +19,8 @@
             <div class="row">
                 <div class="col-md-1">
                     <div class="input-group">
-                        <select name="topicID" ng-model="Topics.topic" class="form-control" ng-options="topic.ID as topic.Name for topic in Topics">
+                        <select name="topicID" class="form-control" ng-model="topicID" ng-options="topic.ID as topic.Name for topic in Topics" ng-change="changeTopic()">
+                            <option value="">Tất cả chủ để</option>
                         </select>
                     </div>
                 </div>
@@ -31,7 +32,6 @@
                         </span>
                     </div>
                 </div>
-
                 <div class="col-md-4">
                     <button class="btn btn-success btn-sm" ui-sref="add_question">Thêm mới</button>
                     <button class="btn btn-danger btn-sm" type="button" id="btnDelete" disabled ng-click="deleteMultiple()">Xóa</button>
@@ -45,14 +45,16 @@
                                 <th style="width:1%;"><label><input type="checkbox" name="all" ng-click="selectAll()" /></label></th>
                                 <th style="width: 2%">ID</th>
                                 <th>Nội dung</th>
+                                <th>Chủ đề</th>
                                 <th style="width:10%">Ngày tạo</th>
                                 <th style="width:7%">Trạng thái</th>
                                 <th style="width:10%">Thao tác</th>
                             </tr>
                             <tr ng-repeat="question in questions">
                                 <td><input type="checkbox" name="all" ng-model="question.checked" /></td>
-                                <td>{{question.ID}}</td>
+                                <td>#{{question.ID}}</td>
                                 <td style="text-align:left;">{{question.Content}}</td>
+                                <td></td>
                                 <td>{{question.CreatedDate | date:'dd/MM/yyyy hh:mm:ss'}}</td>
                                 <td><span ng-class="{'badge bg-red':question.Status==false,'badge bg-green':question.Status==true}">{{question.Trangthai | statusFilter}}</span></td>
                                 <td>

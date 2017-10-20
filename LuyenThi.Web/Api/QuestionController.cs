@@ -27,7 +27,7 @@ namespace LuyenThi.Web.Api
 
         [Route("getall")]
         [HttpGet]
-        public HttpResponseMessage GetAll(HttpRequestMessage request, string keyword, int topicID, int page, int pageSize)
+        public HttpResponseMessage GetAll(HttpRequestMessage request, string keyword, int page, int pageSize, int topicID = -1)
         {
             return CreateHttpResponse(request, () =>
             {
@@ -59,6 +59,48 @@ namespace LuyenThi.Web.Api
                 var responData = Mapper.Map<Question, QuestionViewModel>(model);
                 var response = request.CreateResponse(HttpStatusCode.OK, responData);
                 return response;
+            });
+        }
+
+        [Route("getchecked")]
+        [HttpGet]
+        public HttpResponseMessage GetChecked(HttpRequestMessage request, string checkedQuestion)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                List<int> listCheckedQuestion = new JavaScriptSerializer().Deserialize<List<int>>(checkedQuestion);
+                var model = _questionService.GetAll();
+                var query = model.Where(x => listCheckedQuestion.Contains(x.ID));
+                var responseData = Mapper.Map<IEnumerable<Question>, IEnumerable<QuestionViewModel>>(query);
+                var response = request.CreateResponse(HttpStatusCode.OK, responseData);
+                return response;
+            });
+        }
+
+        [Route("getselectedquestion")]
+        [HttpGet]
+        public HttpResponseMessage GetSelectedQuestion(HttpRequestMessage request, string selectedQuestion)
+        {
+
+            return CreateHttpResponse(request, () =>
+            {
+                if (string.IsNullOrEmpty(selectedQuestion))
+                {
+                    var model = _questionService.GetAll();
+                    var responseData = Mapper.Map<IEnumerable<Question>, IEnumerable<QuestionViewModel>>(model);
+                    HttpResponseMessage response = request.CreateResponse(HttpStatusCode.OK, responseData);
+                    return response;
+                }
+                else
+                {
+
+                    List<int> listCheckedQuestion = new JavaScriptSerializer().Deserialize<List<int>>(selectedQuestion);
+                    var model = _questionService.GetAll();
+                    var query = model.Where(x => !listCheckedQuestion.Contains(x.ID)).OrderBy(x => x.ID);
+                    var responseData = Mapper.Map<IEnumerable<Question>, IEnumerable<QuestionViewModel>>(query);
+                    HttpResponseMessage response = request.CreateResponse(HttpStatusCode.OK, responseData);
+                    return response;
+                }
             });
         }
 

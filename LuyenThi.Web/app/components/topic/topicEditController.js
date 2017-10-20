@@ -21,7 +21,7 @@
 
         function UpdateTopic() {
             apiService.put('/api/topic/update', $scope.topic, function (result) {
-                notificationService.displaySuccess(result.data.Ten + ' đã được cập nhật.');
+                notificationService.displaySuccess(result.data.Namess + ' đã được cập nhật.');
                 $state.go('topic');
             },
                 function (error) {

@@ -6,7 +6,7 @@
     function questionListController($scope, apiService, notificationService, $ngBootbox, $filter) {
         $scope.questions = [];
         $scope.Topics = {
-            toppic:{ID:-1, Name:"Tất cả chủ đề"}
+            toppic: { ID: -1, Name: "Tất cả chủ đề" }
         };
         $scope.page = 0;
         $scope.pagesCount = 0;
@@ -20,6 +20,7 @@
         $scope.getAllTopic = GetAllTopic;
         $scope.changeTopic = ChangeTopic;
         $scope.topicID = -1;
+        var topicID = -1;
         function GetAllTopic() {
             apiService.get('/api/topic/getallparents', null, function (result) {
                 $scope.Topics = result.data;
@@ -69,7 +70,7 @@
             var config = {
                 params: {
                     keyword: $scope.keyword,
-                    topicID: $scope.Topics.toppic.ID,
+                    topicID: $scope.topicID,
                     page: page,
                     pageSize: 10
                 }
@@ -102,8 +103,8 @@
                 });
                 $scope.isAll = false;
             }
-        }
 
+        }
         function ChangeTopic() {
             Search();
         }
@@ -117,6 +118,6 @@
             }
         }, true);
         $scope.getAllTopic();
-        $scope.getQuestion();
+        //$scope.getQuestion();
     };
 })(angular.module('luyenthi.question'));

@@ -27,6 +27,7 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <TypeScriptToolsVersion>1.8</TypeScriptToolsVersion>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -234,6 +235,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -6333,7 +6335,6 @@
     <Folder Include="app\shared\footer\" />
     <Folder Include="app\shared\navigation\" />
     <Folder Include="Assets\client\" />
-    <Folder Include="Controllers\" />
     <Folder Include="Scripts\plugin\" />
     <Folder Include="Scripts\spa\" />
     <Folder Include="UploadedFiles\" />
@@ -6732,6 +6733,14 @@
     <Content Include="Assets\admin\libs\jquery\test\node_smoke_tests\.eslintrc.json" />
     <Content Include="Assets\admin\libs\jquery\test\promises_aplus_adapters\.eslintrc.json" />
     <Content Include="Assets\admin\libs\jquery\test\xhtml.php" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\Exams.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Test.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
