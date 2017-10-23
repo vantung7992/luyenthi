@@ -20,7 +20,6 @@
         $scope.getAllTopic = GetAllTopic;
         $scope.changeTopic = ChangeTopic;
         $scope.topicID = -1;
-        var topicID = -1;
         function GetAllTopic() {
             apiService.get('/api/topic/getallparents', null, function (result) {
                 $scope.Topics = result.data;
@@ -103,7 +102,6 @@
                 });
                 $scope.isAll = false;
             }
-
         }
         function ChangeTopic() {
             Search();
@@ -118,6 +116,5 @@
             }
         }, true);
         $scope.getAllTopic();
-        //$scope.getQuestion();
     };
 })(angular.module('luyenthi.question'));

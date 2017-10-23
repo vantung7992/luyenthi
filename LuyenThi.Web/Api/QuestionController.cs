@@ -77,16 +77,16 @@ namespace LuyenThi.Web.Api
             });
         }
 
-        [Route("getselectedquestion")]
+        [Route("getnoselectedquestion")]
         [HttpGet]
-        public HttpResponseMessage GetSelectedQuestion(HttpRequestMessage request, string selectedQuestion)
+        public HttpResponseMessage GetNoSelectedQuestion(HttpRequestMessage request, string selectedQuestion,string keyword, int topicID = -1)
         {
 
             return CreateHttpResponse(request, () =>
             {
                 if (string.IsNullOrEmpty(selectedQuestion))
                 {
-                    var model = _questionService.GetAll();
+                    var model = _questionService.GetAll(keyword, topicID);
                     var responseData = Mapper.Map<IEnumerable<Question>, IEnumerable<QuestionViewModel>>(model);
                     HttpResponseMessage response = request.CreateResponse(HttpStatusCode.OK, responseData);
                     return response;
@@ -95,7 +95,7 @@ namespace LuyenThi.Web.Api
                 {
 
                     List<int> listCheckedQuestion = new JavaScriptSerializer().Deserialize<List<int>>(selectedQuestion);
-                    var model = _questionService.GetAll();
+                    var model = _questionService.GetAll(keyword,topicID);
                     var query = model.Where(x => !listCheckedQuestion.Contains(x.ID)).OrderBy(x => x.ID);
                     var responseData = Mapper.Map<IEnumerable<Question>, IEnumerable<QuestionViewModel>>(query);
                     HttpResponseMessage response = request.CreateResponse(HttpStatusCode.OK, responseData);
@@ -107,7 +107,7 @@ namespace LuyenThi.Web.Api
         [Route("create")]
         [HttpPost]
         [AllowAnonymous]
-        public HttpResponseMessage Create(HttpRequestMessage request, QuestionViewModel questionVm)
+        public HttpResponseMessage Create(HttpRequestMessage request, QuestionViewModel questionVm, string selectedQuestion)
         {
             return CreateHttpResponse(request, () =>
             {
