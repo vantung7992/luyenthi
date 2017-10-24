@@ -48,6 +48,7 @@ namespace LuyenThi.Service
                     ExamDetail examDetail = new ExamDetail()
                     {
                         ExamID = exam.ID,
+                        QuestionID = listQuestionID[i],
                         Order = i,
                         Status = true,
                         CreatedDate = DateTime.Now,
@@ -103,6 +104,7 @@ namespace LuyenThi.Service
                     ExamDetail examDetail = new ExamDetail()
                     {
                         ExamID = exam.ID,
+                        QuestionID = listQuestionID[i],
                         Order = i,
                         Status = true,
                         CreatedDate = DateTime.Now,

@@ -18,6 +18,7 @@ namespace LuyenThi.Web.Api
     public class ExamController : ApiControllerBase
     {
         IExamService _examService;
+        IExamdetailService _examService;
         public ExamController(IErrorService errorService, IExamService _examService) : base(errorService)
         {
             this._examService = _examService;
@@ -46,6 +47,29 @@ namespace LuyenThi.Web.Api
             });
         }
 
+        [Route("getbyid/{id:int}")]
+        [HttpGet]
+        public HttpResponseMessage GetById(HttpRequestMessage request, int id)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                var model = _examService.GetAllById(id);
+                var responData = Mapper.Map<Exam, ExamViewModel>(model);
+                var response = request.CreateResponse(HttpStatusCode.OK, responData);
+                return response;
+            });
+        }
+
+
+        [Route("getquestionbyexam/{id:int}")]
+        [HttpGet]
+        public HttpResponseMessage GetQuestionByExam(HttpRequestMessage request, int id)
+        {
+            return CreateHttpResponse(request, () => {
+
+            });
+        }
+
         [Route("delete")]
         [HttpDelete]
         [AllowAnonymous]
@@ -70,7 +94,6 @@ namespace LuyenThi.Web.Api
                 return response;
             });
         }
-
 
         [Route("deleteMultiple")]
         [HttpDelete]

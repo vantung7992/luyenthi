@@ -1,12 +1,8 @@
 ﻿(function (app) {
-    app.controller('examAddController', examAddController);
-    examAddController.$inject = ['$scope', 'apiService', 'notificationService', '$ngBootbox', '$filter', 'commonService'];
-    function examAddController($scope, apiService, notificationService, $ngBootbox, $filter, commonService) {
-        $scope.exam = {
-            CreatedDate: new Date(),
-            CreatedBy: 'Admin',
-            Status: true
-        };
+    app.controller('examEditController', examEditController);
+    examEditController.$inject = ['$scope', 'apiService', 'notificationService', '$ngBootbox', '$filter', 'commonService'];
+    function examEditController($scope, apiService, notificationService, $ngBootbox, $filter, commonService) {
+        $scope.exam = {};
 
         $scope.keyword = '';
         $scope.isAllUnSelectQuestion = false;
@@ -107,6 +103,22 @@
             if (index >= 0) {
                 $scope.listCheckedQuestion.splice(index, 1);
             }
+        }
+        function LoadExamDetail() {
+            apiService.get('api/exam/getbyid/' + $stateParams.id, null, function (result) {
+                $scope.exam = result.data;
+
+            }, function (error) {
+                notificationService.displayError(error.data);
+            });
+        }
+
+        function LoadSelectedQuestion(examID) {
+            apiService.get('api/exam/getbyexam/' + examID, null, function (result) {
+                $scope.listCheckedQuestion = result.data;
+            }, function (error) {
+                notificationService.displayError(error.data);
+            });
         }
 
         $scope.$watch("listUncheckedQuestion", function (n, o) {

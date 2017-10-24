@@ -107,7 +107,7 @@ namespace LuyenThi.Web.Api
         [Route("create")]
         [HttpPost]
         [AllowAnonymous]
-        public HttpResponseMessage Create(HttpRequestMessage request, QuestionViewModel questionVm, string selectedQuestion)
+        public HttpResponseMessage Create(HttpRequestMessage request, QuestionViewModel questionVm)
         {
             return CreateHttpResponse(request, () =>
             {
