@@ -10,17 +10,13 @@ namespace LuyenThi.Service
     public interface IExamService
     {
         Exam Add(Exam exam, List<int> listQuestionID);
-
         void Update(Exam exam, List<int> listQuestionID);
-
         Exam Delete(int id);
-
         IEnumerable<Exam> GetAllByTopic(int topicID, int pageIndex, int pageSize, out int totalRow);
-
         Exam GetAllById(int id);
-
         IEnumerable<Exam> GetAll();
         IEnumerable<Exam> GetAll(string keyword);
+        IEnumerable<Question> GetAllByExam(int id);
         void SaveChanges();
     }
 
@@ -28,12 +24,14 @@ namespace LuyenThi.Service
     {
         private IExamRepository _examRepository;
         private IExamDetailRepository _examDetailRepositpry;
+        private IQuestionRepository _questionRepository;
         private IUnitOfWork _unitOfWork;
 
-        public ExamService(IExamRepository examRepository, IExamDetailRepository examDetailRepository, IUnitOfWork unitOfWork)
+        public ExamService(IExamRepository examRepository, IExamDetailRepository examDetailRepository, IQuestionRepository questionRepository, IUnitOfWork unitOfWork)
         {
             this._examRepository = examRepository;
             this._examDetailRepositpry = examDetailRepository;
+            this._questionRepository = questionRepository;
             this._unitOfWork = unitOfWork;
         }
 
@@ -114,6 +112,11 @@ namespace LuyenThi.Service
                 }
                 _unitOfWork.Commit();
             }
+        }
+
+        public IEnumerable<Question> GetAllByExam(int id)
+        {
+           return _questionRepository.GetAllbyExam(id);
         }
     }
 }

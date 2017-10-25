@@ -18,10 +18,11 @@ namespace LuyenThi.Web.Api
     public class ExamController : ApiControllerBase
     {
         IExamService _examService;
-        IExamdetailService _examService;
-        public ExamController(IErrorService errorService, IExamService _examService) : base(errorService)
+        IQuestionService _questionService;
+        public ExamController(IErrorService errorService, IExamService _examService, IQuestionService questionService) : base(errorService)
         {
             this._examService = _examService;
+            this._questionService = questionService;
         }
 
         [Route("getall")]
@@ -60,13 +61,15 @@ namespace LuyenThi.Web.Api
             });
         }
 
-
         [Route("getquestionbyexam/{id:int}")]
         [HttpGet]
         public HttpResponseMessage GetQuestionByExam(HttpRequestMessage request, int id)
         {
             return CreateHttpResponse(request, () => {
-
+                var model = _questionService.GetAllByExam(id);
+                var responData = Mapper.Map<IEnumerable<Question>, IEnumerable<QuestionViewModel>>(model);
+                var response = request.CreateResponse(HttpStatusCode.OK,responData);
+                return response;
             });
         }
 
@@ -87,7 +90,6 @@ namespace LuyenThi.Web.Api
                 {
                     var oldExam = _examService.Delete(id);
                     _examService.SaveChanges();
-
                     var responseData = Mapper.Map<Exam, ExamViewModel>(oldExam);
                     response = request.CreateResponse(HttpStatusCode.OK, responseData);
                 }

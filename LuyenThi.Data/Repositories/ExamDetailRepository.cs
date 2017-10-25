@@ -5,9 +5,9 @@ namespace LuyenThi.Data.Repositories
 {
     public interface IExamDetailRepository : IRepository<ExamDetail> { }
 
-    public class DethiCauhoiRepository : RepositoryBase<ExamDetail>, IExamDetailRepository
+    public class ExamDetailRepository : RepositoryBase<ExamDetail>, IExamDetailRepository
     {
-        public DethiCauhoiRepository(IDbFactory dbFactory) : base(dbFactory)
+        public ExamDetailRepository(IDbFactory dbFactory) : base(dbFactory)
         {
         }
     }
