@@ -106,7 +106,7 @@ namespace LuyenThi.Service
                         Order = i,
                         Status = true,
                         CreatedDate = DateTime.Now,
-                        CreatedBy = "Admin"
+                        CreatedBy = "Tungnv"
                     };
                     _examDetailRepositpry.Add(examDetail);
                 }

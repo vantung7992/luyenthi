@@ -78,7 +78,6 @@ namespace LuyenThi.Web.Api
         [AllowAnonymous]
         public HttpResponseMessage Delete(HttpRequestMessage request, int id)
         {
-
             return CreateHttpResponse(request, () =>
             {
                 HttpResponseMessage response = null;
@@ -163,10 +162,10 @@ namespace LuyenThi.Web.Api
                 }
                 else
                 {
-                    List<int> ListIdCauhoi = new JavaScriptSerializer().Deserialize<List<int>>(examVm.ListQuestionID);
+                    List<int> ListSelectedQuestion = new JavaScriptSerializer().Deserialize<List<int>>(examVm.ListQuestionID);
                     var newdeThi = new Exam();
                     newdeThi.UpdateExam(examVm);
-                    _examService.Update(newdeThi, ListIdCauhoi);
+                    _examService.Update(newdeThi, ListSelectedQuestion);
                     _examService.SaveChanges();
                     var responseData = Mapper.Map<Exam, ExamViewModel>(newdeThi);
                     response = request.CreateResponse(HttpStatusCode.OK, responseData);

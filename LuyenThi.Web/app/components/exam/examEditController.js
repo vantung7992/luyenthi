@@ -1,12 +1,12 @@
 ﻿(function (app) {
     app.controller('examEditController', examEditController);
-    examEditController.$inject = ['$scope', 'apiService', 'notificationService', '$ngBootbox', '$filter', 'commonService'];
-    function examEditController($scope, apiService, notificationService, $ngBootbox, $filter, commonService) {
+    examEditController.$inject = ['$scope', 'apiService', 'notificationService', '$ngBootbox', '$filter', '$stateParams', '$state', 'commonService'];
+    function examEditController($scope, apiService, notificationService, $ngBootbox, $filter, $stateParams, $state, commonService) {
         $scope.exam = {};
 
         $scope.keyword = '';
         $scope.isAllUnSelectQuestion = false;
-        $scope.addExam = AddExam;
+        $scope.UpdateExam = UpdateExam;
         $scope.listCheckedQuestion = [];
         $scope.listUncheckedQuestion = [];
         $scope.Topics = [];
@@ -29,18 +29,18 @@
             });
         }
 
-        function AddExam() {
+        function UpdateExam() {
             var listID = [];
             $.each($scope.listCheckedQuestion, function (i, item) {
                 listID.push(item.ID);
             });
 
             $scope.exam.ListQuestionID = JSON.stringify(listID);
-            apiService.post('/api/exam/create', $scope.exam, function (result) {
-                notificationService.displaySuccess('Tạo đề thi thành công');
+            apiService.post('/api/exam/update', $scope.exam, function (result) {
+                notificationService.displaySuccess('Sửa đề thi thành công');
                 $state.go('exam');
             }, function (error) {
-                notificationService.displayError('Tạo đề thi không thành công: ' + error.data);
+                notificationService.displayError('Sửa đề thi không thành công: ' + error.data);
             })
         }
 
@@ -107,14 +107,14 @@
         function LoadExamDetail() {
             apiService.get('api/exam/getbyid/' + $stateParams.id, null, function (result) {
                 $scope.exam = result.data;
-
+                LoadSelectedQuestion();
             }, function (error) {
                 notificationService.displayError(error.data);
             });
         }
 
-        function LoadSelectedQuestion(examID) {
-            apiService.get('api/exam/getbyexam/' + examID, null, function (result) {
+        function LoadSelectedQuestion() {
+            apiService.get('api/exam/getquestionbyexam/' + $stateParams.id, null, function (result) {
                 $scope.listCheckedQuestion = result.data;
             }, function (error) {
                 notificationService.displayError(error.data);
@@ -139,6 +139,7 @@
             GetNoSelectQuestion(JSON.stringify(listID));
         });
         GetAllTopic();
+        LoadExamDetail();
     }
 }
 )(angular.module('luyenthi.exam'));
